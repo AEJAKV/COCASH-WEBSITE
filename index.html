@@ -252,14 +252,10 @@ nav ul li.nav-cta a:hover {
   pointer-events: none;
 }
 .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
   position: relative;
   z-index: 1;
 }
-.hero-content { max-width: 520px; }
+.hero-content { max-width: 720px; margin: 0 auto; text-align: center; }
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -293,11 +289,13 @@ nav ul li.nav-cta a:hover {
   margin-bottom: 32px;
   line-height: 1.7;
 }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
 .hero-trust {
   margin-top: 28px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 12px;
   font-size: 0.82rem;
   color: rgba(255,255,255,0.6);
@@ -429,6 +427,19 @@ nav ul li.nav-cta a:hover {
   color: var(--color-text-muted);
 }
 .form-secure::before { content: '🔒'; font-size: 0.9em; }
+
+/* ===================== LOAN FORM SECTION ===================== */
+.loan-form-section {
+  background: #F5F6F8;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.loan-form-section .hero-form-card {
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-md);
+}
 
 /* ===================== SECTION COMMON ===================== */
 section { padding: var(--space-xl) 0; }
@@ -840,12 +851,8 @@ footer {
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1023px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-content { max-width: 100%; text-align: center; }
   .hero h1 { font-size: 2.2rem; }
-  .hero-actions { justify-content: center; }
-  .hero-trust { justify-content: center; }
-  .hero-form-card { max-width: 480px; margin: 0 auto; }
+  .loan-form-section .hero-form-card { max-width: 480px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .apr-inner { grid-template-columns: 1fr; }
@@ -856,6 +863,8 @@ footer {
 @media (max-width: 767px) {
   .hero { padding: 48px 0 52px; }
   .hero h1 { font-size: 1.8rem; }
+  .loan-form-section { padding: 36px 0; }
+  .loan-form-section .hero-form-card { max-width: 100%; }
   .features-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .steps-row { grid-template-columns: 1fr; }
@@ -932,28 +941,6 @@ footer {
           <span class="trust-dot">Build Your Credit</span>
         </div>
       </div>
-
-      <!-- LOAN FORM CARD -->
-      <div class="hero-form-card" id="loan-form">
-        <h2>Apply for a Loan with CoCASH</h2>
-        <p class="subtitle">Select an amount and apply in under 2 minutes</p>
-        <p class="amount-label">How Much Cash Would You Like?</p>
-        <div class="amount-presets" role="group" aria-label="Preset loan amounts">
-          <button class="amount-preset" data-amount="250" onclick="selectAmount(this)">$250</button>
-          <button class="amount-preset selected" data-amount="500" onclick="selectAmount(this)">$500</button>
-          <button class="amount-preset" data-amount="750" onclick="selectAmount(this)">$750</button>
-          <button class="amount-preset" data-amount="1000" onclick="selectAmount(this)">$1,000</button>
-          <button class="amount-preset" data-amount="1500" onclick="selectAmount(this)">$1,500</button>
-          <button class="amount-preset" data-amount="2000" onclick="selectAmount(this)">$2,000+</button>
-        </div>
-        <div class="amount-input-wrap">
-          <span class="prefix">$</span>
-          <input type="number" id="loanAmount" value="500" min="250" max="5000" aria-label="Loan amount in dollars">
-        </div>
-        <button class="btn btn-primary form-submit btn-primary-lg" onclick="applyNow()">CLAIM YOUR CASH!</button>
-        <div class="form-renew"><a href="/renew/">Already a customer? Renew Your Loan →</a></div>
-        <div class="form-secure">256-bit SSL encrypted &amp; 100% secure application</div>
-      </div>
     </div>
   </div>
 </section>
@@ -1002,6 +989,32 @@ footer {
     </div>
   </div>
 </div>
+
+<!-- LOAN FORM -->
+<section class="loan-form-section" aria-label="Apply for a loan">
+  <div class="container">
+    <div class="hero-form-card" id="loan-form">
+      <h2>Apply for a Loan with CoCASH</h2>
+      <p class="subtitle">Select an amount and apply in under 2 minutes</p>
+      <p class="amount-label">How Much Cash Would You Like?</p>
+      <div class="amount-presets" role="group" aria-label="Preset loan amounts">
+        <button class="amount-preset" data-amount="250" onclick="selectAmount(this)">$250</button>
+        <button class="amount-preset selected" data-amount="500" onclick="selectAmount(this)">$500</button>
+        <button class="amount-preset" data-amount="750" onclick="selectAmount(this)">$750</button>
+        <button class="amount-preset" data-amount="1000" onclick="selectAmount(this)">$1,000</button>
+        <button class="amount-preset" data-amount="1500" onclick="selectAmount(this)">$1,500</button>
+        <button class="amount-preset" data-amount="2000" onclick="selectAmount(this)">$2,000+</button>
+      </div>
+      <div class="amount-input-wrap">
+        <span class="prefix">$</span>
+        <input type="number" id="loanAmount" value="500" min="250" max="5000" aria-label="Loan amount in dollars">
+      </div>
+      <button class="btn btn-primary form-submit btn-primary-lg" onclick="applyNow()">CLAIM YOUR CASH!</button>
+      <div class="form-renew"><a href="/renew/">Already a customer? Renew Your Loan →</a></div>
+      <div class="form-secure">256-bit SSL encrypted &amp; 100% secure application</div>
+    </div>
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
 <section class="how-section" aria-labelledby="how-heading">
