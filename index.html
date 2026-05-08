@@ -86,11 +86,7 @@ a:hover { color: var(--color-primary-hover); }
   display: inline-block;
   padding: 0.85rem 2rem;
   border: none;
-  border-radius: var(--radius);
-  font-family: var(--font-base);
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
+  border-radius: 20px;
   transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   text-align: center;
   letter-spacing: 0.03em;
@@ -111,7 +107,7 @@ a:hover { color: var(--color-primary-hover); }
   font-size: 1.15rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  border-radius: var(--radius-lg);
+  border-radius: 20px;
 }
 .btn-secondary {
   background: none;
@@ -189,15 +185,73 @@ nav ul li a:hover {
   background: var(--color-bg-section);
   color: var(--color-primary);
 }
-nav ul li.nav-cta a {
-  background: var(--color-primary);
-  color: #fff;
-  padding: 8px 18px;
+/* Dropdown nav item */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 4px 0;
 }
-nav ul li.nav-cta a:hover {
-  background: var(--color-primary-hover);
-  color: #fff;
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  white-space: nowrap;
 }
+.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+
+/* Nav right cluster */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-right .nav-contact {
+  color: var(--color-text-light);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.nav-right .nav-contact a { color: var(--color-text-light); font-weight: 700; }
+.nav-right .nav-contact a:hover { color: var(--color-primary); }
+.nav-right .nav-login {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-right .nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: #FF8C00;
+  color: #fff;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.btn-nav-orange:hover { background: #e07b00; color: #fff; }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -252,10 +306,44 @@ nav ul li.nav-cta a:hover {
   pointer-events: none;
 }
 .hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
   position: relative;
   z-index: 1;
 }
-.hero-content { max-width: 720px; margin: 0 auto; text-align: center; }
+.hero-image-col {
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 430px;
+  height: 430px;
+  background: rgba(255,255,255,0.08);
+  border: 2px dashed rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-image-col .placeholder-icon {
+  font-size: 3.5rem;
+  opacity: 0.4;
+}
+.hero-image-col img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.hero-content { max-width: none; text-align: left; }
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -289,7 +377,7 @@ nav ul li.nav-cta a:hover {
   margin-bottom: 32px;
   line-height: 1.7;
 }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; justify-content: center; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 .hero-trust {
   margin-top: 28px;
   display: flex;
@@ -427,6 +515,42 @@ nav ul li.nav-cta a:hover {
   color: var(--color-text-muted);
 }
 .form-secure::before { content: '🔒'; font-size: 0.9em; }
+
+/* ===================== ORANGE BUTTON & THROB ===================== */
+.btn-orange {
+  background: #FF8C00;
+  color: #fff;
+  border-radius: 20px;
+  border: none;
+}
+.btn-orange:hover {
+  background: #e07b00;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255,140,0,0.4);
+}
+@keyframes throb {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(255,140,0,0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 8px 32px rgba(255,140,0,0.7); }
+}
+.btn-throb { animation: throb 1.8s ease-in-out infinite; }
+
+/* ===================== TAGLINE SECTION ===================== */
+.tagline-section {
+  background: #fff;
+  padding: 32px 0;
+  text-align: center;
+}
+.tagline-box {
+  display: inline-block;
+  border: 2px solid var(--color-primary);
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.5;
+}
 
 /* ===================== LOAN FORM SECTION ===================== */
 .loan-form-section {
@@ -851,6 +975,10 @@ footer {
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1023px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-image-col { max-width: 480px; margin: 0 auto; }
+  .hero-content { text-align: center; }
+  .hero-actions { justify-content: center; }
   .hero h1 { font-size: 2.2rem; }
   .loan-form-section .hero-form-card { max-width: 480px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -858,6 +986,7 @@ footer {
   .apr-inner { grid-template-columns: 1fr; }
   .steps-row::before { display: none; }
   nav ul { display: none; }
+  .nav-right { display: none; }
   .hamburger { display: flex; }
 }
 @media (max-width: 767px) {
@@ -897,14 +1026,22 @@ footer {
       <a href="/" class="logo">Co<span>CASH</span>.ca</a>
       <nav role="navigation" aria-label="Main navigation">
         <ul>
-          <li><a href="/loan-cashback/">Loan Cashback</a></li>
-          <li><a href="/early-repayment/">Early Repayment</a></li>
-          <li><a href="/budgetplan/">Budget Plan</a></li>
-          <li><a href="/faq/">FAQs</a></li>
           <li><a href="/blog/">Blog</a></li>
-          <li class="nav-cta"><a href="#loan-form">Apply Now</a></li>
+          <li><a href="/faq/">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment/">Early Repayment Program</a></li>
+              <li><a href="/loan-cashback/">Loan Cashback</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
+      <div class="nav-right">
+        <span class="nav-contact"><a href="tel:18001234567">1-800-123-4567</a> &nbsp;|&nbsp; <a href="/faq/">Help &amp; FAQ</a></span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
+      </div>
       <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
         <span></span><span></span><span></span>
       </button>
@@ -912,12 +1049,12 @@ footer {
   </div>
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
-      <li><a href="/loan-cashback/">Loan Cashback</a></li>
-      <li><a href="/early-repayment/">Early Repayment</a></li>
-      <li><a href="/budgetplan/">Budget Plan</a></li>
-      <li><a href="/faq/">FAQs</a></li>
       <li><a href="/blog/">Blog</a></li>
-      <li><a href="#loan-form">Apply Now</a></li>
+      <li><a href="/faq/">FAQs</a></li>
+      <li><a href="/early-repayment/">Early Repayment Program</a></li>
+      <li><a href="/loan-cashback/">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="#loan-form">Claim Your Cash!</a></li>
     </ul>
   </div>
 </header>
@@ -926,15 +1063,25 @@ footer {
 <section class="hero" aria-label="Hero section">
   <div class="container">
     <div class="hero-inner">
+      <div class="hero-image-col">
+        <span class="placeholder-icon">🖼️</span>
+        <span>Your Image Here</span>
+      </div>
       <div class="hero-content">
-        <div class="hero-badge">Canada's Fast Online Lender</div>
         <h1>No Credit-Check<br><em>Canada-Wide</em> Loans</h1>
         <p class="hero-sub">Available as quickly as 10 minutes after approval. Simple online application, instant e-transfer, no paperwork required.</p>
         <div class="hero-actions">
-          <a href="#loan-form" class="btn btn-primary btn-primary-lg">Apply Now</a>
+          <a href="#loan-form" class="btn btn-orange btn-primary-lg btn-throb">Apply Now</a>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- TAGLINE -->
+<section class="tagline-section" aria-label="Tagline">
+  <div class="container">
+    <div class="tagline-box">Premier cosigning service that matches you with the best lender.</div>
   </div>
 </section>
 
