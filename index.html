@@ -479,7 +479,7 @@ nav ul li a:hover {
   background: rgba(246,252,249,0.96);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
-  padding: 40px 36px 32px;
+  padding: 32px 36px 28px;
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
 }
@@ -502,25 +502,16 @@ nav ul li a:hover {
 
 /* Headings */
 .lg-heading {
-  font-size: 1.45rem;
+  font-size: 1.85rem;
   font-weight: 900;
   color: var(--color-primary-dark);
-  margin-bottom: 5px;
-  letter-spacing: -0.01em;
-}
-.lg-sub {
-  font-size: 0.86rem;
-  color: var(--color-text-light);
   margin-bottom: 22px;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  text-align: center;
 }
-.lg-amount-label {
-  font-weight: 700;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-text-muted);
-  margin-bottom: 10px;
-}
+.lg-sub  { display: none; }
+.lg-amount-label { display: none; }
 
 /* Amount pills */
 .lg-pills {
@@ -628,7 +619,7 @@ nav ul li a:hover {
   100% { opacity: 1;   transform: scale(1)    translateY(0); }
 }
 
-/* CLAIM YOUR CASH — liquid mercury button */
+/* CLAIM YOUR CASH — premium orange button */
 .lg-cta-btn {
   display: block;
   width: 100%;
@@ -645,20 +636,20 @@ nav ul li a:hover {
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(140deg, #2D9A5C, #439C6F 48%, #2D9A5C);
-  box-shadow: 0 5px 28px rgba(67,156,111,0.52), 0 1px 6px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.28);
+  background: linear-gradient(140deg, #FF8C00 0%, #FFB300 50%, #FF8C00 100%);
+  box-shadow: 0 5px 28px rgba(255,140,0,0.48), 0 1px 6px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.28);
   animation: cta-breathe 2.8s ease-in-out infinite;
   transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
   text-align: center;
 }
 @keyframes cta-breathe {
-  0%, 100% { box-shadow: 0 5px 28px rgba(67,156,111,0.5),  0 1px 6px rgba(0,0,0,0.1),  inset 0 1px 0 rgba(255,255,255,0.28); }
-  50%       { box-shadow: 0 9px 48px rgba(67,156,111,0.78), 0 2px 10px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.35); }
+  0%, 100% { box-shadow: 0 5px 28px rgba(255,140,0,0.45), 0 1px 6px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.28); }
+  50%       { box-shadow: 0 10px 48px rgba(255,140,0,0.72), 0 2px 10px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.35); }
 }
 .lg-cta-btn:hover {
   transform: translateY(-2px) scale(1.015);
   animation-play-state: paused;
-  box-shadow: 0 14px 56px rgba(67,156,111,0.78), 0 3px 12px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.32);
+  box-shadow: 0 14px 56px rgba(255,140,0,0.72), 0 3px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.32);
 }
 .lg-cta-btn:active { transform: scale(0.97); animation-play-state: paused; }
 /* Mouse-tracking radial gloss */
@@ -1888,9 +1879,7 @@ footer {
   <div class="lg-wrap">
     <div class="lg-outer">
       <div class="lg-card" id="loan-form">
-        <h2 class="lg-heading">Apply for a Loan with CoCASH</h2>
-        <p class="lg-sub">Select an amount and apply in under 2 minutes</p>
-        <p class="lg-amount-label">How Much Cash Would You Like?</p>
+        <h2 class="lg-heading">How Much Cash Would You Like?</h2>
         <div class="lg-pills" role="group" aria-label="Preset loan amounts">
           <button class="lg-pill" data-amount="250" onclick="lgSelect(this)">$250</button>
           <button class="lg-pill selected" data-amount="500" onclick="lgSelect(this)">$500</button>
