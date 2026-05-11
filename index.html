@@ -1296,64 +1296,182 @@ section { padding: var(--space-xl) 0; }
 .step-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--color-primary-dark); }
 .step-card p { font-size: 0.88rem; color: var(--color-text-light); line-height: 1.6; }
 
-/* ===================== APR / INFO SECTION ===================== */
-.apr-section {
+/* ===================== LOAN COMPARISON MODULE ===================== */
+.lc-section {
   background: var(--color-bg-section);
-  border-top: 3px solid var(--color-primary);
+  padding: var(--space-xxl) 0;
 }
-.apr-inner {
+.lc-card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.96);
+  border-radius: 24px;
+  border: 1px solid rgba(67,156,111,0.15);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 40px 40px 32px;
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.5s both;
+}
+.lc-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FF8C00, #FFB300, #439C6F);
+  border-radius: 24px 24px 0 0;
+}
+/* Tabs */
+.lc-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+  background: rgba(0,0,0,0.05);
+  padding: 5px;
+  border-radius: 50px;
+  width: fit-content;
+}
+.lc-tab {
+  padding: 10px 28px;
+  border-radius: 50px;
+  border: none;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: transparent;
+  color: #555;
+  transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+}
+.lc-tab:hover:not(.active) { background: rgba(255,255,255,0.75); color: #222; }
+.lc-tab.active {
+  background: linear-gradient(135deg, #FF8C00, #FFB300);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(255,140,0,0.32);
+  transform: scale(1.04);
+}
+/* Highlight */
+.lc-highlight {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: start;
+  gap: 14px;
+  margin-bottom: 24px;
 }
-.apr-box h3 { font-size: 1.2rem; font-weight: 700; color: var(--color-primary-dark); margin-bottom: 16px; }
-.apr-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
+.lc-highlight-card {
+  background: linear-gradient(135deg, rgba(67,156,111,0.06), rgba(67,156,111,0.11));
+  border: 1px solid rgba(67,156,111,0.18);
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: center;
 }
-.apr-table th {
-  background: var(--color-primary);
-  color: #fff;
-  padding: 10px 14px;
-  text-align: left;
+.lc-highlight-label {
+  font-size: 0.68rem;
   font-weight: 700;
-}
-.apr-table td {
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--color-border);
-}
-.apr-table tr:nth-child(even) td { background: rgba(67,156,111,0.04); }
-.apr-disclaimer {
-  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--color-text-muted);
-  margin-top: 14px;
-  line-height: 1.5;
+  margin-bottom: 8px;
 }
-.benefits-list { list-style: none; }
-.benefits-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-}
-.benefits-list li::before {
-  content: '✓';
-  min-width: 22px;
-  height: 22px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  color: #fff;
-  font-size: 0.7rem;
+.lc-highlight-value {
+  font-size: 2.2rem;
   font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
+  color: var(--color-primary-dark);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  transition: opacity 0.18s, transform 0.18s;
 }
+.lc-highlight-value.lc-fade {
+  opacity: 0;
+  transform: translateY(6px) scale(0.97);
+}
+/* Details grid */
+.lc-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.lc-detail-item {
+  background: #F8FAFA;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: background 0.2s;
+}
+.lc-detail-item:hover { background: rgba(67,156,111,0.05); }
+.lc-detail-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 4px;
+}
+.lc-detail-value {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #1C3328;
+  transition: opacity 0.18s, transform 0.18s;
+}
+.lc-detail-value.lc-fade {
+  opacity: 0;
+  transform: translateY(4px);
+}
+.lc-yes { color: #2D9A5C; }
+.lc-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.07);
+  margin-bottom: 24px;
+}
+/* CTA */
+.lc-cta-area { text-align: center; }
+.lc-cta-btn {
+  display: inline-block;
+  padding: 16px 52px;
+  background: linear-gradient(135deg, #FF8C00 0%, #FFB300 100%);
+  color: #fff;
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(255,140,0,0.3);
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.lc-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -70%;
+  width: 45%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.lc-cta-btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 24px rgba(255,140,0,0.45); color: #fff; }
+.lc-cta-btn:hover::before { left: 130%; }
+.lc-cta-btn:active { transform: scale(0.97); }
+.lc-trust-note {
+  margin-top: 10px;
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+.lc-disclaimer {
+  margin-top: 20px;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 16px;
+}
+.lc-disclaimer a { color: var(--color-primary); }
 
 /* ===================== TESTIMONIALS ===================== */
 .testimonials-section { background: #fff; }
@@ -1644,6 +1762,12 @@ footer {
   .features-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .apr-inner { grid-template-columns: 1fr; }
+  .lc-details { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .lc-card { padding: 28px 18px 24px; border-radius: 18px; }
+  .lc-tabs { width: 100%; }
+  .lc-tab { flex: 1; padding: 10px 6px; font-size: 0.88rem; text-align: center; }
+  .lc-highlight-value { font-size: 1.75rem; }
+  .lc-cta-btn { display: block; text-align: center; padding: 16px 24px; }
   .steps-row::before { display: none; }
   nav ul { display: none; }
   .nav-right { display: none; }
@@ -2013,46 +2137,75 @@ footer {
   </div>
 </section>
 
-<!-- APR / LOAN DETAILS -->
-<section class="apr-section" aria-labelledby="apr-heading">
+<!-- LOAN COMPARISON MODULE -->
+<section class="lc-section" aria-labelledby="lc-heading">
   <div class="container">
-    <h2 class="section-heading" id="apr-heading">Transparent Loan Details</h2>
+    <h2 class="section-heading" id="lc-heading">Transparent Loan Details</h2>
     <p class="section-sub">We believe in full transparency — no hidden fees, no surprises.</p>
-    <div class="apr-inner">
-      <div class="apr-box">
-        <h3>Loan Terms &amp; Example Rates</h3>
-        <table class="apr-table">
-          <thead>
-            <tr>
-              <th>Loan Amount</th>
-              <th>Term</th>
-              <th>APR</th>
-              <th>Total Repayable</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>$500</td><td>91–120 days</td><td>32%</td><td>$539.45</td></tr>
-            <tr><td>$750</td><td>91–120 days</td><td>32%</td><td>$809.18</td></tr>
-            <tr><td>$1,000</td><td>91–120 days</td><td>32%</td><td>$1,078.90</td></tr>
-            <tr><td>$1,500</td><td>91–120 days</td><td>32%</td><td>$1,618.36</td></tr>
-            <tr><td>$2,000</td><td>91–120 days</td><td>32%</td><td>$2,157.81</td></tr>
-          </tbody>
-        </table>
-        <p class="apr-disclaimer">Representative example: 32% APR. Repay in 91–120 days. Rates may vary. CoCASH.ca is an online surety (guarantor) service offering installment loans. Please borrow responsibly and only what you can afford to repay. See full <a href="/terms-of-service/">Terms of Service</a>.</p>
+    <div class="lc-card">
+      <!-- Loan selector tabs -->
+      <div class="lc-tabs" role="tablist" aria-label="Select loan amount">
+        <button class="lc-tab active" role="tab" aria-selected="true"  data-loan="350" onclick="lcSelect(this)">$350</button>
+        <button class="lc-tab"        role="tab" aria-selected="false" data-loan="500" onclick="lcSelect(this)">$500</button>
+        <button class="lc-tab"        role="tab" aria-selected="false" data-loan="750" onclick="lcSelect(this)">$750</button>
       </div>
-      <div class="apr-box">
-        <h3>Benefits of a CoCASH Loan</h3>
-        <ul class="benefits-list">
-          <li>100% paperless online process — apply from anywhere</li>
-          <li>No hard credit check — won't impact your credit score</li>
-          <li>Fast approval — decisions often within minutes</li>
-          <li>E-transfer directly to your existing bank account</li>
-          <li>Available to all Canadians, coast to coast</li>
-          <li>Build credit history with every on-time payment</li>
-          <li>Early repayment discounts — pay less when you pay early</li>
-          <li>Loan cashback rewards for responsible repayment</li>
-        </ul>
+      <!-- Highlight -->
+      <div class="lc-highlight">
+        <div class="lc-highlight-card">
+          <div class="lc-highlight-label">Loan Amount</div>
+          <div class="lc-highlight-value" id="lcAmount">$350</div>
+        </div>
+        <div class="lc-highlight-card">
+          <div class="lc-highlight-label">Bi-weekly Repayment</div>
+          <div class="lc-highlight-value" id="lcRepayment">$89.50</div>
+        </div>
       </div>
+      <!-- Details grid -->
+      <div class="lc-details">
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Frequency</div>
+          <div class="lc-detail-value" id="lcFrequency">Bi-weekly</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Term</div>
+          <div class="lc-detail-value" id="lcTerm">3 months</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Nominal Rate</div>
+          <div class="lc-detail-value" id="lcNominal">16.06%</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Cost / Debit</div>
+          <div class="lc-detail-value" id="lcCostDebit">$1</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">No. of Payments</div>
+          <div class="lc-detail-value" id="lcPayments">6+/-</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Repay &amp; Save Early</div>
+          <div class="lc-detail-value lc-yes" id="lcRepayEarly">Yes</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Guarantor Fee</div>
+          <div class="lc-detail-value" id="lcGuarantorFee">$175</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Total Repayable</div>
+          <div class="lc-detail-value" id="lcTotal">$525.46</div>
+        </div>
+        <div class="lc-detail-item">
+          <div class="lc-detail-label">Effective Credit Rate</div>
+          <div class="lc-detail-value" id="lcECR">31.99%</div>
+        </div>
+      </div>
+      <div class="lc-divider"></div>
+      <!-- CTA -->
+      <div class="lc-cta-area">
+        <a href="#loan-form" class="lc-cta-btn">Apply Now</a>
+        <p class="lc-trust-note">Clear repayment details before you apply.</p>
+      </div>
+      <p class="lc-disclaimer">Representative example: 31.99% effective credit rate. Bi-weekly repayments. Rates and terms vary by loan amount. CoCASH.ca is an online surety (guarantor) service offering installment loans. Please borrow responsibly. See full <a href="/terms-of-service/">Terms of Service</a>.</p>
     </div>
   </div>
 </section>
@@ -2428,6 +2581,42 @@ function toggleFaq(btn) {
     item.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
   }
+}
+
+// ===================== LOAN COMPARISON MODULE =====================
+var lcData = {
+  '350': { amount:'$350', repayment:'$89.50',  frequency:'Bi-weekly', term:'3 months', nominal:'16.06%', costDebit:'$1', payments:'6+/-', repayEarly:'Yes', guarantorFee:'$175',  total:'$525.46',  ecr:'31.99%' },
+  '500': { amount:'$500', repayment:'$129.05', frequency:'Bi-weekly', term:'3 months', nominal:'16.63%', costDebit:'$1', payments:'6+/-', repayEarly:'Yes', guarantorFee:'$250',  total:'$753.64',  ecr:'31.99%' },
+  '750': { amount:'$750', repayment:'$145.51', frequency:'Bi-weekly', term:'4 months', nominal:'16.06%', costDebit:'$1', payments:'8+/-', repayEarly:'Yes', guarantorFee:'$375',  total:'$1,125.00', ecr:'28.56%' }
+};
+var lcFieldMap = {
+  lcAmount:'amount', lcRepayment:'repayment', lcFrequency:'frequency', lcTerm:'term',
+  lcNominal:'nominal', lcCostDebit:'costDebit', lcPayments:'payments',
+  lcRepayEarly:'repayEarly', lcGuarantorFee:'guarantorFee', lcTotal:'total', lcECR:'ecr'
+};
+function lcSelect(btn) {
+  document.querySelectorAll('.lc-tab').forEach(function(t) {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  var d = lcData[btn.getAttribute('data-loan')];
+  if (!d) return;
+  // Fade all values out
+  Object.keys(lcFieldMap).forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.add('lc-fade');
+  });
+  // Swap values then fade back in
+  setTimeout(function() {
+    Object.keys(lcFieldMap).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = d[lcFieldMap[id]];
+      el.classList.remove('lc-fade');
+    });
+  }, 180);
 }
 
 // ===================== FLOATING FAB CTA =====================
