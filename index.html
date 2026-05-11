@@ -1597,29 +1597,110 @@ section { padding: var(--space-xl) 0; }
 .cta-banner .btn-white { padding: 1rem 2.8rem; font-size: 1rem; }
 
 /* ===================== SECURITY BADGES ===================== */
-.security-section {
-  background: #fff;
-  padding: 30px 0;
-  border-top: 1px solid var(--color-border);
+/* ===================== SECURITY SECTION ===================== */
+.sec-section {
+  background: linear-gradient(155deg, #f0f8f4 0%, #e8f5ee 55%, #f4faf7 100%);
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
 }
-.security-inner {
+.sec-section::after {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(67,156,111,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.sec-card {
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(67,156,111,0.16);
+  border-radius: 24px;
+  box-shadow: 0 8px 40px rgba(42,94,65,0.09), 0 2px 8px rgba(0,0,0,0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 52px 56px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.62s ease, transform 0.62s ease, box-shadow 0.3s ease;
+}
+.sec-card.sec-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sec-card:hover {
+  box-shadow: 0 16px 52px rgba(42,94,65,0.13), 0 4px 14px rgba(0,0,0,0.05);
+  transform: translateY(-4px);
+}
+.sec-card.sec-visible:hover { transform: translateY(-4px); }
+/* Light sheen sweep on hover */
+.sec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.32) 50%, transparent 65%);
+  transform: skewX(-15deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.sec-card:hover::before { left: 145%; }
+.sec-icon-col {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
-.security-badge {
+.sec-icon-wrap {
+  width: 148px; height: 148px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 32%, rgba(255,255,255,0.75) 0%, rgba(236,248,241,0.95) 100%);
+  border: 1.5px solid rgba(67,156,111,0.18);
+  box-shadow: 0 4px 28px rgba(67,156,111,0.16), inset 0 1px 0 rgba(255,255,255,0.85);
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  justify-content: center;
+  animation: secFloat 4.2s ease-in-out infinite;
 }
-.security-badge .badge-icon { font-size: 1.4rem; }
+.sec-icon-wrap svg {
+  width: 70px; height: 70px;
+  filter: drop-shadow(0 4px 14px rgba(42,94,65,0.22));
+}
+.sec-text-col {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+.sec-text-col h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  line-height: 1.18;
+  margin-bottom: 18px;
+  letter-spacing: -0.02em;
+}
+.sec-text-col p {
+  font-size: 0.96rem;
+  color: var(--color-text-light);
+  line-height: 1.78;
+  margin-bottom: 14px;
+}
+.sec-text-col p:last-child { margin-bottom: 0; }
+@keyframes secFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
 
 /* ===================== FOOTER ===================== */
 footer {
@@ -1860,6 +1941,13 @@ footer {
   .footer-bottom { flex-direction: column; }
   body { padding-bottom: 0; }
   section { padding: 40px 0; }
+  /* Security section mobile */
+  .sec-section { padding: 44px 0; }
+  .sec-card { flex-direction: column; gap: 28px; padding: 36px 22px 32px; text-align: center; border-radius: 20px; }
+  .sec-icon-wrap { width: 118px; height: 118px; }
+  .sec-icon-wrap svg { width: 56px; height: 56px; }
+  .sec-text-col h2 { font-size: 1.45rem; margin-bottom: 14px; }
+  .sec-text-col p { font-size: 0.93rem; }
   .section-heading { font-size: 1.6rem; }
   .cta-banner h2 { font-size: 1.6rem; }
   .container { padding: 0 var(--space-m); }
@@ -2350,18 +2438,43 @@ footer {
   </div>
 </section>
 
-<!-- SECURITY BADGES -->
-<div class="security-section" aria-label="Security certifications">
+<!-- SECURITY SECTION -->
+<section class="sec-section" aria-labelledby="sec-heading">
   <div class="container">
-    <div class="security-inner">
-      <div class="security-badge"><span class="badge-icon">🔒</span> SSL Encrypted</div>
-      <div class="security-badge"><span class="badge-icon">🛡️</span> Comodo Secured</div>
-      <div class="security-badge"><span class="badge-icon">✅</span> McAfee Secure</div>
-      <div class="security-badge"><span class="badge-icon">🇨🇦</span> Canadian Company</div>
-      <div class="security-badge"><span class="badge-icon">⭐</span> 4.9/5 Customer Rating</div>
+    <div class="sec-card" id="secCard">
+
+      <div class="sec-icon-col" aria-hidden="true">
+        <div class="sec-icon-wrap">
+          <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 5 L73 18 L73 44 C73 64 57.5 80 40 87 C22.5 80 7 64 7 44 L7 18 Z"
+              fill="url(#shieldGrad)" stroke="rgba(255,255,255,0.30)" stroke-width="1.5"/>
+            <!-- Lock body -->
+            <rect x="26" y="48" width="28" height="22" rx="6" fill="rgba(255,255,255,0.93)"/>
+            <!-- Lock shackle -->
+            <path d="M33 48 L33 38.5 C33 32.5 47 32.5 47 38.5 L47 48"
+              stroke="rgba(255,255,255,0.93)" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+            <!-- Keyhole -->
+            <circle cx="40" cy="57" r="3.4" fill="#2A5E41"/>
+            <rect x="38.3" y="59.5" width="3.4" height="4.5" rx="1.5" fill="#2A5E41"/>
+            <defs>
+              <linearGradient id="shieldGrad" x1="7" y1="5" x2="73" y2="87" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#59C98A"/>
+                <stop offset="100%" stop-color="#2A5E41"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <div class="sec-text-col">
+        <h2 id="sec-heading">Your Security Comes First!</h2>
+        <p>At CoCASH.ca, the security of your personal information is our top priority. We use secure systems, privacy protection, and verification checks to help keep your information safe throughout the application process.</p>
+        <p>We believe online privacy is essential. That is why we use security technology and responsible data practices to protect your personal details and prevent unauthorized access.</p>
+      </div>
+
     </div>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -2675,6 +2788,22 @@ function lcSelect(btn) {
     btn.appendChild(r);
     setTimeout(function() { if (r.parentNode) r.parentNode.removeChild(r); }, 650);
   });
+})();
+
+// Security section scroll-in entrance
+(function() {
+  var card = document.getElementById('secCard');
+  if (!card || !window.IntersectionObserver) {
+    if (card) card.classList.add('sec-visible');
+    return;
+  }
+  var io = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      card.classList.add('sec-visible');
+      io.disconnect();
+    }
+  }, { threshold: 0.12 });
+  io.observe(card);
 })();
 
 // Keyboard: close mobile menu on escape is handled in glass modal keydown above
