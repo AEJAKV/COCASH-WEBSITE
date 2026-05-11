@@ -545,7 +545,7 @@ nav ul li a:hover {
   background: linear-gradient(145deg, #3FAE6C, #2A7A52);
   color: #fff;
   border-color: transparent;
-  box-shadow: 0 0 24px rgba(67,156,111,0.62), 0 4px 14px rgba(42,94,65,0.35), inset 0 1px 0 rgba(255,255,255,0.22);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.22);
   transform: scale(1.05);
 }
 .lg-pill.wide { grid-column: 1 / -1; }
@@ -637,8 +637,8 @@ nav ul li a:hover {
   position: relative;
   overflow: hidden;
   background: linear-gradient(140deg, #2D9A5C 0%, #439C6F 50%, #2D9A5C 100%);
-  box-shadow: 0 5px 28px rgba(67,156,111,0.52), 0 1px 6px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.28);
-  animation: cta-breathe 2.8s ease-in-out infinite;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.28);
+  animation: none;
   transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
   text-align: center;
 }
@@ -649,7 +649,7 @@ nav ul li a:hover {
 .lg-cta-btn:hover {
   transform: translateY(-2px) scale(1.015);
   animation-play-state: paused;
-  box-shadow: 0 14px 56px rgba(67,156,111,0.78), 0 3px 12px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.32);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.32);
 }
 .lg-cta-btn:active { transform: scale(0.97); animation-play-state: paused; }
 /* Mouse-tracking radial gloss */
@@ -1546,13 +1546,10 @@ footer {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow:
-    0 6px 24px rgba(255,140,0,0.55),
-    0 2px 8px rgba(0,0,0,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.3);
   transform: translateY(0) scale(1);
   transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
-  animation: fab-breathe 2.6s ease-in-out infinite;
+  animation: none;
   position: relative;
   overflow: hidden;
   white-space: nowrap;
@@ -1569,10 +1566,7 @@ footer {
 }
 .sticky-fab-btn:hover {
   transform: translateY(-3px) scale(1.06);
-  box-shadow:
-    0 12px 36px rgba(255,140,0,0.7),
-    0 4px 12px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.3);
   animation-play-state: paused;
 }
 .sticky-fab-btn:hover::before { left: 130%; }
@@ -1584,8 +1578,8 @@ footer {
   animation: fab-icon-bob 2.6s ease-in-out infinite;
 }
 @keyframes fab-breathe {
-  0%, 100% { box-shadow: 0 6px 24px rgba(255,140,0,0.52), 0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.3); }
-  50%       { box-shadow: 0 10px 38px rgba(255,140,0,0.75), 0 3px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3); }
+  0%, 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.3); }
+  50%       { box-shadow: 0 6px 16px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.3); }
 }
 @keyframes fab-icon-bob {
   0%, 100% { transform: translateY(0); }
