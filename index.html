@@ -1532,19 +1532,94 @@ footer {
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-/* ===================== STICKY BOTTOM BAR (mobile) ===================== */
-.sticky-bottom {
-  display: none;
+/* ===================== FLOATING FAB CTA ===================== */
+.sticky-fab {
+  display: none; /* shown via JS after scroll */
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--color-primary-dark);
-  padding: 12px var(--space-l);
+  bottom: 28px;
+  right: 22px;
   z-index: 990;
-  box-shadow: 0 -2px 12px rgba(0,0,0,0.2);
 }
-.sticky-bottom .btn { width: 100%; }
+.sticky-fab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 14px 22px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #FFB300 0%, #FF8C00 100%);
+  color: #fff;
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow:
+    0 6px 24px rgba(255,140,0,0.55),
+    0 2px 8px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  transform: translateY(0) scale(1);
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+  animation: fab-breathe 2.6s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.sticky-fab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -70%;
+  width: 45%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.sticky-fab-btn:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow:
+    0 12px 36px rgba(255,140,0,0.7),
+    0 4px 12px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+  animation-play-state: paused;
+}
+.sticky-fab-btn:hover::before { left: 130%; }
+.sticky-fab-btn:active { transform: scale(0.95); }
+.sticky-fab-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  display: inline-block;
+  animation: fab-icon-bob 2.6s ease-in-out infinite;
+}
+@keyframes fab-breathe {
+  0%, 100% { box-shadow: 0 6px 24px rgba(255,140,0,0.52), 0 2px 8px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.3); }
+  50%       { box-shadow: 0 10px 38px rgba(255,140,0,0.75), 0 3px 12px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3); }
+}
+@keyframes fab-icon-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-2px); }
+}
+/* Entrance animation */
+@keyframes fab-slide-in {
+  from { opacity: 0; transform: translateY(22px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.sticky-fab.fab-visible {
+  display: flex;
+  animation: fab-slide-in 0.4s cubic-bezier(.34,1.56,.64,1) both;
+}
+/* Splash ripple on click */
+.fab-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.45);
+  width: 8px; height: 8px;
+  transform: translate(-50%,-50%) scale(0);
+  animation: fab-ripple-anim 0.6s cubic-bezier(0,.85,.57,1) forwards;
+  pointer-events: none;
+}
+@keyframes fab-ripple-anim { to { transform: translate(-50%,-50%) scale(30); opacity: 0; } }
 
 /* ===================== ANIMATIONS ===================== */
 @keyframes fadeUp {
@@ -1596,8 +1671,7 @@ footer {
   .steps-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .footer-bottom { flex-direction: column; }
-  .sticky-bottom { display: block; }
-  body { padding-bottom: 64px; }
+  body { padding-bottom: 0; }
   section { padding: 40px 0; }
   .section-heading { font-size: 1.6rem; }
   .cta-banner h2 { font-size: 1.6rem; }
@@ -2117,9 +2191,11 @@ footer {
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-bottom" aria-hidden="true">
-  <a href="#loan-form" class="btn btn-primary btn-primary-lg">CLAIM YOUR CASH!</a>
+<!-- FLOATING FAB CTA -->
+<div class="sticky-fab" id="stickyFab" role="complementary" aria-label="Apply Now">
+  <a href="#loan-form" class="sticky-fab-btn" id="fabBtn">
+    <span class="sticky-fab-icon">💸</span> Apply Now
+  </a>
 </div>
 
 <script>
@@ -2304,6 +2380,36 @@ function toggleFaq(btn) {
     btn.setAttribute('aria-expanded', 'true');
   }
 }
+
+// ===================== FLOATING FAB CTA =====================
+(function() {
+  var fab = document.getElementById('stickyFab');
+  var btn = document.getElementById('fabBtn');
+  if (!fab || !btn) return;
+
+  // Show after scrolling past 220px
+  var fabShown = false;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 220 && !fabShown) {
+      fab.classList.add('fab-visible');
+      fabShown = true;
+    } else if (window.scrollY <= 220 && fabShown) {
+      fab.classList.remove('fab-visible');
+      fabShown = false;
+    }
+  }, { passive: true });
+
+  // Ripple on click
+  btn.addEventListener('click', function(e) {
+    var r = document.createElement('span');
+    r.className = 'fab-ripple';
+    var rect = btn.getBoundingClientRect();
+    r.style.left = (e.clientX - rect.left) + 'px';
+    r.style.top  = (e.clientY - rect.top)  + 'px';
+    btn.appendChild(r);
+    setTimeout(function() { if (r.parentNode) r.parentNode.removeChild(r); }, 650);
+  });
+})();
 
 // Keyboard: close mobile menu on escape is handled in glass modal keydown above
 document.addEventListener('keydown', function(e) {
