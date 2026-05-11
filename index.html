@@ -759,7 +759,7 @@ section { padding: var(--space-xl) 0; }
 .banks-footnote {
   display: none;
 }
-/* Collapsible footnote — all devices */
+/* ===================== PROMO TRIGGER ===================== */
 .banks-footnote-mobile {
   text-align: center;
   margin-top: 18px;
@@ -778,40 +778,324 @@ section { padding: var(--space-xl) 0; }
   align-items: center;
   gap: 4px;
   padding: 0;
+  transition: color 0.2s;
 }
+.banks-footnote-toggle:hover { color: var(--color-primary); }
 .banks-footnote-toggle .fn-chevron {
   font-size: 0.7rem;
-  transition: transform 0.25s;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
   display: inline-block;
 }
 .banks-footnote-toggle.open .fn-chevron { transform: rotate(180deg); }
-.banks-footnote-body {
+
+/* ===================== GLASS MODAL OVERLAY ===================== */
+.glass-modal-overlay {
   display: none;
-  margin-top: 10px;
-  background: #fff;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  text-align: left;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10,20,15,0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
-.banks-footnote-body.open { display: block; }
-.fn-offer {
-  font-size: 0.88rem;
+.glass-modal-overlay.visible {
+  display: flex;
+  opacity: 1;
+}
+.glass-modal-overlay.fading-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Modal card */
+.glass-modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 28px;
+  padding: 40px 36px 36px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.22) 0%,
+    rgba(255,255,255,0.10) 40%,
+    rgba(180,230,200,0.13) 100%
+  );
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12) inset,
+    0 32px 80px rgba(0,0,0,0.38),
+    0 8px 32px rgba(67,156,111,0.18),
+    0 0 80px rgba(67,156,111,0.08);
+  color: #fff;
+  text-align: center;
+  transform: scale(0.88) translateY(24px);
+  transition: transform 0.45s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s;
+  will-change: transform;
+  overflow: hidden;
+}
+.glass-modal-overlay.visible .glass-modal {
+  transform: scale(1) translateY(0);
+}
+
+/* Animated light sweep */
+.glass-modal::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.07) 50%,
+    transparent 70%
+  );
+  animation: glass-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: inherit;
+}
+@keyframes glass-sweep {
+  0%   { transform: translateX(-100%) rotate(15deg); }
+  60%  { transform: translateX(100%) rotate(15deg); }
+  100% { transform: translateX(100%) rotate(15deg); }
+}
+
+/* Ambient glow pulse */
+.glass-modal::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 28px;
+  background: transparent;
+  box-shadow: 0 0 40px rgba(67,156,111,0.25);
+  animation: glow-pulse 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 30px rgba(67,156,111,0.2); }
+  50%       { box-shadow: 0 0 60px rgba(67,156,111,0.45); }
+}
+
+/* Float animation */
+@keyframes modal-float {
+  0%, 100% { transform: scale(1) translateY(0px); }
+  50%       { transform: scale(1) translateY(-5px); }
+}
+.glass-modal-overlay.visible .glass-modal {
+  animation: modal-float 5s ease-in-out infinite;
+  animation-delay: 0.45s;
+}
+
+/* Close button */
+.glass-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s, color 0.2s;
+  z-index: 2;
+  line-height: 1;
+}
+.glass-modal-close:hover {
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  transform: rotate(90deg) scale(1.1);
+}
+
+/* Top promo label */
+.glass-modal-label {
+  font-size: 0.7rem;
   font-weight: 700;
-  color: var(--color-primary-dark);
-  margin-bottom: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
-.fn-countdown-label {
-  font-size: 0.78rem;
-  color: var(--color-text-muted);
-  margin-bottom: 4px;
+.glass-modal-label::before,
+.glass-modal-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.18);
 }
-.fn-countdown {
-  font-size: 1.3rem;
+
+/* Offer icon */
+.glass-modal-icon {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+  display: block;
+  filter: drop-shadow(0 4px 16px rgba(255,200,80,0.5));
+  animation: icon-bounce 2s ease-in-out infinite;
+}
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-5px) scale(1.06); }
+}
+
+/* Headline */
+.glass-modal-headline {
+  font-size: 1.55rem;
   font-weight: 900;
-  color: #FF8C00;
-  letter-spacing: 0.04em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.glass-modal-headline em {
+  font-style: normal;
+  color: #7DE8B0;
+}
+
+/* Sub text */
+.glass-modal-sub {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 26px;
+  line-height: 1.5;
+}
+
+/* CTA button */
+.glass-modal-cta {
+  display: block;
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #FF8C00 0%, #FFA833 100%);
+  color: #fff;
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 8px 32px rgba(255,140,0,0.45), 0 2px 8px rgba(255,140,0,0.3);
+  z-index: 1;
+  margin-bottom: 24px;
+}
+.glass-modal-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.glass-modal-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 48px rgba(255,140,0,0.6), 0 4px 16px rgba(255,140,0,0.4);
+  color: #fff;
+}
+.glass-modal-cta:hover::before { left: 125%; }
+.glass-modal-cta:active { transform: scale(0.98); }
+
+/* Divider */
+.glass-modal-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  margin-bottom: 20px;
+}
+
+/* Countdown */
+.glass-modal-countdown-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+}
+.glass-modal-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.timer-digit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.timer-num {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255,255,255,0.4);
+  min-width: 70px;
+  text-align: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 8px 12px;
+  transition: transform 0.15s cubic-bezier(.34,1.56,.64,1), color 0.3s;
+}
+.timer-num.flip {
+  transform: scale(1.18);
+  color: #7DE8B0;
+}
+.timer-sep {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 18px;
+  animation: sep-blink 1s step-end infinite;
+}
+@keyframes sep-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+.timer-sub {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+
+/* Expired state */
+.glass-modal-expired {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .glass-modal { padding: 32px 22px 28px; border-radius: 22px; }
+  .glass-modal-headline { font-size: 1.3rem; }
+  .timer-num { font-size: 2.2rem; min-width: 58px; }
 }
 
 /* ===================== HOW IT WORKS ===================== */
@@ -1292,13 +1576,33 @@ footer {
   </div>
   <p class="banks-footnote">* 32% APR, Repay in 91–120 days + more time if needed. Non-qualifiers may need a surety to comply, amounts listed on contract. And other small banks (e.g. Credit Union Bank).</p>
   <div class="banks-footnote-mobile">
-    <button class="banks-footnote-toggle" onclick="toggleFnDropdown(this)" aria-expanded="false">
+    <button class="banks-footnote-toggle" onclick="openGlassModal()" aria-expanded="false">
       * 32% APR, Repay in 91–120 days + &nbsp;<span>view more</span> <span class="fn-chevron">▾</span>
     </button>
-    <div class="banks-footnote-body" id="fnBody">
-      <p class="fn-offer">🎉 Get 50% rebate and apply for cash now!</p>
-      <p class="fn-countdown-label">Offer ends in:</p>
-      <div class="fn-countdown" id="fnCountdown">01:00</div>
+  </div>
+</div>
+
+<!-- GLASS PROMO MODAL -->
+<div class="glass-modal-overlay" id="glassOverlay" role="dialog" aria-modal="true" aria-labelledby="glassHeadline" onclick="handleOverlayClick(event)">
+  <div class="glass-modal" id="glassModal">
+    <button class="glass-modal-close" onclick="closeGlassModal()" aria-label="Close offer">&times;</button>
+    <div class="glass-modal-label">Limited Time Offer</div>
+    <span class="glass-modal-icon">🎁</span>
+    <h2 class="glass-modal-headline" id="glassHeadline">Get <em>50% Rebate</em><br>Apply for Cash Now</h2>
+    <p class="glass-modal-sub">Instant approval · No credit check · Funds in minutes</p>
+    <a href="#loan-form" class="glass-modal-cta" onclick="closeGlassModal()">Claim Your 50% Rebate →</a>
+    <div class="glass-modal-divider"></div>
+    <p class="glass-modal-countdown-label">Offer ends in</p>
+    <div class="glass-modal-timer">
+      <div class="timer-digit">
+        <span class="timer-num" id="timerMin">01</span>
+        <span class="timer-sub">min</span>
+      </div>
+      <span class="timer-sep">:</span>
+      <div class="timer-digit">
+        <span class="timer-num" id="timerSec">00</span>
+        <span class="timer-sub">sec</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1636,37 +1940,103 @@ function toggleMenu(btn) {
   menu.setAttribute('aria-hidden', isOpen);
 }
 
-// Footnote dropdown + countdown
-var fnCountdownInterval = null;
-function toggleFnDropdown(btn) {
-  var body = document.getElementById('fnBody');
-  var isOpen = body.classList.contains('open');
-  body.classList.toggle('open');
-  btn.classList.toggle('open');
-  btn.setAttribute('aria-expanded', !isOpen);
-  if (!isOpen && !fnCountdownInterval) {
-    startFnCountdown(60);
-  }
+// ===================== GLASS PROMO MODAL =====================
+var glassCountdownInterval = null;
+var glassSecondsLeft = 60;
+
+function openGlassModal() {
+  var overlay = document.getElementById('glassOverlay');
+  overlay.style.display = 'flex';
+  // Force reflow before adding visible class for transition
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      overlay.classList.add('visible');
+    });
+  });
+  if (!glassCountdownInterval) startGlassCountdown();
+  document.body.style.overflow = 'hidden';
 }
-function startFnCountdown(seconds) {
-  var el = document.getElementById('fnCountdown');
-  var remaining = seconds;
-  function tick() {
-    var m = Math.floor(remaining / 60);
-    var s = remaining % 60;
-    el.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
-    if (remaining <= 0) {
-      clearInterval(fnCountdownInterval);
-      fnCountdownInterval = null;
-      el.textContent = 'Offer expired';
-      el.style.color = '#999';
+
+function closeGlassModal() {
+  var overlay = document.getElementById('glassOverlay');
+  overlay.classList.add('fading-out');
+  setTimeout(function() {
+    overlay.classList.remove('visible', 'fading-out');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 350);
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('glassOverlay')) closeGlassModal();
+}
+
+function startGlassCountdown() {
+  glassSecondsLeft = 60;
+  updateTimerDisplay(glassSecondsLeft);
+  glassCountdownInterval = setInterval(function() {
+    glassSecondsLeft--;
+    if (glassSecondsLeft < 0) {
+      clearInterval(glassCountdownInterval);
+      glassCountdownInterval = null;
+      document.getElementById('timerMin').textContent = '00';
+      document.getElementById('timerSec').textContent = '00';
+      var cta = document.querySelector('.glass-modal-cta');
+      if (cta) { cta.textContent = 'Offer Expired'; cta.style.background = '#888'; cta.style.boxShadow = 'none'; }
       return;
     }
-    remaining--;
-  }
-  tick();
-  fnCountdownInterval = setInterval(tick, 1000);
+    updateTimerDisplay(glassSecondsLeft);
+  }, 1000);
 }
+
+function updateTimerDisplay(total) {
+  var m = Math.floor(total / 60);
+  var s = total % 60;
+  var minEl = document.getElementById('timerMin');
+  var secEl = document.getElementById('timerSec');
+  var newMin = (m < 10 ? '0' : '') + m;
+  var newSec = (s < 10 ? '0' : '') + s;
+  if (minEl.textContent !== newMin) flipDigit(minEl, newMin);
+  if (secEl.textContent !== newSec) flipDigit(secEl, newSec);
+}
+
+function flipDigit(el, val) {
+  el.textContent = val;
+  el.classList.add('flip');
+  setTimeout(function() { el.classList.remove('flip'); }, 200);
+}
+
+// Parallax mouse tilt on modal
+document.addEventListener('mousemove', function(e) {
+  var modal = document.getElementById('glassModal');
+  if (!modal) return;
+  var overlay = document.getElementById('glassOverlay');
+  if (!overlay || overlay.style.display === 'none') return;
+  var rect = overlay.getBoundingClientRect();
+  var cx = rect.width / 2;
+  var cy = rect.height / 2;
+  var dx = (e.clientX - cx) / cx;
+  var dy = (e.clientY - cy) / cy;
+  var rx = dy * -5;
+  var ry = dx * 5;
+  modal.style.transform = 'scale(1) translateY(-5px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
+  modal.style.transition = 'transform 0.1s linear';
+});
+document.addEventListener('mouseleave', function() {
+  var modal = document.getElementById('glassModal');
+  if (modal) {
+    modal.style.transform = '';
+    modal.style.transition = '';
+  }
+});
+
+// Close on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var overlay = document.getElementById('glassOverlay');
+    if (overlay && overlay.classList.contains('visible')) closeGlassModal();
+  }
+});
 
 // Loan amount preset selection
 function selectAmount(btn) {
@@ -1705,7 +2075,7 @@ function toggleFaq(btn) {
   }
 }
 
-// Keyboard: close mobile menu on escape
+// Keyboard: close mobile menu on escape is handled in glass modal keydown above
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     const menu = document.getElementById('mobileMenu');
