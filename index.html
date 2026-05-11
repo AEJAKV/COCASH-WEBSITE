@@ -777,41 +777,53 @@ section { padding: var(--space-xl) 0; }
 .features-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 1.25rem;
 }
 .feature-card {
   text-align: center;
-  padding: 28px 16px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  padding: 28px 18px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.07);
   background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   transition: box-shadow 0.25s, transform 0.25s;
 }
 .feature-card:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.11);
   transform: translateY(-3px);
 }
 .feature-icon {
-  width: 72px;
-  height: 72px;
-  background: var(--color-bg-section);
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  background: rgba(255,140,0,0.10);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
-  font-size: 2rem;
+  margin: 0 auto 14px;
+  flex-shrink: 0;
+}
+.feature-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: #FF8C00;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 .feature-card h3 {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  line-height: 1.4;
+  line-height: 1.35;
+  margin-bottom: 6px;
 }
 .feature-card p {
-  font-size: 0.83rem;
+  font-size: 0.78rem;
   color: var(--color-text-light);
-  margin-top: 6px;
+  line-height: 1.55;
+  margin-top: 0;
 }
 
 /* ===================== BANKS MARQUEE ===================== */
@@ -1629,7 +1641,7 @@ footer {
   .hero-actions { justify-content: center; }
   .hero h1 { font-size: 2.2rem; }
   .loan-form-section .hero-form-card { max-width: 480px; }
-  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .apr-inner { grid-template-columns: 1fr; }
   .steps-row::before { display: none; }
@@ -1693,7 +1705,7 @@ footer {
   .lg-card { padding: 28px 20px 24px; border-radius: 22px; }
   .lg-outer { border-radius: 24px; }
   #loan-form-section { padding: 36px 0 44px; }
-  .features-grid { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .steps-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
@@ -1912,22 +1924,34 @@ footer {
     <p class="section-sub">Fast, flexible installment loans designed around your needs — not a credit score.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Clock / timer -->
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 15.5"/></svg>
+        </div>
         <h3>2 Minutes Online Application</h3>
         <p>Complete our simple form in under 2 minutes — no paperwork, no branch visits.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" aria-hidden="true">📈</div>
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Upward chart -->
+          <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
         <h3>Build Your Credit</h3>
         <p>We report to credit bureaus, helping you build your credit profile with every on-time payment.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" aria-hidden="true">🚫</div>
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Shield check -->
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
         <h3>No Credit Check</h3>
         <p>Poor or no credit history? No problem. We evaluate your application holistically.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon" aria-hidden="true">💸</div>
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Send / bolt -->
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </div>
         <h3>E-Transfer Within Minutes</h3>
         <p>Funds delivered directly to your bank account via Interac e-Transfer in record time.</p>
       </div>
