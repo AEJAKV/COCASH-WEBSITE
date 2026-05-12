@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | CoCASH.ca</title>
+<meta name="description" content="Read CoCASH.ca articles about loan education, credit tips, repayment guidance, cashback offers, and responsible borrowing in Canada.">
+<link rel="canonical" href="https://cocash.ca/blog/">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #439C6F;
+  --color-primary-hover: #367A56;
+  --color-primary-dark: #2A5E41;
+  --color-accent: #66BFA6;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4FAF7;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.11);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: #F7FAF8;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER / NAV ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 1.5rem;
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo span { color: var(--color-primary-dark); }
+nav { display: flex; align-items: center; }
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+nav ul li a {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover,
+nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 4px 0;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-right .nav-contact { color: var(--color-text-light); font-weight: 600; white-space: nowrap; }
+.nav-right .nav-contact a { color: var(--color-text-light); font-weight: 700; }
+.nav-right .nav-contact a:hover { color: var(--color-primary); }
+.nav-right .nav-login {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-right .nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-nav-orange:hover { background: #FFD700; color: #6B0000; border-color: rgba(180,30,30,0.50); }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: var(--radius);
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transform-origin: center center;
+  transition: transform 0.35s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.25s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a {
+  display: block;
+  padding: 12px var(--space-l);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-menu ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.mobile-header-bar { display: none; }
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0 6px;
+}
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  border-top: 1px solid var(--color-border);
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+.mobile-header-sub a { color: var(--color-text-light); font-weight: 700; }
+.mobile-header-sub a:hover { color: var(--color-primary); }
+.mobile-header-sub .sep { color: var(--color-border); }
+.btn-mobile-cta {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+.btn-mobile-cta:hover { background: #FFD700; color: #6B0000; }
+
+/* ===================== BLOG HERO ===================== */
+.blog-hero {
+  background: linear-gradient(125deg, #152a1e 0%, #1C3328 40%, #2A5E41 100%);
+  color: #fff;
+  padding: 60px 0 56px;
+  position: relative;
+  overflow: hidden;
+}
+.blog-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+.blog-hero::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(102,191,166,0.13) 0%, transparent 70%);
+  top: -120px; right: -80px;
+  pointer-events: none;
+}
+.blog-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+.blog-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 50px;
+  padding: 5px 14px 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.blog-badge::before {
+  content: '';
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #6EDBA8;
+  box-shadow: 0 0 6px rgba(110,219,168,0.80);
+  flex-shrink: 0;
+}
+.blog-hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.blog-hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.70;
+  margin-bottom: 28px;
+  max-width: 580px;
+}
+.btn-blog-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-blog-hero:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,215,0,0.35);
+}
+.btn-blog-hero svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+/* ===================== BLOG MAIN ===================== */
+.blog-main { padding: 64px 0 80px; }
+
+/* Featured card */
+.blog-featured {
+  background: linear-gradient(135deg, #1a3d2b 0%, #2A5E41 55%, #3a7a56 100%);
+  border-radius: 20px;
+  padding: 44px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 52px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(42,94,65,0.28);
+}
+.blog-featured::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(102,191,166,0.18) 0%, transparent 65%);
+  pointer-events: none;
+}
+.blog-featured::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+.blog-featured-content { position: relative; z-index: 1; }
+.blog-cat-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+}
+.blog-cat-badge--featured {
+  background: rgba(255,224,51,0.18);
+  color: #FFE033;
+  border: 1px solid rgba(255,224,51,0.35);
+}
+.blog-featured h2 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.blog-featured-excerpt {
+  font-size: 0.97rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.70;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.blog-featured-meta {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 600;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-featured:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255,215,0,0.30);
+}
+.blog-featured-icon {
+  position: relative;
+  z-index: 1;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  flex-shrink: 0;
+}
+.blog-featured-icon svg { width: 52px; height: 52px; }
+
+/* Category filters */
+.blog-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.blog-filter-chip {
+  background: #fff;
+  border: 1.5px solid #D4E8DC;
+  color: var(--color-primary-dark);
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.80rem;
+  letter-spacing: 0.04em;
+  padding: 7px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.15s;
+  white-space: nowrap;
+}
+.blog-filter-chip:hover {
+  background: var(--color-bg-section);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+.blog-filter-chip.active {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  color: #fff;
+}
+
+/* Article grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.blog-card {
+  background: #fff;
+  border: 1px solid #E4EFE8;
+  border-radius: 16px;
+  padding: 28px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-shadow: 0 2px 10px rgba(67,156,111,0.05);
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  position: relative;
+  overflow: hidden;
+}
+.blog-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 16px 16px 0 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(67,156,111,0.13);
+}
+.blog-card:hover::before { opacity: 1; }
+.blog-card[data-hidden="true"] { display: none; }
+
+.blog-cat-badge--card {
+  display: inline-block;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  background: var(--color-bg-section);
+  color: var(--color-primary-dark);
+  border: 1px solid #C8E6D5;
+  margin-bottom: 14px;
+  align-self: flex-start;
+}
+.blog-card h3 {
+  font-size: 1.04rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  line-height: 1.30;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+.blog-card-excerpt {
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.70;
+  flex: 1;
+  margin-bottom: 18px;
+}
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+}
+.blog-read-time {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.blog-read-time::before {
+  content: '⏱';
+  font-size: 0.82em;
+}
+.blog-read-more {
+  font-size: 0.80rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s, gap 0.2s;
+}
+.blog-read-more::after { content: '→'; transition: transform 0.2s; }
+.blog-read-more:hover { color: var(--color-primary-dark); }
+.blog-read-more:hover::after { transform: translateX(3px); }
+
+/* Newsletter CTA */
+.blog-cta {
+  background: linear-gradient(125deg, #152a1e 0%, #1C3328 45%, #2A5E41 100%);
+  border-radius: 20px;
+  padding: 52px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.blog-cta::before {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(102,191,166,0.12) 0%, transparent 70%);
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.blog-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+.blog-cta h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.blog-cta p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.btn-cta-yellow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 15px 36px;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-cta-yellow:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,215,0,0.35);
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.8);
+  padding: var(--space-xl) 0 var(--space-l);
+  margin-top: 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: var(--space-l);
+}
+.footer-brand .logo { color: #fff; font-size: 1.5rem; margin-bottom: 12px; display: inline-block; }
+.footer-brand .logo span { color: var(--color-accent); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.footer-contact { margin-top: 16px; font-size: 0.84rem; }
+.footer-contact p { margin-bottom: 4px; }
+.footer-contact a { color: var(--color-accent); }
+.footer-col h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--color-accent); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--space-m);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-legal { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 700px; }
+.footer-copyright { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.responsible-lending {
+  background: rgba(0,0,0,0.25);
+  border-left: 3px solid var(--color-accent);
+  padding: 12px 16px;
+  margin-top: var(--space-m);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1023px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav ul { display: none; }
+  .nav-right { display: none; }
+  .hamburger { display: flex; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .blog-featured { grid-template-columns: 1fr; gap: 1.5rem; }
+  .blog-featured-icon { display: none; }
+  .blog-hero h1 { font-size: 2.4rem; }
+}
+@media (max-width: 767px) {
+  .nav-inner { display: none; }
+  .mobile-header-bar { display: block; }
+  .blog-hero { padding: 40px 0 36px; }
+  .blog-hero h1 { font-size: 2rem; }
+  .blog-hero-sub { font-size: 0.95rem; }
+  .blog-grid { grid-template-columns: 1fr; }
+  .blog-featured { padding: 28px 22px; border-radius: 14px; }
+  .blog-featured h2 { font-size: 1.35rem; }
+  .blog-cta { padding: 36px 22px; border-radius: 14px; }
+  .blog-cta h2 { font-size: 1.5rem; }
+  .container { padding: 0 var(--space-m); }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom { flex-direction: column; }
+  .blog-main { padding: 40px 0 56px; }
+  .blog-filters-row { gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="blog.html" aria-current="page">Blog</a></li>
+          <li><a href="/faq/">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment/">Early Repayment Program</a></li>
+              <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact"><a href="tel:18001234567">1-800-123-4567</a> &nbsp;|&nbsp; <a href="/faq/">Help &amp; FAQ</a></span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="index.html#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="index.html#loan-form" class="btn-mobile-cta">Claim Your Cash!</a>
+          <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:18001234567">📞 1-800-123-4567</a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="/faq/">FAQs</a></li>
+      <li><a href="/early-repayment/">Early Repayment Program</a></li>
+      <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="index.html#loan-form">Apply Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- BLOG HERO -->
+<section class="blog-hero" aria-label="Blog header">
+  <div class="container">
+    <div class="blog-hero-inner">
+      <span class="blog-badge">Financial Education</span>
+      <h1>CoCASH.ca Blog</h1>
+      <p class="blog-hero-sub">Simple guides, money tips, and loan education to help Canadians borrow smarter and manage repayment with confidence.</p>
+      <a href="#blog-articles" class="btn-blog-hero">
+        <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 5h16v2H2V5zm0 4h16v2H2V9zm0 4h10v2H2v-2z"/></svg>
+        Explore Articles
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG MAIN -->
+<main class="blog-main" id="blog-articles">
+  <div class="container">
+
+    <!-- Featured Article -->
+    <section aria-labelledby="blog-featured-heading">
+      <article class="blog-featured">
+        <div class="blog-featured-content">
+          <span class="blog-cat-badge blog-cat-badge--featured">Featured Guide</span>
+          <h2 id="blog-featured-heading">Borrow Smarter: What Canadians Should Know Before Applying</h2>
+          <p class="blog-featured-excerpt">A practical guide to understanding loan amounts, repayment terms, security, fees, and responsible borrowing before you apply.</p>
+          <p class="blog-featured-meta">⏱ 6 min read</p>
+          <a href="#" class="btn-featured">Read Featured Guide →</a>
+        </div>
+        <div class="blog-featured-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+            <path d="M20 22h24M20 30h24M20 38h16" stroke="rgba(255,255,255,0.70)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="46" cy="42" r="8" fill="rgba(110,219,168,0.30)" stroke="#6EDBA8" stroke-width="1.5"/>
+            <path d="M43 42l2 2 4-4" stroke="#6EDBA8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </article>
+    </section>
+
+    <!-- Category Filters -->
+    <div class="blog-filters-row" role="group" aria-label="Filter articles by category">
+      <button class="blog-filter-chip active" data-filter="all" onclick="filterPosts(this)">All</button>
+      <button class="blog-filter-chip" data-filter="Loan Guide" onclick="filterPosts(this)">Loan Guide</button>
+      <button class="blog-filter-chip" data-filter="Repayment" onclick="filterPosts(this)">Repayment</button>
+      <button class="blog-filter-chip" data-filter="Credit Tips" onclick="filterPosts(this)">Credit Tips</button>
+      <button class="blog-filter-chip" data-filter="Cashback" onclick="filterPosts(this)">Cashback</button>
+      <button class="blog-filter-chip" data-filter="Safety" onclick="filterPosts(this)">Safety</button>
+      <button class="blog-filter-chip" data-filter="Borrowing Basics" onclick="filterPosts(this)">Borrowing Basics</button>
+    </div>
+
+    <!-- Article Grid -->
+    <section aria-label="Blog articles">
+      <div class="blog-grid" id="blogGrid">
+        <!-- Cards injected by JS -->
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="blog-cta" aria-labelledby="blog-cta-heading">
+      <div class="blog-cta-inner">
+        <h2 id="blog-cta-heading">Want smarter borrowing tips?</h2>
+        <p>Get simple loan education, repayment tips, and CoCASH.ca updates in one place.</p>
+        <a href="index.html#loan-form" class="btn-cta-yellow">Claim Your Cash!</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+        <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to payday lending. It is an online surety (guarantor) service that helps Canadians access fast, flexible installment loans. We process most requests in about an hour.</p>
+        <div class="footer-contact">
+          <p>📍 Alberta, Canada</p>
+          <p>📞 <a href="tel:18001234567">1-800-123-4567</a></p>
+          <p>✉️ <a href="mailto:support@cocash.ca">support@cocash.ca</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+          <li><a href="/early-repayment/">Early Repayment</a></li>
+          <li><a href="/budgetplan/">Budget Plan</a></li>
+          <li><a href="/renew/">Renew Your Loan</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/faq/">FAQs</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="blog.html" aria-current="page">Blog</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="responsible-lending">
+      <strong>Responsible Collections:</strong> CoCASH.ca is committed to responsible and ethical collections practices. We encourage customers to contact us if they are experiencing financial difficulty. &nbsp;|&nbsp; <strong>Borrow Responsibly:</strong> Only borrow what you can comfortably afford to repay. If you are experiencing financial hardship, please seek advice from a not-for-profit credit counsellor.
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">Representative APR: 32%. Repayment term: 91–120 days. CoCASH.ca is operated by Alberta Inc. All loan applications are subject to approval. Terms and conditions apply. This is not a payday loan service.</p>
+        <p class="footer-copyright">© 2026 CoCASH.ca — All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- Blog post data ---- */
+var POSTS = [
+  {
+    category: 'Loan Guide',
+    title: 'How No Credit-Check Loans Work in Canada',
+    excerpt: 'Learn what no credit-check loans mean, how the application process works, and what borrowers should review before applying.',
+    readTime: '4 min read',
+    href: '#'
+  },
+  {
+    category: 'Repayment',
+    title: 'How to Choose a Repayment Plan That Fits Your Budget',
+    excerpt: 'A simple guide to understanding repayment timing, payment amounts, and how to avoid unnecessary stress while borrowing.',
+    readTime: '5 min read',
+    href: '#'
+  },
+  {
+    category: 'Credit Tips',
+    title: 'Can Responsible Borrowing Help Your Credit?',
+    excerpt: 'Understand how repayment behavior, consistency, and financial habits may support better long-term credit confidence.',
+    readTime: '4 min read',
+    href: '#'
+  },
+  {
+    category: 'Cashback',
+    title: 'What to Know About Loan Cashback Offers',
+    excerpt: 'Cashback offers can be attractive, but borrowers should understand the conditions, timing, and full repayment details.',
+    readTime: '3 min read',
+    href: '#'
+  },
+  {
+    category: 'Safety',
+    title: 'How to Protect Your Information When Applying Online',
+    excerpt: 'Learn simple steps to keep your personal and financial information safer when submitting online applications.',
+    readTime: '4 min read',
+    href: '#'
+  },
+  {
+    category: 'Borrowing Basics',
+    title: 'Questions to Ask Before Applying for a Loan',
+    excerpt: 'Before applying, review your budget, repayment ability, fees, timing, and whether the loan actually solves the problem.',
+    readTime: '5 min read',
+    href: '#'
+  }
+];
+
+/* ---- Render cards ---- */
+(function renderPosts() {
+  var grid = document.getElementById('blogGrid');
+  POSTS.forEach(function(post) {
+    var article = document.createElement('article');
+    article.className = 'blog-card';
+    article.setAttribute('data-category', post.category);
+    article.innerHTML =
+      '<span class="blog-cat-badge blog-cat-badge--card">' + post.category + '</span>' +
+      '<h3>' + post.title + '</h3>' +
+      '<p class="blog-card-excerpt">' + post.excerpt + '</p>' +
+      '<div class="blog-card-footer">' +
+        '<span class="blog-read-time">' + post.readTime + '</span>' +
+        '<a href="' + post.href + '" class="blog-read-more">Read More</a>' +
+      '</div>';
+    grid.appendChild(article);
+  });
+})();
+
+/* ---- Filter logic ---- */
+function filterPosts(btn) {
+  var filter = btn.getAttribute('data-filter');
+  document.querySelectorAll('.blog-filter-chip').forEach(function(c) { c.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('#blogGrid .blog-card').forEach(function(card) {
+    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+      card.removeAttribute('data-hidden');
+    } else {
+      card.setAttribute('data-hidden', 'true');
+    }
+  });
+}
+
+/* ---- Mobile menu ---- */
+function toggleMenu(btn) {
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function(b) {
+    b.classList.toggle('open', !isOpen);
+    b.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.getElementById('mobileMenu');
+    menu.classList.remove('open');
+    document.querySelectorAll('.hamburger').forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    menu.setAttribute('aria-hidden', 'true');
+  }
+});
+</script>
+</body>
+</html>
