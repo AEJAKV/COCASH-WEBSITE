@@ -721,11 +721,17 @@ nav ul li a:hover {
   border-color: rgba(67,156,111,0.45);
 }
 .lg-pill.selected {
-  background: linear-gradient(145deg, #3FAE6C, #2A7A52);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.22);
+  background: #FFE033;
+  color: #7A1010;
+  border-color: rgba(180,30,30,0.28);
+  box-shadow: 0 4px 14px rgba(255,215,0,0.40), 0 1px 4px rgba(0,0,0,0.08);
   transform: scale(1.05);
+}
+.lg-pill.selected:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  box-shadow: 0 6px 20px rgba(255,215,0,0.55), 0 1px 4px rgba(0,0,0,0.10);
 }
 .lg-pill.wide { grid-column: 1 / -1; }
 /* Light leak shimmer on wide $2000+ pill */
