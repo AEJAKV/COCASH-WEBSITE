@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service | CoCASH.ca</title>
+<meta name="description" content="Review the terms and conditions for using CoCASH.ca, including site access, eligibility, applications, prohibited use, intellectual property, privacy, disclaimers, and limitations of liability.">
+<link rel="canonical" href="https://cocash.ca/terms-of-service/">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #439C6F;
+  --color-primary-hover: #367A56;
+  --color-primary-dark: #2A5E41;
+  --color-accent: #66BFA6;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4FAF7;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER / NAV ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 1.5rem;
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo span { color: var(--color-primary-dark); }
+nav { display: flex; align-items: center; }
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+nav ul li a {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 4px 0;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-right .nav-contact { color: var(--color-text-light); font-weight: 600; white-space: nowrap; }
+.nav-right .nav-contact a { color: var(--color-text-light); font-weight: 700; }
+.nav-right .nav-contact a:hover { color: var(--color-primary); }
+.nav-right .nav-login {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-right .nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-nav-orange:hover { background: #FFD700; color: #6B0000; border-color: rgba(180,30,30,0.50); }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: var(--radius);
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transform-origin: center center;
+  transition: transform 0.35s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.25s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a {
+  display: block;
+  padding: 12px var(--space-l);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-menu ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.mobile-header-bar { display: none; }
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0 6px;
+}
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  border-top: 1px solid var(--color-border);
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+.mobile-header-sub a { color: var(--color-text-light); font-weight: 700; text-decoration: none; }
+.mobile-header-sub a:hover { color: var(--color-primary); }
+.mobile-header-sub .sep { color: var(--color-border); }
+.btn-mobile-cta {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+.btn-mobile-cta:hover { background: #FFD700; color: #6B0000; }
+
+/* ===================== PAGE HERO ===================== */
+.tos-hero {
+  background: linear-gradient(125deg, #152a1e 0%, #1C3328 40%, #2A5E41 100%);
+  color: #fff;
+  padding: 52px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+.tos-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+.tos-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+.tos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 50px;
+  padding: 5px 14px 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.tos-badge::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6EDBA8;
+  box-shadow: 0 0 6px rgba(110,219,168,0.80);
+  flex-shrink: 0;
+}
+.tos-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.tos-hero-meta {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 600;
+}
+.tos-hero-meta strong { color: rgba(255,255,255,0.70); }
+.tos-intro {
+  margin-top: 20px;
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.70;
+  max-width: 720px;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+.tos-main {
+  background: #F8FAF9;
+  padding: 60px 0 80px;
+}
+.tos-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.tos-disclaimer {
+  background: #FFF8E1;
+  border: 1px solid #FFD54F;
+  border-left: 4px solid #FFA000;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.84rem;
+  color: #5D4037;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.tos-disclaimer::before {
+  content: '⚠';
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.tos-section {
+  background: #fff;
+  border: 1px solid #E8F0EB;
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(67,156,111,0.05);
+  transition: box-shadow 0.2s;
+}
+.tos-section:hover { box-shadow: 0 4px 20px rgba(67,156,111,0.09); }
+.tos-section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-bg-section);
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-primary-dark);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+.tos-section h2 {
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tos-section p {
+  font-size: 0.93rem;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.tos-section p:last-child { margin-bottom: 0; }
+.tos-section ul {
+  list-style: none;
+  margin: 10px 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tos-section ul li {
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.65;
+  padding-left: 20px;
+  position: relative;
+}
+.tos-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.tos-contact-card {
+  background: var(--color-bg-section);
+  border: 1px solid #C8E6D5;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.8;
+}
+.tos-contact-card strong { color: var(--color-primary-dark); font-size: 0.95rem; }
+.tos-pp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-bg-section);
+  border: 1px solid #C8E6D5;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-top: 8px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.tos-pp-link:hover { background: #E6F4EE; border-color: var(--color-accent); color: var(--color-primary-dark); }
+.tos-pp-link::before { content: '🔒'; font-size: 0.85em; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.8);
+  padding: var(--space-xl) 0 var(--space-l);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: var(--space-l);
+}
+.footer-brand .logo { color: #fff; font-size: 1.5rem; margin-bottom: 12px; display: inline-block; }
+.footer-brand .logo span { color: var(--color-accent); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.footer-contact { margin-top: 16px; font-size: 0.84rem; }
+.footer-contact p { margin-bottom: 4px; }
+.footer-contact a { color: var(--color-accent); }
+.footer-col h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--color-accent); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--space-m);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-legal { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 700px; }
+.footer-copyright { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.responsible-lending {
+  background: rgba(0,0,0,0.25);
+  border-left: 3px solid var(--color-accent);
+  padding: 12px 16px;
+  margin-top: var(--space-m);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1023px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav ul { display: none; }
+  .nav-right { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 767px) {
+  .nav-inner { display: none; }
+  .mobile-header-bar { display: block; }
+  .tos-hero { padding: 36px 0 32px; }
+  .tos-hero h1 { font-size: 2rem; }
+  .tos-intro { font-size: 0.95rem; }
+  .tos-section { padding: 22px 20px; border-radius: 10px; }
+  .tos-section h2 { font-size: 1rem; }
+  .container { padding: 0 var(--space-m); }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom { flex-direction: column; }
+  .tos-main { padding: 36px 0 56px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/faq/">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment/">Early Repayment Program</a></li>
+              <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact"><a href="tel:18001234567">1-800-123-4567</a> &nbsp;|&nbsp; <a href="/faq/">Help &amp; FAQ</a></span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="/" class="btn-nav-orange">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <a href="/" class="btn-mobile-cta">Apply Now</a>
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:18001234567">📞 1-800-123-4567</a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/faq/">FAQs</a></li>
+      <li><a href="/early-repayment/">Early Repayment Program</a></li>
+      <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="/">Apply Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="tos-hero" aria-label="Terms of Service header">
+  <div class="container">
+    <div class="tos-hero-inner">
+      <span class="tos-badge">Legal &amp; Terms</span>
+      <h1>Terms of Service</h1>
+      <p class="tos-hero-meta">Last Updated: <strong>[Insert Date]</strong></p>
+      <p class="tos-intro">These Terms of Service govern your access to and use of the CoCASH.ca website, online forms, application pages, content, tools, and related services. By using CoCASH.ca, you agree to be bound by these Terms.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="tos-main" id="main-content">
+  <div class="container">
+    <div class="tos-content">
+
+      <div class="tos-disclaimer">
+        This is a strong draft only. These Terms must be reviewed by a qualified lawyer before publishing. Terms of Service are legally binding — weak or incomplete terms create real liability, especially for financial, loan-matching, cosigner, and personal-data services. Replace all placeholders before going live.
+      </div>
+
+      <!-- Section 1 -->
+      <section class="tos-section" aria-labelledby="tos-s1">
+        <h2 id="tos-s1"><span class="tos-section-num">1</span> Acceptance of These Terms</h2>
+        <p>These Terms form a binding agreement between you and CoCASH.ca. Your use of the Site — including browsing pages, submitting information, starting an application, or interacting with our services — means you accept these Terms as updated from time to time.</p>
+        <p>Certain services, offers, lender-matching services, cosigner-related services, or financial products may be subject to additional agreements, disclosures, eligibility requirements, or third-party terms. If additional terms apply, they will be presented to you separately and will govern that specific service or transaction.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="tos-section" aria-labelledby="tos-s2">
+        <h2 id="tos-s2"><span class="tos-section-num">2</span> Updates to These Terms</h2>
+        <p>CoCASH.ca may update, modify, or replace these Terms at any time, subject to applicable law. When changes are made, we may update the "Last Updated" date at the top of this page.</p>
+        <p>Your continued use of the Site after updated Terms are posted means you accept the revised Terms. If you do not agree with the updated Terms, you must stop using the Site.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="tos-section" aria-labelledby="tos-s3">
+        <h2 id="tos-s3"><span class="tos-section-num">3</span> Use of the Site</h2>
+        <p>CoCASH.ca grants you a limited, personal, revocable, non-transferable, non-exclusive license to access and use the Site for lawful, personal, and non-commercial purposes.</p>
+        <p>You may use the Site only as permitted by these Terms and applicable laws. You do not receive ownership rights in the Site, its content, design, branding, software, text, images, graphics, forms, or other materials.</p>
+        <p>You agree not to use the Site in a way that interferes with its normal operation, harms CoCASH.ca, harms other users, violates laws, or misuses the services we provide.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="tos-section" aria-labelledby="tos-s4">
+        <h2 id="tos-s4"><span class="tos-section-num">4</span> Eligibility</h2>
+        <p>The Site is intended for users who are legally permitted to access and use financial or loan-related services in their jurisdiction.</p>
+        <p>By using CoCASH.ca, you confirm that:</p>
+        <ul>
+          <li>You are at least the age of majority in your province, territory, state, or country of residence.</li>
+          <li>You have the legal capacity to enter into binding agreements.</li>
+          <li>The information you provide is accurate, current, and complete.</li>
+          <li>Your use of the Site complies with all applicable laws.</li>
+        </ul>
+        <p>CoCASH.ca does not guarantee that the Site or services are available or appropriate in every location.</p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="tos-section" aria-labelledby="tos-s5">
+        <h2 id="tos-s5"><span class="tos-section-num">5</span> Applications and Service Availability</h2>
+        <p>CoCASH.ca may provide access to loan-related information, application forms, cosigner-related support, lender-matching services, or other financial service options.</p>
+        <p>Submitting an application or form does not guarantee approval, funding, loan availability, lender acceptance, cosigner acceptance, or any specific financial outcome.</p>
+        <p>Approval, funding, repayment terms, rates, fees, and conditions may depend on:</p>
+        <ul>
+          <li>Eligibility requirements</li>
+          <li>Information you provide</li>
+          <li>Verification results</li>
+          <li>Lender or service-provider criteria</li>
+          <li>Applicable laws and regulations</li>
+          <li>Additional agreements or disclosures</li>
+        </ul>
+        <p>Any final financial product or service may be governed by separate terms provided by the applicable lender, provider, or partner.</p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="tos-section" aria-labelledby="tos-s6">
+        <h2 id="tos-s6"><span class="tos-section-num">6</span> Account Registration and Security</h2>
+        <p>Some parts of the Site may require an account, login, or secure access. If you create an account or submit information, you agree to provide truthful, accurate, complete, and current information.</p>
+        <p>You are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs through your account.</p>
+        <p>You agree to notify CoCASH.ca immediately if you suspect unauthorized access, misuse, or a security issue involving your account or information.</p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="tos-section" aria-labelledby="tos-s7">
+        <h2 id="tos-s7"><span class="tos-section-num">7</span> Prohibited Uses</h2>
+        <p>You agree not to use the Site for any unlawful, harmful, fraudulent, abusive, or unauthorized purpose. You must not:</p>
+        <ul>
+          <li>Violate any applicable law or regulation.</li>
+          <li>Submit false, misleading, incomplete, or fraudulent information.</li>
+          <li>Attempt to access accounts, systems, data, or areas of the Site without authorization.</li>
+          <li>Interfere with the security, performance, or operation of the Site.</li>
+          <li>Use bots, scrapers, crawlers, automated tools, or similar technologies to copy, monitor, or extract data from the Site.</li>
+          <li>Upload, transmit, or distribute malware, viruses, harmful code, or disruptive technology.</li>
+          <li>Copy, reproduce, modify, distribute, frame, or exploit Site content without written permission.</li>
+          <li>Use the Site to send spam, unauthorized marketing, phishing messages, or misleading communications.</li>
+          <li>Impersonate another person or misrepresent your identity or affiliation.</li>
+          <li>Use the Site in a way that harms CoCASH.ca, its users, partners, service providers, or third parties.</li>
+        </ul>
+        <p>CoCASH.ca may suspend, restrict, or terminate access to the Site if we believe these Terms have been violated.</p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="tos-section" aria-labelledby="tos-s8">
+        <h2 id="tos-s8"><span class="tos-section-num">8</span> Communications and Electronic Messages</h2>
+        <p>By providing your contact information, you agree that CoCASH.ca and its service providers may contact you about your application, account, services, updates, verification, support, or related matters.</p>
+        <p>Where permitted by law, we may also send marketing or promotional communications. You may opt out of marketing communications at any time by using the unsubscribe instructions or contacting us directly.</p>
+        <p>Service-related messages may still be sent when necessary to process applications, provide support, manage security, or comply with legal obligations.</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="tos-section" aria-labelledby="tos-s9">
+        <h2 id="tos-s9"><span class="tos-section-num">9</span> Accuracy of Information and Site Content</h2>
+        <p>The content on CoCASH.ca is provided for general informational purposes only. While we aim to keep the Site accurate and updated, we do not guarantee that all content is complete, current, error-free, or suitable for your specific situation.</p>
+        <p>Information on the Site should not be treated as legal, financial, tax, or professional advice. You are responsible for reviewing all applicable terms, disclosures, and agreements before making decisions.</p>
+        <p>CoCASH.ca may update, change, remove, or correct Site content at any time without notice.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="tos-section" aria-labelledby="tos-s10">
+        <h2 id="tos-s10"><span class="tos-section-num">10</span> Third-Party Services and Links</h2>
+        <p>The Site may include links to third-party websites, platforms, lenders, service providers, tools, or resources.</p>
+        <p>Third-party links are provided for convenience only. CoCASH.ca does not control and is not responsible for third-party websites, services, privacy practices, terms, content, accuracy, availability, or decisions.</p>
+        <p>Your use of third-party services may be governed by their own terms and policies. You should review them carefully before submitting information or entering into any agreement.</p>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="tos-section" aria-labelledby="tos-s11">
+        <h2 id="tos-s11"><span class="tos-section-num">11</span> Intellectual Property</h2>
+        <p>The Site and its content — including text, graphics, logos, icons, images, design, layout, software, branding, and other materials — are owned by or licensed to CoCASH.ca and are protected by intellectual property laws.</p>
+        <p>You may not copy, reproduce, modify, publish, distribute, display, transmit, sell, license, frame, scrape, reverse engineer, or create derivative works from any part of the Site without prior written permission from CoCASH.ca, except as permitted by law.</p>
+        <p>All rights not expressly granted are reserved.</p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="tos-section" aria-labelledby="tos-s12">
+        <h2 id="tos-s12"><span class="tos-section-num">12</span> User Submissions</h2>
+        <p>If you submit information, documents, messages, files, or other materials through the Site, you confirm that you have the right to provide them and that they are accurate, lawful, and do not violate the rights of any third party.</p>
+        <p>You remain responsible for the information and materials you submit.</p>
+        <p>By submitting materials to CoCASH.ca, you authorize us to use, process, store, transmit, and share them as reasonably necessary to provide services, process applications, verify information, communicate with you, operate the Site, comply with legal obligations, and enforce these Terms.</p>
+      </section>
+
+      <!-- Section 13 -->
+      <section class="tos-section" aria-labelledby="tos-s13">
+        <h2 id="tos-s13"><span class="tos-section-num">13</span> Privacy</h2>
+        <p>Your use of CoCASH.ca is also governed by our Privacy Policy. Please review it to understand how we collect, use, disclose, store, and protect personal information.</p>
+        <a href="privacy-policy.html" class="tos-pp-link">Read our Privacy Policy</a>
+      </section>
+
+      <!-- Section 14 -->
+      <section class="tos-section" aria-labelledby="tos-s14">
+        <h2 id="tos-s14"><span class="tos-section-num">14</span> Security</h2>
+        <p>CoCASH.ca uses reasonable administrative, technical, and physical safeguards designed to protect the Site and information submitted through it.</p>
+        <p>However, no website, internet transmission, email, or electronic storage system can be guaranteed to be completely secure. You use the Site and submit information at your own risk.</p>
+        <p>You are responsible for using secure devices, protecting your login information, and notifying us promptly if you believe your information or account has been compromised.</p>
+      </section>
+
+      <!-- Section 15 -->
+      <section class="tos-section" aria-labelledby="tos-s15">
+        <h2 id="tos-s15"><span class="tos-section-num">15</span> Disclaimer of Warranties</h2>
+        <p>To the maximum extent permitted by law, the Site and its content are provided on an "as is" and "as available" basis.</p>
+        <p>CoCASH.ca makes no warranties, representations, or conditions of any kind — whether express, implied, statutory, or otherwise — including warranties of accuracy, reliability, availability, merchantability, fitness for a particular purpose, non-infringement, uninterrupted operation, or error-free performance.</p>
+        <p>We do not guarantee that:</p>
+        <ul>
+          <li>The Site will always be available or secure.</li>
+          <li>Errors will always be corrected.</li>
+          <li>Applications will be approved.</li>
+          <li>A lender or service provider will accept you.</li>
+          <li>Any specific financial product, amount, fee, term, rate, rebate, or outcome will be available.</li>
+          <li>The Site will meet your expectations or requirements.</li>
+        </ul>
+      </section>
+
+      <!-- Section 16 -->
+      <section class="tos-section" aria-labelledby="tos-s16">
+        <h2 id="tos-s16"><span class="tos-section-num">16</span> Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, CoCASH.ca and its owners, directors, officers, employees, contractors, affiliates, partners, service providers, and agents will not be liable for any direct, indirect, incidental, special, consequential, punitive, or other damages arising from or related to:</p>
+        <ul>
+          <li>Your access to or use of the Site.</li>
+          <li>Your inability to access or use the Site.</li>
+          <li>Your reliance on Site content.</li>
+          <li>Errors, delays, interruptions, or inaccuracies.</li>
+          <li>Unauthorized access to or use of information.</li>
+          <li>Third-party websites, services, lenders, or providers.</li>
+          <li>Application decisions, loan decisions, matching decisions, or financial outcomes.</li>
+          <li>Any conduct or content of users or third parties.</li>
+        </ul>
+        <p>This limitation applies regardless of the legal theory, including contract, tort, negligence, strict liability, statute, or otherwise.</p>
+        <p>Some jurisdictions do not allow certain limitations of liability, so some limitations may not apply to you.</p>
+      </section>
+
+      <!-- Section 17 -->
+      <section class="tos-section" aria-labelledby="tos-s17">
+        <h2 id="tos-s17"><span class="tos-section-num">17</span> Indemnification</h2>
+        <p>You agree to defend, indemnify, and hold harmless CoCASH.ca and its owners, directors, officers, employees, contractors, affiliates, partners, service providers, and agents from any claims, damages, losses, liabilities, costs, and expenses — including reasonable legal fees — arising from or related to:</p>
+        <ul>
+          <li>Your use of the Site.</li>
+          <li>Your violation of these Terms.</li>
+          <li>Your submission of false, inaccurate, unlawful, or misleading information.</li>
+          <li>Your violation of any law or third-party right.</li>
+          <li>Your misuse of Site content, services, or systems.</li>
+        </ul>
+      </section>
+
+      <!-- Section 18 -->
+      <section class="tos-section" aria-labelledby="tos-s18">
+        <h2 id="tos-s18"><span class="tos-section-num">18</span> Suspension and Termination</h2>
+        <p>CoCASH.ca may suspend, restrict, or terminate your access to the Site at any time if we believe you have violated these Terms, created risk, submitted misleading information, misused the Site, or acted in a way that may harm CoCASH.ca, users, partners, service providers, or third parties.</p>
+        <p>We may also modify, suspend, or discontinue any part of the Site at any time without notice.</p>
+      </section>
+
+      <!-- Section 19 -->
+      <section class="tos-section" aria-labelledby="tos-s19">
+        <h2 id="tos-s19"><span class="tos-section-num">19</span> Governing Law</h2>
+        <p>These Terms are governed by the laws of <strong>[Insert Province/Territory]</strong> and the applicable federal laws of Canada, without regard to conflict of law principles.</p>
+        <p>Any dispute related to these Terms or your use of the Site will be handled in the courts located in <strong>[Insert City/Province]</strong>, unless applicable law requires otherwise.</p>
+        <p><em>Note: Do not leave this section vague before publishing. Confirm the correct province, business entity, and dispute venue with legal counsel.</em></p>
+      </section>
+
+      <!-- Section 20 -->
+      <section class="tos-section" aria-labelledby="tos-s20">
+        <h2 id="tos-s20"><span class="tos-section-num">20</span> General Terms</h2>
+        <p>These Terms, together with any applicable policies, disclosures, agreements, or additional terms, form the agreement between you and CoCASH.ca regarding use of the Site.</p>
+        <p>If any part of these Terms is found to be invalid or unenforceable, the remaining parts will continue to apply.</p>
+        <p>Our failure to enforce any part of these Terms does not waive our right to enforce it later.</p>
+        <p>You may not assign or transfer your rights under these Terms without our written permission. CoCASH.ca may assign or transfer its rights where permitted by law.</p>
+      </section>
+
+      <!-- Section 21 -->
+      <section class="tos-section" aria-labelledby="tos-s21">
+        <h2 id="tos-s21"><span class="tos-section-num">21</span> Contact Us</h2>
+        <p>If you have questions, concerns, or requests about these Terms, contact us:</p>
+        <div class="tos-contact-card">
+          <strong>CoCASH.ca</strong><br>
+          Email: <a href="mailto:support@cocash.ca">[Insert Support or Legal Contact Email]</a><br>
+          Phone: <a href="tel:18001234567">[Insert Phone Number]</a><br>
+          Address: [Insert Business Address]
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to payday lending. It is an online surety (guarantor) service that helps Canadians access fast, flexible installment loans. We process most requests in about an hour.</p>
+        <div class="footer-contact">
+          <p>📍 Alberta, Canada</p>
+          <p>📞 <a href="tel:18001234567">1-800-123-4567</a></p>
+          <p>✉️ <a href="mailto:support@cocash.ca">support@cocash.ca</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+          <li><a href="/early-repayment/">Early Repayment</a></li>
+          <li><a href="/budgetplan/">Budget Plan</a></li>
+          <li><a href="/renew/">Renew Your Loan</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/faq/">FAQs</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html" aria-current="page">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="responsible-lending">
+      <strong>Responsible Collections:</strong> CoCASH.ca is committed to responsible and ethical collections practices. We encourage customers to contact us if they are experiencing financial difficulty. &nbsp;|&nbsp; <strong>Borrow Responsibly:</strong> Only borrow what you can comfortably afford to repay. If you are experiencing financial hardship, please seek advice from a not-for-profit credit counsellor.
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">Representative APR: 32%. Repayment term: 91–120 days. CoCASH.ca is operated by Alberta Inc. All loan applications are subject to approval. Terms and conditions apply. This is not a payday loan service.</p>
+        <p class="footer-copyright">© 2026 CoCASH.ca — All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(btn) {
+  const menu = document.getElementById('mobileMenu');
+  const isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function(b) {
+    b.classList.toggle('open', !isOpen);
+    b.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.remove('open');
+    document.querySelectorAll('.hamburger').forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    menu.setAttribute('aria-hidden', 'true');
+  }
+});
+</script>
+</body>
+</html>
