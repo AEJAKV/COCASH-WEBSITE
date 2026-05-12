@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQs | CoCASH.ca</title>
+<meta name="description" content="Find answers to common questions about CoCASH.ca applications, eligibility, funding, repayment, privacy, security, cashback, and support.">
+<link rel="canonical" href="https://cocash.ca/faqs/">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #439C6F;
+  --color-primary-hover: #367A56;
+  --color-primary-dark: #2A5E41;
+  --color-accent: #66BFA6;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4FAF7;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.11);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: #F7FAF8;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER / NAV ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 1.5rem;
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo span { color: var(--color-primary-dark); }
+nav { display: flex; align-items: center; }
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+nav ul li a {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover,
+nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 4px 0;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--color-text);
+  border-radius: 0;
+}
+.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.nav-contact { font-size: 0.82rem; color: var(--color-text-light); white-space: nowrap; }
+.nav-contact a { color: var(--color-text-light); font-weight: 600; }
+.nav-contact a:hover { color: var(--color-primary); }
+.nav-login {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text);
+  padding: 8px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 20px;
+  padding: 9px 20px;
+  font-weight: 900;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-nav-orange:hover { background: #FFD700; color: #6B0000; transform: translateY(-1px); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a {
+  display: block;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  border-bottom: 1px solid #f0f0f0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mobile-menu ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.mobile-header-bar { display: none; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 6px;
+}
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+.mobile-header-sub a { color: var(--color-text-light); font-weight: 600; }
+.mobile-header-sub .sep { color: #ccc; }
+.btn-mobile-cta {
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* ===================== BUTTONS ===================== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 20px;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.22s ease;
+  border: none;
+}
+.btn-yellow {
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+}
+.btn-yellow:hover { background: #FFD700; color: #6B0000; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(255,215,0,0.35); }
+.btn-outline-green {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn-outline-green:hover { background: var(--color-primary); color: #fff; transform: translateY(-2px); }
+
+/* ===================== FAQ HERO ===================== */
+.faq-hero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #3BAA7A 100%);
+  padding: 64px 0 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.faq-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.faq-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.faq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  animation: pulse-ring 2.4s ease-in-out infinite;
+}
+.faq-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #6EDBA8;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(110,219,168,0.6);
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(110,219,168,0.6); }
+  50% { box-shadow: 0 0 0 5px rgba(110,219,168,0); }
+}
+.faq-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.faq-hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-faq-hero {
+  display: inline-block;
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 50px;
+  padding: 13px 32px;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-faq-hero:hover { background: #FFD700; color: #6B0000; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,215,0,0.4); }
+
+/* ===================== SEARCH BAR ===================== */
+.faq-search-wrap {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: 24px 0;
+}
+.faq-search-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+.faq-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+}
+.faq-search-input {
+  width: 100%;
+  padding: 14px 16px 14px 44px;
+  border: 2px solid var(--color-border);
+  border-radius: 50px;
+  font-family: var(--font-base);
+  font-size: 0.97rem;
+  color: var(--color-text);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.faq-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(67,156,111,0.12);
+}
+.faq-search-input::placeholder { color: #aaa; }
+
+/* ===================== MAIN FAQ LAYOUT ===================== */
+.faq-main {
+  padding: 48px 0 72px;
+}
+.faq-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ===================== CATEGORY SIDEBAR ===================== */
+.faq-sidebar {
+  position: sticky;
+  top: 90px;
+}
+.faq-sidebar-title {
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-light);
+  margin-bottom: 12px;
+}
+.faq-cat-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.faq-cat-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-family: var(--font-base);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.faq-cat-btn:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.faq-cat-btn.active {
+  background: var(--color-bg-section);
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+  padding-left: 11px;
+}
+.faq-cat-count {
+  display: inline-block;
+  background: rgba(67,156,111,0.12);
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 1px 7px;
+  margin-left: 6px;
+}
+.faq-cat-btn.active .faq-cat-count { background: var(--color-primary); color: #fff; }
+
+/* Mobile filter chips */
+.faq-chips-row {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.faq-chip {
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50px;
+  padding: 7px 16px;
+  font-family: var(--font-base);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.faq-chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.faq-chip.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+
+/* ===================== FAQ CONTENT AREA ===================== */
+.faq-content-area {}
+
+.faq-category-block {
+  margin-bottom: 40px;
+}
+.faq-category-block[data-hidden="true"] { display: none; }
+
+.faq-category-heading {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-bg-section);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.faq-category-heading::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ===================== ACCORDION ITEMS ===================== */
+.faq-list { display: flex; flex-direction: column; gap: 8px; }
+
+.faq-item {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.faq-item:hover { border-color: rgba(67,156,111,0.35); box-shadow: 0 2px 12px rgba(67,156,111,0.08); }
+.faq-item.open { border-color: rgba(67,156,111,0.4); box-shadow: 0 4px 18px rgba(67,156,111,0.10); }
+.faq-item[data-hidden="true"] { display: none; }
+
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: var(--font-base);
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--color-text);
+  cursor: pointer;
+  gap: 12px;
+  transition: color 0.2s;
+}
+.faq-q:hover { color: var(--color-primary); }
+.faq-q:focus { outline: 2px solid var(--color-accent); outline-offset: -2px; border-radius: 10px; }
+.faq-item.open .faq-q { color: var(--color-primary-dark); }
+
+.faq-chevron {
+  width: 22px;
+  height: 22px;
+  background: var(--color-bg-section);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), background 0.2s;
+}
+.faq-chevron svg { display: block; transition: transform 0.3s; }
+.faq-item.open .faq-chevron { background: var(--color-primary); transform: rotate(180deg); }
+.faq-item.open .faq-chevron svg path { stroke: #fff; }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item.open .faq-a { max-height: 600px; }
+
+.faq-a-inner {
+  padding: 0 20px 18px;
+  font-size: 0.93rem;
+  color: var(--color-text-light);
+  line-height: 1.75;
+}
+.faq-a-inner p + p { margin-top: 10px; }
+.faq-a-inner ul { padding-left: 18px; margin-top: 8px; }
+.faq-a-inner ul li { margin-bottom: 5px; }
+
+/* ===================== EMPTY STATE ===================== */
+.faq-empty {
+  display: none;
+  text-align: center;
+  padding: 56px 24px;
+  color: var(--color-text-light);
+}
+.faq-empty-icon {
+  font-size: 2.8rem;
+  margin-bottom: 14px;
+}
+.faq-empty h3 { font-size: 1.1rem; font-weight: 700; color: var(--color-text); margin-bottom: 8px; }
+.faq-empty p { font-size: 0.92rem; }
+
+/* ===================== BOTTOM CTA ===================== */
+.faq-cta-section {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  padding: 64px 0;
+  text-align: center;
+  margin-top: 16px;
+}
+.faq-cta-inner { max-width: 560px; margin: 0 auto; }
+.faq-cta-inner h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.faq-cta-inner p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.faq-cta-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.85);
+  padding: 56px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand .logo { color: #fff; font-size: 1.5rem; margin-bottom: 12px; display: inline-block; }
+.footer-brand .logo span { color: var(--color-accent); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.footer-contact { margin-top: 16px; font-size: 0.84rem; }
+.footer-contact p { margin-bottom: 4px; }
+.footer-contact a { color: var(--color-accent); }
+.footer-col h4 {
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--color-accent); }
+.footer-col ul li a[aria-current="page"] { color: #fff; font-weight: 700; }
+.responsible-lending {
+  padding: 18px 0;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  line-height: 1.65;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 0 24px;
+  gap: 12px;
+}
+.footer-legal { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.65; max-width: 800px; }
+.footer-copyright { margin-top: 4px; font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1023px) {
+  .faq-layout { grid-template-columns: 1fr; }
+  .faq-sidebar { display: none; }
+  .faq-chips-row { display: flex; }
+  .nav-right { display: none; }
+  nav ul { display: none; }
+  .hamburger { display: flex; }
+  .mobile-header-bar { display: none; }
+  .nav-inner { display: flex; }
+}
+
+@media (max-width: 767px) {
+  .nav-inner { display: none; }
+  .mobile-header-bar { display: block; }
+  .faq-hero { padding: 44px 0 40px; }
+  .faq-hero h1 { font-size: 1.9rem; }
+  .faq-hero-sub { font-size: 0.95rem; }
+  .faq-main { padding: 32px 0 56px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom { flex-direction: column; }
+  .container { padding: 0 var(--space-m); }
+  .faq-cta-inner h2 { font-size: 1.55rem; }
+  .faq-category-heading { font-size: 1.05rem; }
+  section { padding: 40px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html" aria-current="page">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment/">Early Repayment Program</a></li>
+              <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact"><a href="tel:18001234567">1-800-123-4567</a> &nbsp;|&nbsp; <a href="faq.html" aria-current="page">Help &amp; FAQ</a></span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="index.html#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="index.html#loan-form" class="btn-mobile-cta">Claim Your Cash!</a>
+          <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:18001234567">📞 1-800-123-4567</a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="faq.html" aria-current="page">FAQs</a></li>
+      <li><a href="/early-repayment/">Early Repayment Program</a></li>
+      <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- FAQ HERO -->
+<section class="faq-hero" aria-label="FAQ header">
+  <div class="container">
+    <div class="faq-hero-inner">
+      <span class="faq-badge">Help Center</span>
+      <h1>Frequently Asked Questions</h1>
+      <p class="faq-hero-sub">Find clear answers about applying, eligibility, funding timelines, repayment, security, cashback, and support.</p>
+      <a href="index.html#loan-form" class="btn-faq-hero">Claim Your Cash!</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="faq-search-wrap">
+  <div class="container">
+    <div class="faq-search-inner">
+      <span class="faq-search-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </span>
+      <input
+        type="search"
+        class="faq-search-input"
+        id="faqSearch"
+        placeholder="Search questions…"
+        aria-label="Search FAQ"
+        oninput="searchFAQ(this.value)"
+        autocomplete="off"
+      >
+    </div>
+  </div>
+</div>
+
+<!-- MAIN FAQ CONTENT -->
+<main class="faq-main" id="faq-top">
+  <div class="container">
+    <div class="faq-layout">
+
+      <!-- SIDEBAR (desktop) -->
+      <aside class="faq-sidebar" aria-label="FAQ categories">
+        <p class="faq-sidebar-title">Categories</p>
+        <ul class="faq-cat-list" id="catList">
+          <li><button class="faq-cat-btn active" data-cat="all" onclick="filterCat(this)">All <span class="faq-cat-count" id="cnt-all">35</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Application" onclick="filterCat(this)">Application <span class="faq-cat-count" id="cnt-Application">4</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Eligibility" onclick="filterCat(this)">Eligibility <span class="faq-cat-count" id="cnt-Eligibility">6</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Documents" onclick="filterCat(this)">Documents <span class="faq-cat-count" id="cnt-Documents">5</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Approval" onclick="filterCat(this)">Approval <span class="faq-cat-count" id="cnt-Approval">4</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Rates &amp; Fees" onclick="filterCat(this)">Rates &amp; Fees <span class="faq-cat-count" id="cnt-Rates &amp; Fees">5</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Repayment" onclick="filterCat(this)">Repayment <span class="faq-cat-count" id="cnt-Repayment">5</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Funding" onclick="filterCat(this)">Funding <span class="faq-cat-count" id="cnt-Funding">4</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Security" onclick="filterCat(this)">Security <span class="faq-cat-count" id="cnt-Security">4</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Support" onclick="filterCat(this)">Support <span class="faq-cat-count" id="cnt-Support">5</span></button></li>
+        </ul>
+      </aside>
+
+      <!-- CONTENT AREA -->
+      <section class="faq-content-area" aria-label="FAQ answers" id="faqContentArea">
+
+        <!-- Mobile filter chips -->
+        <div class="faq-chips-row" id="faqChips" role="group" aria-label="Filter by category">
+          <button class="faq-chip active" data-cat="all" onclick="filterCat(this)">All</button>
+          <button class="faq-chip" data-cat="Application" onclick="filterCat(this)">Application</button>
+          <button class="faq-chip" data-cat="Eligibility" onclick="filterCat(this)">Eligibility</button>
+          <button class="faq-chip" data-cat="Documents" onclick="filterCat(this)">Documents</button>
+          <button class="faq-chip" data-cat="Approval" onclick="filterCat(this)">Approval</button>
+          <button class="faq-chip" data-cat="Rates &amp; Fees" onclick="filterCat(this)">Rates &amp; Fees</button>
+          <button class="faq-chip" data-cat="Repayment" onclick="filterCat(this)">Repayment</button>
+          <button class="faq-chip" data-cat="Funding" onclick="filterCat(this)">Funding</button>
+          <button class="faq-chip" data-cat="Security" onclick="filterCat(this)">Security</button>
+          <button class="faq-chip" data-cat="Support" onclick="filterCat(this)">Support</button>
+        </div>
+
+        <!-- FAQ items rendered by JS -->
+        <div id="faqBlocks"></div>
+
+        <!-- Empty state -->
+        <div class="faq-empty" id="faqEmpty">
+          <div class="faq-empty-icon">🔍</div>
+          <h3>No results found</h3>
+          <p>Try a different search term or browse by category.</p>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- BOTTOM CTA -->
+<section class="faq-cta-section" aria-labelledby="faq-cta-heading">
+  <div class="container">
+    <div class="faq-cta-inner">
+      <h2 id="faq-cta-heading">Still have questions?</h2>
+      <p>Start your application or contact support to get help with your next step.</p>
+      <div class="faq-cta-btns">
+        <a href="index.html#loan-form" class="btn btn-yellow">Claim Your Cash!</a>
+        <a href="/contact/" class="btn btn-outline-green" style="color:#fff;border-color:rgba(255,255,255,0.55);" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.color='#fff';" onmouseout="this.style.background='transparent';this.style.color='#fff';">Contact Support</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+        <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to payday lending. It is an online surety (guarantor) service that helps Canadians access fast, flexible installment loans. We process most requests in about an hour.</p>
+        <div class="footer-contact">
+          <p>📍 Alberta, Canada</p>
+          <p>📞 <a href="tel:18001234567">1-800-123-4567</a></p>
+          <p>✉️ <a href="mailto:support@cocash.ca">support@cocash.ca</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+          <li><a href="/early-repayment/">Early Repayment</a></li>
+          <li><a href="https://goloans.ca/budgetplan">Budget Plan</a></li>
+          <li><a href="/renew/">Renew Your Loan</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="faq.html" aria-current="page">FAQs</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-service.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="responsible-lending">
+      <strong>Responsible Collections:</strong> CoCASH.ca is committed to responsible and ethical collections practices. We encourage customers to contact us if they are experiencing financial difficulty. &nbsp;|&nbsp; <strong>Borrow Responsibly:</strong> Only borrow what you can comfortably afford to repay. If you are experiencing financial hardship, please seek advice from a not-for-profit credit counsellor.
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">Representative APR: 32%. Repayment term: 91–120 days. CoCASH.ca is operated by Alberta Inc. All loan applications are subject to approval. Terms and conditions apply. This is not a payday loan service.</p>
+        <p class="footer-copyright">© 2026 CoCASH.ca — All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===================== FAQ DATA ===================== */
+var FAQ_DATA = [
+  /* APPLICATION */
+  {
+    cat: 'Application',
+    q: 'How do I apply with CoCASH.ca?',
+    a: 'You can start by clicking "Claim Your Cash!" or "Apply Now" on the website. Complete the online form with your basic details, review the required information, and submit your application for review.'
+  },
+  {
+    cat: 'Application',
+    q: 'How do I check my application status?',
+    a: 'You can check your application status by logging in to your account or contacting CoCASH.ca support. If additional information is needed, you may receive an email, call, or message from the support team.'
+  },
+  {
+    cat: 'Application',
+    q: 'What do the application status stages mean?',
+    a: 'Your application may move through stages such as submitted, document review, validation, evaluation, agreement/signature, approved, denied, cancelled, or expired. Each stage reflects where your request is in the review process.'
+  },
+  {
+    cat: 'Application',
+    q: 'How long does the application process take?',
+    a: 'The online application can usually be completed quickly. Review and funding timelines depend on how fast you provide the required information, complete verification, and sign any required agreement.'
+  },
+
+  /* ELIGIBILITY */
+  {
+    cat: 'Eligibility',
+    q: 'Who can apply?',
+    a: 'Eligibility may depend on your age, residency, income, employment status, banking history, and the province or territory where you live. You must be legally eligible to apply for financial services in your location.'
+  },
+  {
+    cat: 'Eligibility',
+    q: 'What basic requirements may be needed?',
+    a: 'You may be asked to provide proof of identity, contact details, income information, banking information, employment details, and other information needed to review your application.'
+  },
+  {
+    cat: 'Eligibility',
+    q: 'Can I apply if I just started a new job?',
+    a: 'Employment history may be considered during review. If your job is very new, additional information may be required, and approval is not guaranteed.'
+  },
+  {
+    cat: 'Eligibility',
+    q: 'Can I apply if I receive government assistance?',
+    a: 'Some income sources may be considered depending on the application requirements and review process. Submit accurate information so your application can be assessed properly.'
+  },
+  {
+    cat: 'Eligibility',
+    q: 'Can I apply if I had a past bankruptcy?',
+    a: 'Past bankruptcy may not automatically prevent you from applying, but you may need to provide additional details or supporting documents. Approval is not guaranteed.'
+  },
+  {
+    cat: 'Eligibility',
+    q: 'Can I apply if I already have another loan?',
+    a: 'You may still be able to apply, but your current repayment obligations and debt level may be reviewed to determine whether another loan is manageable for your situation.'
+  },
+
+  /* DOCUMENTS */
+  {
+    cat: 'Documents',
+    q: 'What documents may be required?',
+    a: 'You may be asked for identification, banking information, income verification, employment details, or other documents needed to complete the review.'
+  },
+  {
+    cat: 'Documents',
+    q: 'How do I upload documents?',
+    a: 'Documents can usually be uploaded through your account, a secure application link, or another secure upload method provided by CoCASH.ca.'
+  },
+  {
+    cat: 'Documents',
+    q: 'What is Instant Bank Verification?',
+    a: 'Instant Bank Verification allows a secure, read-only review of recent banking information to help verify identity, income, and application details. It can help speed up the review process significantly.'
+  },
+  {
+    cat: 'Documents',
+    q: 'Is Instant Bank Verification safe?',
+    a: 'Yes. Secure verification providers are designed to protect your information. CoCASH.ca only requests information through trusted and secure channels.'
+  },
+  {
+    cat: 'Documents',
+    q: 'What if I cannot complete bank verification?',
+    a: 'If verification does not work, contact support and provide details about the issue. You may be asked for screenshots or alternative documentation to continue the review.'
+  },
+
+  /* APPROVAL */
+  {
+    cat: 'Approval',
+    q: 'Does submitting an application guarantee approval?',
+    a: 'No. Submitting an application does not guarantee approval, funding, a specific amount, or specific terms. Final decisions depend on eligibility, verification, partner review, and applicable requirements.'
+  },
+  {
+    cat: 'Approval',
+    q: 'Why was my application denied or cancelled?',
+    a: 'Applications may be denied or cancelled if eligibility requirements are not met, required information is missing, verification cannot be completed, or the application does not meet review criteria.'
+  },
+  {
+    cat: 'Approval',
+    q: 'Can I reapply after being denied or cancelled?',
+    a: 'You may be able to reapply after a waiting period or once your situation changes. Contact CoCASH.ca support for guidance on your specific case. <em>[Exact reapplication timeline to be confirmed.]</em>'
+  },
+  {
+    cat: 'Approval',
+    q: 'Why was I approved for less than I requested?',
+    a: 'Approved amounts may depend on income, repayment ability, verification results, existing obligations, and responsible lending criteria applied during review.'
+  },
+
+  /* RATES & FEES */
+  {
+    cat: 'Rates & Fees',
+    q: 'What rates and fees apply?',
+    a: 'Rates, fees, repayment amounts, and terms may vary by loan amount, provider, eligibility, and agreement. Always review the full agreement and disclosures carefully before accepting.'
+  },
+  {
+    cat: 'Rates & Fees',
+    q: 'Are there hidden fees?',
+    a: 'CoCASH.ca discloses applicable fees and repayment details before you agree to proceed. Always review your agreement carefully before signing — if anything is unclear, contact support.'
+  },
+  {
+    cat: 'Rates & Fees',
+    q: 'What is a guarantor or surety fee?',
+    a: 'A guarantor or surety-related fee may apply when a service helps support or guarantee the loan arrangement. The exact terms should be clearly explained before you accept any agreement.'
+  },
+  {
+    cat: 'Rates & Fees',
+    q: 'Can I save money by repaying early?',
+    a: 'Early repayment may reduce certain costs depending on the agreement and program rules. Confirm the exact early repayment terms in your agreement before signing.'
+  },
+  {
+    cat: 'Rates & Fees',
+    q: 'Is there a penalty for paying early?',
+    a: 'Early repayment rules depend on the specific agreement. If there is no penalty or if savings are available through early repayment, this should be clearly stated in your agreement or program terms.'
+  },
+
+  /* REPAYMENT */
+  {
+    cat: 'Repayment',
+    q: 'How are repayments made?',
+    a: 'Repayments may be made through pre-authorized debit, e-Transfer, or another approved payment method depending on the agreement and provider.'
+  },
+  {
+    cat: 'Repayment',
+    q: 'Can I change my payment date?',
+    a: 'Payment date changes may be possible, but they usually need to be requested before the scheduled payment date. Contact support as early as possible to review your options.'
+  },
+  {
+    cat: 'Repayment',
+    q: 'Can I defer a payment?',
+    a: 'Payment deferrals may be available in limited cases and may require advance notice. Approval depends on your agreement, account status, and provider rules.'
+  },
+  {
+    cat: 'Repayment',
+    q: 'What should I do if I cannot make my next payment?',
+    a: 'Contact support as early as possible. Waiting until the payment fails may lead to NSF fees, missed payment issues, or fewer available options. Acting early gives you the best chance of a workable solution.'
+  },
+  {
+    cat: 'Repayment',
+    q: 'What happens if I miss a payment?',
+    a: 'A missed payment may result in fees, collection activity, account restrictions, or other consequences depending on your agreement. Contact support immediately if this happens — do not wait.'
+  },
+
+  /* FUNDING */
+  {
+    cat: 'Funding',
+    q: 'How fast can I receive funds?',
+    a: 'Funding may be available quickly after approval, verification, and signing, but exact timing depends on your bank, funding method, cutoff times, and whether all required steps have been completed.'
+  },
+  {
+    cat: 'Funding',
+    q: 'Can funds arrive the same day?',
+    a: 'Same-day funding may be possible in some cases, especially when all documents are completed quickly and the funding method supports fast deposit. Timing is not guaranteed.'
+  },
+  {
+    cat: 'Funding',
+    q: 'What if I have not received my funds?',
+    a: 'Check your email, account dashboard, and bank account first. If enough time has passed and funds are still missing, contact support so the payment can be reviewed and traced.'
+  },
+  {
+    cat: 'Funding',
+    q: 'What funding methods are available?',
+    a: 'Funding may be sent by Interac e-Transfer, direct deposit, or another approved method depending on the provider and your application flow.'
+  },
+
+  /* SECURITY */
+  {
+    cat: 'Security',
+    q: 'Is my information secure?',
+    a: 'CoCASH.ca uses secure systems, encrypted connections, trusted verification tools, and responsible data practices to help protect your personal information throughout the application process.'
+  },
+  {
+    cat: 'Security',
+    q: 'Do you share my personal information?',
+    a: 'Personal information may be shared only as needed to process applications, provide services, verify information, prevent fraud, comply with legal requirements, or as explained in the Privacy Policy.'
+  },
+  {
+    cat: 'Security',
+    q: 'Will applying affect my credit score?',
+    a: 'This depends on the application process and whether a credit check is required. If you have questions about whether your application involves a credit check, contact support before submitting.'
+  },
+  {
+    cat: 'Security',
+    q: 'How do I unsubscribe from marketing emails?',
+    a: 'Use the unsubscribe link in any marketing email, or contact CoCASH.ca support directly to request removal from marketing communications.'
+  },
+
+  /* SUPPORT */
+  {
+    cat: 'Support',
+    q: 'What is CoCASH.ca?',
+    a: 'CoCASH.ca is a cosigner and lender matching service designed to help eligible Canadians explore online loan-related options through a simple, fast digital process.'
+  },
+  {
+    cat: 'Support',
+    q: 'Does CoCASH.ca have physical branches?',
+    a: 'CoCASH.ca is designed as a fully online service. All applications, reviews, and support are handled digitally — no branch visit required.'
+  },
+  {
+    cat: 'Support',
+    q: 'What are your support hours?',
+    a: 'Support hours are available during regular business days. For the most up-to-date hours, contact us directly. <em>[Confirmed hours to be added before publishing.]</em>'
+  },
+  {
+    cat: 'Support',
+    q: 'How do I contact CoCASH.ca?',
+    a: 'You can reach CoCASH.ca via the official support email at <a href="mailto:support@cocash.ca">support@cocash.ca</a>, by phone at <a href="tel:18001234567">1-800-123-4567</a>, or through the contact form on the website.'
+  },
+  {
+    cat: 'Support',
+    q: 'How do I make a complaint?',
+    a: 'If you have a concern, contact CoCASH.ca support with your full name, contact information, and a clear description of the issue. The team will review and respond as promptly as possible.'
+  }
+];
+
+/* ===================== STATE ===================== */
+var currentCat = 'all';
+var currentSearch = '';
+var openItemId = null;
+
+/* ===================== RENDER ===================== */
+function buildId(cat, idx) {
+  return 'faq-' + cat.replace(/[^a-z0-9]/gi, '') + '-' + idx;
+}
+
+function renderAll() {
+  var container = document.getElementById('faqBlocks');
+  var cats = ['Application','Eligibility','Documents','Approval','Rates & Fees','Repayment','Funding','Security','Support'];
+  var html = '';
+  cats.forEach(function(cat) {
+    var items = FAQ_DATA.filter(function(f) { return f.cat === cat; });
+    html += '<div class="faq-category-block" data-cat="' + cat + '" id="block-' + cat.replace(/[^a-z0-9]/gi,'') + '">';
+    html += '<h2 class="faq-category-heading">' + escHtml(cat) + '</h2>';
+    html += '<div class="faq-list">';
+    items.forEach(function(item, idx) {
+      var id = buildId(cat, idx);
+      html += '<div class="faq-item" id="' + id + '" data-cat="' + escAttr(cat) + '" data-q="' + escAttr(item.q.toLowerCase()) + '" data-a="' + escAttr(item.a.toLowerCase().replace(/<[^>]+>/g,'')) + '">';
+      html += '<button class="faq-q" aria-expanded="false" aria-controls="' + id + '-body" onclick="toggleFAQ(\'' + id + '\')">';
+      html += '<span>' + escHtml(item.q) + '</span>';
+      html += '<span class="faq-chevron" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#439C6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      html += '</button>';
+      html += '<div class="faq-a" id="' + id + '-body" role="region" aria-labelledby="' + id + '">';
+      html += '<div class="faq-a-inner"><p>' + item.a + '</p></div>';
+      html += '</div>';
+      html += '</div>';
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function escAttr(str) {
+  return str.replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+/* ===================== ACCORDION ===================== */
+function toggleFAQ(id) {
+  var item = document.getElementById(id);
+  if (!item) return;
+  var isOpen = item.classList.contains('open');
+  // Close previously open item
+  if (openItemId && openItemId !== id) {
+    var prev = document.getElementById(openItemId);
+    if (prev) {
+      prev.classList.remove('open');
+      var prevBtn = prev.querySelector('.faq-q');
+      if (prevBtn) prevBtn.setAttribute('aria-expanded','false');
+    }
+  }
+  item.classList.toggle('open', !isOpen);
+  var btn = item.querySelector('.faq-q');
+  if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
+  openItemId = !isOpen ? id : null;
+}
+
+/* ===================== CATEGORY FILTER ===================== */
+function filterCat(btn) {
+  currentCat = btn.getAttribute('data-cat');
+  currentSearch = '';
+  document.getElementById('faqSearch').value = '';
+
+  // Sync all cat buttons (sidebar + chips)
+  document.querySelectorAll('.faq-cat-btn, .faq-chip').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-cat') === currentCat);
+  });
+
+  applyFilters();
+}
+
+/* ===================== SEARCH ===================== */
+function searchFAQ(val) {
+  currentSearch = val.trim().toLowerCase();
+  currentCat = 'all';
+  // Reset category buttons
+  document.querySelectorAll('.faq-cat-btn, .faq-chip').forEach(function(b) {
+    b.classList.toggle('active', b.getAttribute('data-cat') === 'all');
+  });
+  applyFilters();
+}
+
+/* ===================== APPLY FILTERS ===================== */
+function applyFilters() {
+  var blocks = document.querySelectorAll('.faq-category-block');
+  var totalVisible = 0;
+
+  blocks.forEach(function(block) {
+    var cat = block.getAttribute('data-cat');
+    var catMatch = (currentCat === 'all' || cat === currentCat);
+    var items = block.querySelectorAll('.faq-item');
+    var visibleInBlock = 0;
+
+    items.forEach(function(item) {
+      var itemCat = item.getAttribute('data-cat');
+      var itemQ = item.getAttribute('data-q') || '';
+      var itemA = item.getAttribute('data-a') || '';
+      var catOk = (currentCat === 'all' || itemCat === currentCat);
+      var searchOk = (!currentSearch || itemQ.indexOf(currentSearch) !== -1 || itemA.indexOf(currentSearch) !== -1);
+
+      if (catOk && searchOk) {
+        item.removeAttribute('data-hidden');
+        item.style.display = '';
+        visibleInBlock++;
+        totalVisible++;
+      } else {
+        item.setAttribute('data-hidden','true');
+        item.style.display = 'none';
+        // Close if hidden
+        if (item.classList.contains('open')) {
+          item.classList.remove('open');
+          var btn = item.querySelector('.faq-q');
+          if (btn) btn.setAttribute('aria-expanded','false');
+          if (openItemId === item.id) openItemId = null;
+        }
+      }
+    });
+
+    if (catMatch && visibleInBlock > 0) {
+      block.style.display = '';
+    } else {
+      block.style.display = 'none';
+    }
+  });
+
+  document.getElementById('faqEmpty').style.display = totalVisible === 0 ? 'block' : 'none';
+}
+
+/* ===================== MOBILE MENU ===================== */
+function toggleMenu(btn) {
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function(b) {
+    b.classList.toggle('open', !isOpen);
+    b.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+
+/* ===================== INIT ===================== */
+renderAll();
+</script>
+</body>
+</html>
