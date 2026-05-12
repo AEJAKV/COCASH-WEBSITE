@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | CoCASH.ca</title>
+<meta name="description" content="Learn how CoCASH.ca collects, uses, protects, and manages personal information.">
+<link rel="canonical" href="https://cocash.ca/privacy-policy/">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #439C6F;
+  --color-primary-hover: #367A56;
+  --color-primary-dark: #2A5E41;
+  --color-accent: #66BFA6;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4FAF7;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER / NAV ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 1.5rem;
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.logo span { color: var(--color-primary-dark); }
+nav { display: flex; align-items: center; }
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+nav ul li a {
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 200;
+  padding: 4px 0;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: none;
+  letter-spacing: 0;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-right .nav-contact { color: var(--color-text-light); font-weight: 600; white-space: nowrap; }
+.nav-right .nav-contact a { color: var(--color-text-light); font-weight: 700; }
+.nav-right .nav-contact a:hover { color: var(--color-primary); }
+.nav-right .nav-login {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-right .nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+}
+.btn-nav-orange:hover { background: #FFD700; color: #6B0000; border-color: rgba(180,30,30,0.50); }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+  border-radius: var(--radius);
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transform-origin: center center;
+  transition: transform 0.35s cubic-bezier(0.68,-0.55,0.27,1.55), opacity 0.25s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a {
+  display: block;
+  padding: 12px var(--space-l);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.mobile-menu ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.mobile-header-bar { display: none; }
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 0 6px;
+}
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  border-top: 1px solid var(--color-border);
+  padding-top: 6px;
+  padding-bottom: 10px;
+}
+.mobile-header-sub a { color: var(--color-text-light); font-weight: 700; text-decoration: none; }
+.mobile-header-sub a:hover { color: var(--color-primary); }
+.mobile-header-sub .sep { color: var(--color-border); }
+.btn-mobile-cta {
+  background: #FFE033;
+  color: #7A1010;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+}
+.btn-mobile-cta:hover { background: #FFD700; color: #6B0000; }
+
+/* ===================== PAGE HERO ===================== */
+.pp-hero {
+  background: linear-gradient(125deg, #152a1e 0%, #1C3328 40%, #2A5E41 100%);
+  color: #fff;
+  padding: 52px 0 48px;
+  position: relative;
+  overflow: hidden;
+}
+.pp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+.pp-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+}
+.pp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-radius: 50px;
+  padding: 5px 14px 5px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.pp-badge::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6EDBA8;
+  box-shadow: 0 0 6px rgba(110,219,168,0.80);
+  flex-shrink: 0;
+}
+.pp-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+  color: #fff;
+}
+.pp-hero-meta {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 600;
+}
+.pp-hero-meta strong { color: rgba(255,255,255,0.70); }
+.pp-intro {
+  margin-top: 20px;
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.80);
+  line-height: 1.70;
+  max-width: 720px;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+.pp-main {
+  background: #F8FAF9;
+  padding: 60px 0 80px;
+}
+.pp-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pp-disclaimer {
+  background: #FFF8E1;
+  border: 1px solid #FFD54F;
+  border-left: 4px solid #FFA000;
+  border-radius: 8px;
+  padding: 14px 18px;
+  font-size: 0.84rem;
+  color: #5D4037;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.pp-disclaimer::before {
+  content: '⚠';
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pp-section {
+  background: #fff;
+  border: 1px solid #E8F0EB;
+  border-radius: 14px;
+  padding: 32px 36px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(67,156,111,0.05);
+  transition: box-shadow 0.2s;
+}
+.pp-section:hover { box-shadow: 0 4px 20px rgba(67,156,111,0.09); }
+.pp-section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-bg-section);
+  border: 1.5px solid var(--color-accent);
+  color: var(--color-primary-dark);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+.pp-section h2 {
+  font-size: 1.08rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pp-section p {
+  font-size: 0.93rem;
+  color: #444;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.pp-section p:last-child { margin-bottom: 0; }
+.pp-section ul {
+  list-style: none;
+  margin: 10px 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pp-section ul li {
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.65;
+  padding-left: 20px;
+  position: relative;
+}
+.pp-section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.pp-contact-card {
+  background: var(--color-bg-section);
+  border: 1px solid #C8E6D5;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: #444;
+  line-height: 1.8;
+}
+.pp-contact-card strong { color: var(--color-primary-dark); font-size: 0.95rem; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.8);
+  padding: var(--space-xl) 0 var(--space-l);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: var(--space-l);
+}
+.footer-brand .logo { color: #fff; font-size: 1.5rem; margin-bottom: 12px; display: inline-block; }
+.footer-brand .logo span { color: var(--color-accent); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.footer-contact { margin-top: 16px; font-size: 0.84rem; }
+.footer-contact p { margin-bottom: 4px; }
+.footer-contact a { color: var(--color-accent); }
+.footer-col h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--color-accent); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: var(--space-m);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.footer-legal { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 700px; }
+.footer-copyright { font-size: 0.78rem; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.responsible-lending {
+  background: rgba(0,0,0,0.25);
+  border-left: 3px solid var(--color-accent);
+  padding: 12px 16px;
+  margin-top: var(--space-m);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1023px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  nav ul { display: none; }
+  .nav-right { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 767px) {
+  .nav-inner { display: none; }
+  .mobile-header-bar { display: block; }
+  .pp-hero { padding: 36px 0 32px; }
+  .pp-hero h1 { font-size: 2rem; }
+  .pp-intro { font-size: 0.95rem; }
+  .pp-section { padding: 22px 20px; border-radius: 10px; }
+  .pp-section h2 { font-size: 1rem; }
+  .container { padding: 0 var(--space-m); }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom { flex-direction: column; }
+  .pp-main { padding: 36px 0 56px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/faq/">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment/">Early Repayment Program</a></li>
+              <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact"><a href="tel:18001234567">1-800-123-4567</a> &nbsp;|&nbsp; <a href="/faq/">Help &amp; FAQ</a></span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="/" class="btn-nav-orange">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <a href="/" class="btn-mobile-cta">Apply Now</a>
+        <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:18001234567">📞 1-800-123-4567</a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/faq/">FAQs</a></li>
+      <li><a href="/early-repayment/">Early Repayment Program</a></li>
+      <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="/">Apply Now</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="pp-hero" aria-label="Privacy Policy header">
+  <div class="container">
+    <div class="pp-hero-inner">
+      <span class="pp-badge">Privacy &amp; Security</span>
+      <h1>Privacy Policy</h1>
+      <p class="pp-hero-meta">Last Updated: <strong>May 11, 2026</strong></p>
+      <p class="pp-intro">CoCASH.ca respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, store, and protect your information when you visit our website, submit an application, or otherwise interact with CoCASH.ca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="pp-main" id="main-content">
+  <div class="container">
+    <div class="pp-content">
+
+      <div class="pp-disclaimer">
+        This page is a strong draft and should be reviewed by qualified legal counsel before being published. All placeholder contact details must be updated before going live.
+      </div>
+
+      <!-- Section 1 -->
+      <section class="pp-section" aria-labelledby="pp-s1">
+        <h2 id="pp-s1"><span class="pp-section-num">1</span> Information We Collect</h2>
+        <p>We may collect personal information that you provide directly to us, including:</p>
+        <ul>
+          <li>First and last name</li>
+          <li>Email address</li>
+          <li>Phone number</li>
+          <li>Date of birth</li>
+          <li>Address and location information</li>
+          <li>Employment or income-related information</li>
+          <li>Banking or payment-related details when required for application processing</li>
+          <li>Identification or verification information</li>
+          <li>Information submitted through forms, applications, messages, or customer support requests</li>
+        </ul>
+        <p>We may also collect technical and usage information automatically when you use our website, including:</p>
+        <ul>
+          <li>IP address</li>
+          <li>Browser type and device information</li>
+          <li>Pages visited and time spent on the website</li>
+          <li>Referral source</li>
+          <li>Cookies and similar tracking technologies</li>
+          <li>General location information based on browser or device data</li>
+        </ul>
+        <p>We only collect information that is reasonably necessary for the purposes described in this Privacy Policy.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="pp-section" aria-labelledby="pp-s2">
+        <h2 id="pp-s2"><span class="pp-section-num">2</span> How We Use Your Information</h2>
+        <p>CoCASH.ca may use your personal information to:</p>
+        <ul>
+          <li>Process and review your application</li>
+          <li>Match you with potential lending or cosigner-related services</li>
+          <li>Verify your identity and eligibility</li>
+          <li>Communicate with you about your application or account</li>
+          <li>Provide customer support</li>
+          <li>Improve our website, services, and user experience</li>
+          <li>Detect, prevent, and respond to fraud, misuse, or security risks</li>
+          <li>Send service-related updates, reminders, or notifications</li>
+          <li>Send marketing communications where permitted by law or with your consent</li>
+          <li>Comply with legal, regulatory, and contractual obligations</li>
+        </ul>
+        <p>We do not use your personal information for purposes unrelated to our services unless we have your consent or are permitted or required by law.</p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="pp-section" aria-labelledby="pp-s3">
+        <h2 id="pp-s3"><span class="pp-section-num">3</span> Consent</h2>
+        <p>By submitting information through CoCASH.ca, you consent to the collection, use, and disclosure of your personal information for the purposes described in this Privacy Policy.</p>
+        <p>You may withdraw your consent at any time, subject to legal, contractual, or service-related restrictions. Please note that withdrawing consent may affect our ability to provide certain services to you.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="pp-section" aria-labelledby="pp-s4">
+        <h2 id="pp-s4"><span class="pp-section-num">4</span> Sharing and Disclosure of Information</h2>
+        <p>We may share your personal information with trusted third parties only when necessary to provide our services, operate our business, or comply with the law. This may include:</p>
+        <ul>
+          <li>Lending partners</li>
+          <li>Cosigner or guarantor-related service providers</li>
+          <li>Verification and fraud-prevention providers</li>
+          <li>Payment, banking, or financial service providers</li>
+          <li>Customer support platforms</li>
+          <li>Hosting, analytics, and technology service providers</li>
+          <li>Marketing or communication service providers</li>
+          <li>Legal, compliance, accounting, or professional advisors</li>
+          <li>Government, regulatory, or law enforcement authorities where required by law</li>
+        </ul>
+        <p>Service providers are only given access to the information needed to perform their duties and are expected to protect your information appropriately.</p>
+        <p><strong>We do not sell your personal information.</strong></p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="pp-section" aria-labelledby="pp-s5">
+        <h2 id="pp-s5"><span class="pp-section-num">5</span> Cookies and Tracking Technologies</h2>
+        <p>CoCASH.ca may use cookies and similar technologies to operate the website, improve performance, remember preferences, analyze traffic, and support marketing or advertising activities. Cookies may be used for:</p>
+        <ul>
+          <li>Essential website functionality</li>
+          <li>Analytics and performance tracking</li>
+          <li>User experience improvements</li>
+          <li>Advertising and remarketing where permitted</li>
+          <li>Security and fraud prevention</li>
+        </ul>
+        <p>You can adjust your browser settings to block or delete cookies. However, some parts of the website may not function properly if cookies are disabled.</p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="pp-section" aria-labelledby="pp-s6">
+        <h2 id="pp-s6"><span class="pp-section-num">6</span> How We Protect Your Information</h2>
+        <p>We take reasonable administrative, technical, and physical safeguards to protect your personal information against loss, theft, unauthorized access, disclosure, copying, misuse, or modification. These safeguards may include:</p>
+        <ul>
+          <li>Secure website connections (HTTPS)</li>
+          <li>Access controls</li>
+          <li>Data encryption where appropriate</li>
+          <li>Monitoring and security checks</li>
+          <li>Internal privacy and security practices</li>
+          <li>Limited access to personal information by authorized personnel and service providers</li>
+        </ul>
+        <p>Although we take privacy and security seriously, no online system can be guaranteed to be completely secure.</p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="pp-section" aria-labelledby="pp-s7">
+        <h2 id="pp-s7"><span class="pp-section-num">7</span> Retention of Personal Information</h2>
+        <p>We retain personal information only for as long as necessary to fulfill the purposes for which it was collected, including providing services, managing business operations, resolving disputes, preventing fraud, and complying with legal or regulatory obligations.</p>
+        <p>When personal information is no longer required, we will securely delete, destroy, or anonymize it in accordance with applicable requirements.</p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="pp-section" aria-labelledby="pp-s8">
+        <h2 id="pp-s8"><span class="pp-section-num">8</span> International Processing</h2>
+        <p>Some of our service providers or technology systems may process or store information outside your province, territory, or country of residence. When this happens, your information may be subject to the laws of the jurisdiction where it is processed or stored.</p>
+        <p>We take reasonable steps to ensure that personal information handled by service providers is protected appropriately.</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="pp-section" aria-labelledby="pp-s9">
+        <h2 id="pp-s9"><span class="pp-section-num">9</span> Your Privacy Rights</h2>
+        <p>Depending on applicable law, you may have the right to:</p>
+        <ul>
+          <li>Request access to the personal information we hold about you</li>
+          <li>Request correction of inaccurate or incomplete information</li>
+          <li>Withdraw consent, where applicable</li>
+          <li>Ask questions about how your information is collected, used, or disclosed</li>
+          <li>Make a complaint about our privacy practices</li>
+        </ul>
+        <p>To exercise these rights, contact us using the details provided in Section 14 below.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="pp-section" aria-labelledby="pp-s10">
+        <h2 id="pp-s10"><span class="pp-section-num">10</span> Marketing Communications</h2>
+        <p>Where permitted by law, CoCASH.ca may send you emails, text messages, calls, or other communications related to your application, services, financial offers, updates, or promotions.</p>
+        <p>You may opt out of marketing communications at any time by following the unsubscribe instructions in the message or by contacting us directly. Service-related communications may still be sent when necessary.</p>
+      </section>
+
+      <!-- Section 11 -->
+      <section class="pp-section" aria-labelledby="pp-s11">
+        <h2 id="pp-s11"><span class="pp-section-num">11</span> Third-Party Links</h2>
+        <p>Our website may contain links to third-party websites, services, or platforms. CoCASH.ca is not responsible for the privacy practices, policies, or content of third-party websites. We encourage users to review the privacy policies of any third-party websites they visit.</p>
+      </section>
+
+      <!-- Section 12 -->
+      <section class="pp-section" aria-labelledby="pp-s12">
+        <h2 id="pp-s12"><span class="pp-section-num">12</span> Children's Privacy</h2>
+        <p>CoCASH.ca services are intended for adults who are legally eligible to apply for financial products or related services. We do not knowingly collect personal information from individuals who are not legally eligible to use our services.</p>
+      </section>
+
+      <!-- Section 13 -->
+      <section class="pp-section" aria-labelledby="pp-s13">
+        <h2 id="pp-s13"><span class="pp-section-num">13</span> Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or services.</p>
+        <p>When changes are made, we will update the "Last Updated" date at the top of this page. Continued use of CoCASH.ca after changes are posted means you accept the updated Privacy Policy.</p>
+      </section>
+
+      <!-- Section 14 -->
+      <section class="pp-section" aria-labelledby="pp-s14">
+        <h2 id="pp-s14"><span class="pp-section-num">14</span> Contact Us</h2>
+        <p>If you have questions, requests, or concerns about this Privacy Policy or how your personal information is handled, please contact us:</p>
+        <div class="pp-contact-card">
+          <strong>CoCASH.ca</strong><br>
+          Email: <a href="mailto:privacy@cocash.ca">[Insert Privacy Contact Email]</a><br>
+          Phone: <a href="tel:18001234567">[Insert Phone Number]</a><br>
+          Address: [Insert Business Address]
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to payday lending. It is an online surety (guarantor) service that helps Canadians access fast, flexible installment loans. We process most requests in about an hour.</p>
+        <div class="footer-contact">
+          <p>📍 Alberta, Canada</p>
+          <p>📞 <a href="tel:18001234567">1-800-123-4567</a></p>
+          <p>✉️ <a href="mailto:support@cocash.ca">support@cocash.ca</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="https://goloans.ca/loan-cashback">Loan Cashback</a></li>
+          <li><a href="/early-repayment/">Early Repayment</a></li>
+          <li><a href="/budgetplan/">Budget Plan</a></li>
+          <li><a href="/renew/">Renew Your Loan</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/faq/">FAQs</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy-policy/" aria-current="page">Privacy Policy</a></li>
+          <li><a href="/terms-of-service/">Terms of Service</a></li>
+          <li><a href="/responsible-lending/">Responsible Lending</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="responsible-lending">
+      <strong>Responsible Collections:</strong> CoCASH.ca is committed to responsible and ethical collections practices. We encourage customers to contact us if they are experiencing financial difficulty. &nbsp;|&nbsp; <strong>Borrow Responsibly:</strong> Only borrow what you can comfortably afford to repay. If you are experiencing financial hardship, please seek advice from a not-for-profit credit counsellor.
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">Representative APR: 32%. Repayment term: 91–120 days. CoCASH.ca is operated by Alberta Inc. All loan applications are subject to approval. Terms and conditions apply. This is not a payday loan service.</p>
+        <p class="footer-copyright">© 2026 CoCASH.ca — All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(btn) {
+  const menu = document.getElementById('mobileMenu');
+  const isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function(b) {
+    b.classList.toggle('open', !isOpen);
+    b.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.remove('open');
+    document.querySelectorAll('.hamburger').forEach(function(b) {
+      b.classList.remove('open');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    menu.setAttribute('aria-hidden', 'true');
+  }
+});
+</script>
+</body>
+</html>
