@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -43,13 +43,30 @@ header {
   padding: 14px 0;
 }
 .logo {
-  font-size: 1.7rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+footer .logo .logo-img {
+  filter: brightness(0) invert(1);
+  height: 38px;
+}
+.logo-text {
+  font-size: 1.05rem;
   font-weight: 900;
   color: var(--color-primary);
-  letter-spacing: -0.03em;
-  text-decoration: none;
+  letter-spacing: -0.02em;
+  margin-left: 8px;
 }
-.logo span { color: var(--color-primary-dark); }
+.logo-text span { color: var(--color-primary-dark); }
+footer .logo .logo-text { color: #fff; }
+footer .logo .logo-text span { color: var(--color-accent); }
 .btn-nav-orange {
   background: #FFE033;
   color: #7A1010;
@@ -165,7 +182,7 @@ footer a { color: var(--color-accent); }
 
 <header>
   <div class="nav-inner">
-    <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+    <a href="index.html" class="logo"><img src="logo-img/cocash-logo.svg" alt="CoCASH.ca" class="logo-img"><span class="logo-text">Co<span>CASH</span>.ca</span></a>
     <a href="index.html#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
   </div>
 </header>

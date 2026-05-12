@@ -157,14 +157,30 @@ header {
   gap: 1.5rem;
 }
 .logo {
-  font-size: 1.7rem;
-  font-weight: 900;
-  color: var(--color-primary);
-  letter-spacing: -0.03em;
   text-decoration: none;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
 }
-.logo span { color: var(--color-primary-dark); }
+.logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+footer .logo .logo-img {
+  filter: brightness(0) invert(1);
+  height: 38px;
+}
+.logo-text {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin-left: 8px;
+}
+.logo-text span { color: var(--color-primary-dark); }
+footer .logo .logo-text { color: #fff; }
+footer .logo .logo-text span { color: var(--color-accent); }
 nav { display: flex; align-items: center; }
 nav ul {
   list-style: none;
@@ -1897,8 +1913,7 @@ footer {
   gap: 2.5rem;
   margin-bottom: var(--space-l);
 }
-.footer-brand .logo { color: #fff; font-size: 1.5rem; margin-bottom: 12px; display: inline-block; }
-.footer-brand .logo span { color: var(--color-accent); }
+.footer-brand .logo { margin-bottom: 12px; display: inline-block; }
 .footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
 .footer-contact { margin-top: 16px; font-size: 0.84rem; }
 .footer-contact p { margin-bottom: 4px; }
@@ -2178,7 +2193,7 @@ footer {
 <header>
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+      <a href="/" class="logo"><img src="logo-img/cocash-logo.svg" alt="CoCASH.ca" class="logo-img"><span class="logo-text">Co<span>CASH</span>.ca</span></a>
       <nav role="navigation" aria-label="Main navigation">
         <ul>
           <li><a href="blog.html">Blog</a></li>
@@ -2205,7 +2220,7 @@ footer {
   <div class="mobile-header-bar">
     <div class="container">
       <div class="mobile-header-top">
-        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <a href="/" class="logo"><img src="logo-img/cocash-logo.svg" alt="CoCASH.ca" class="logo-img"><span class="logo-text">Co<span>CASH</span>.ca</span></a>
         <div style="display:flex;align-items:center;gap:8px;">
           <a href="#loan-form" class="btn-mobile-cta">Claim Your Cash!</a>
           <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
@@ -2726,7 +2741,7 @@ footer {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo">Co<span>CASH</span>.ca</a>
+        <a href="/" class="logo"><img src="logo-img/cocash-logo.svg" alt="CoCASH.ca" class="logo-img"><span class="logo-text">Co<span>CASH</span>.ca</span></a>
         <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to finding a Cosigner. If your monthly debt utilization is low (below 45%) you don&apos;t need a co-signer. If they are above 45% you will. Cosigner services are available in Alberta, BC, Ontario, PEI, NB &amp; NFLD.</p>
         <div class="footer-contact">
           <p>📍 Alberta, Canada</p>
@@ -2739,7 +2754,6 @@ footer {
         <ul>
           <li><a href="coming-soon.html">Loan Cashback</a></li>
           <li><a href="coming-soon.html">Early Repayment</a></li>
-          <li><a href="https://goloans.ca/budgetplan">Budget Plan</a></li>
           <li><a href="/renew/">Renew Your Loan</a></li>
         </ul>
       </div>
