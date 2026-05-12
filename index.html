@@ -798,37 +798,40 @@ nav ul li a:hover {
   100% { opacity: 1;   transform: scale(1)    translateY(0); }
 }
 
-/* CLAIM YOUR CASH — green CTA button */
+/* CLAIM YOUR CASH — yellow CTA button */
 .lg-cta-btn {
   display: block;
   width: 100%;
   margin-top: 20px;
   padding: 18px 24px;
   border-radius: 20px;
-  border: none;
+  border: 1.5px solid rgba(180,30,30,0.28);
   cursor: pointer;
   font-family: var(--font-base);
   font-weight: 900;
   font-size: 1.05rem;
   letter-spacing: 0.1em;
-  color: #fff;
+  color: #7A1010;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(140deg, #2D9A5C 0%, #439C6F 50%, #2D9A5C 100%);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.28);
+  background: #FFE033;
+  box-shadow: 0 4px 16px rgba(255,215,0,0.30), 0 1px 4px rgba(0,0,0,0.10);
   animation: none;
-  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s, background 0.2s;
   text-align: center;
 }
 @keyframes cta-breathe {
-  0%, 100% { box-shadow: 0 5px 28px rgba(67,156,111,0.50), 0 1px 6px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.28); }
-  50%       { box-shadow: 0 9px 48px rgba(67,156,111,0.78), 0 2px 10px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.35); }
+  0%, 100% { box-shadow: 0 5px 28px rgba(255,215,0,0.45), 0 1px 6px rgba(0,0,0,0.08); }
+  50%       { box-shadow: 0 9px 48px rgba(255,215,0,0.70), 0 2px 10px rgba(0,0,0,0.10); }
 }
 .lg-cta-btn:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
   transform: translateY(-2px) scale(1.015);
   animation-play-state: paused;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.32);
+  box-shadow: 0 8px 24px rgba(255,215,0,0.45), 0 2px 6px rgba(0,0,0,0.12);
 }
 .lg-cta-btn:active { transform: scale(0.97); animation-play-state: paused; }
 /* Mouse-tracking radial gloss */
@@ -836,7 +839,7 @@ nav ul li a:hover {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at var(--cmx,50%) var(--cmy,50%), rgba(255,255,255,0.3) 0%, transparent 65%);
+  background: radial-gradient(circle at var(--cmx,50%) var(--cmy,50%), rgba(255,255,255,0.22) 0%, transparent 65%);
   opacity: 0;
   transition: opacity 0.25s;
   pointer-events: none;
