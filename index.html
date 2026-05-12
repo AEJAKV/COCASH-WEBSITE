@@ -1090,14 +1090,15 @@ section { padding: var(--space-xl) 0; }
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: #E8E8E8;
+  background: transparent;
   border-radius: 6px;
-  font-size: 0.65rem;
-  font-weight: 900;
-  color: #555;
-  letter-spacing: 0.03em;
   flex-shrink: 0;
-  text-transform: uppercase;
+  overflow: hidden;
+}
+.bank-chip-abbr img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 .bank-chip-name {
   font-size: 0.82rem;
@@ -2278,45 +2279,45 @@ footer {
   <div class="marquee-track" aria-hidden="true">
     <div class="marquee-inner">
       <!-- Set 1 -->
-      <div class="bank-chip"><span class="bank-chip-abbr">ATB</span><span class="bank-chip-name">ATB Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">TD</span><span class="bank-chip-name">TD Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">RBC</span><span class="bank-chip-name">RBC Royal Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BNS</span><span class="bank-chip-name">Scotiabank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BMO</span><span class="bank-chip-name">BMO</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CIBC</span><span class="bank-chip-name">CIBC</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">DJ</span><span class="bank-chip-name">Desjardins</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">NBC</span><span class="bank-chip-name">National Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">MER</span><span class="bank-chip-name">Meridian</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BLC</span><span class="bank-chip-name">Banque Laurentienne</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">TNG</span><span class="bank-chip-name">Tangerine</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">SMP</span><span class="bank-chip-name">Simplii Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">PCF</span><span class="bank-chip-name">PC Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CWB</span><span class="bank-chip-name">Canadian Western</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">HSBC</span><span class="bank-chip-name">HSBC</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">EQ</span><span class="bank-chip-name">EQ Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">VAN</span><span class="bank-chip-name">Vancity</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">MNL</span><span class="bank-chip-name">Manulife Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CCU</span><span class="bank-chip-name">Coast Capital</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/ATB-logo.svg" alt="ATB Financial"></span><span class="bank-chip-name">ATB Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/TD-bank-logo.svg" alt="TD Bank"></span><span class="bank-chip-name">TD Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/RBC-logo.svg" alt="RBC Royal Bank"></span><span class="bank-chip-name">RBC Royal Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/scotiabank-logo.svg" alt="Scotiabank"></span><span class="bank-chip-name">Scotiabank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/bmo-bank-logo.svg" alt="BMO"></span><span class="bank-chip-name">BMO</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/cibc-bank-logo.svg" alt="CIBC"></span><span class="bank-chip-name">CIBC</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/desjardins-logo.svg" alt="Desjardins"></span><span class="bank-chip-name">Desjardins</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/national-bank-logo.svg" alt="National Bank"></span><span class="bank-chip-name">National Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/meridian-bank-logo.svg" alt="Meridian"></span><span class="bank-chip-name">Meridian</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/banque-laurentiene-bank.svg" alt="Banque Laurentienne"></span><span class="bank-chip-name">Banque Laurentienne</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/tangerine-bank-logo.svg" alt="Tangerine"></span><span class="bank-chip-name">Tangerine</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/simplii-financial-bank-logo.svg" alt="Simplii Financial"></span><span class="bank-chip-name">Simplii Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/pc-financial.svg" alt="PC Financial"></span><span class="bank-chip-name">PC Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/canadian-western-bank.svg" alt="Canadian Western"></span><span class="bank-chip-name">Canadian Western</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/hsbc-bank-logo.svg" alt="HSBC"></span><span class="bank-chip-name">HSBC</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/eq-bank-logo.svg" alt="EQ Bank"></span><span class="bank-chip-name">EQ Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/vancity-bank-logo.svg" alt="Vancity"></span><span class="bank-chip-name">Vancity</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/manulife-bank-logo.svg" alt="Manulife Bank"></span><span class="bank-chip-name">Manulife Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/coast-capital-logo.svg" alt="Coast Capital"></span><span class="bank-chip-name">Coast Capital</span></div>
       <!-- Set 2 (duplicate for seamless loop) -->
-      <div class="bank-chip"><span class="bank-chip-abbr">ATB</span><span class="bank-chip-name">ATB Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">TD</span><span class="bank-chip-name">TD Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">RBC</span><span class="bank-chip-name">RBC Royal Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BNS</span><span class="bank-chip-name">Scotiabank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BMO</span><span class="bank-chip-name">BMO</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CIBC</span><span class="bank-chip-name">CIBC</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">DJ</span><span class="bank-chip-name">Desjardins</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">NBC</span><span class="bank-chip-name">National Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">MER</span><span class="bank-chip-name">Meridian</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">BLC</span><span class="bank-chip-name">Banque Laurentienne</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">TNG</span><span class="bank-chip-name">Tangerine</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">SMP</span><span class="bank-chip-name">Simplii Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">PCF</span><span class="bank-chip-name">PC Financial</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CWB</span><span class="bank-chip-name">Canadian Western</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">HSBC</span><span class="bank-chip-name">HSBC</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">EQ</span><span class="bank-chip-name">EQ Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">VAN</span><span class="bank-chip-name">Vancity</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">MNL</span><span class="bank-chip-name">Manulife Bank</span></div>
-      <div class="bank-chip"><span class="bank-chip-abbr">CCU</span><span class="bank-chip-name">Coast Capital</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/ATB-logo.svg" alt="ATB Financial"></span><span class="bank-chip-name">ATB Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/TD-bank-logo.svg" alt="TD Bank"></span><span class="bank-chip-name">TD Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/RBC-logo.svg" alt="RBC Royal Bank"></span><span class="bank-chip-name">RBC Royal Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/scotiabank-logo.svg" alt="Scotiabank"></span><span class="bank-chip-name">Scotiabank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/bmo-bank-logo.svg" alt="BMO"></span><span class="bank-chip-name">BMO</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/cibc-bank-logo.svg" alt="CIBC"></span><span class="bank-chip-name">CIBC</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/desjardins-logo.svg" alt="Desjardins"></span><span class="bank-chip-name">Desjardins</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/national-bank-logo.svg" alt="National Bank"></span><span class="bank-chip-name">National Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/meridian-bank-logo.svg" alt="Meridian"></span><span class="bank-chip-name">Meridian</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/banque-laurentiene-bank.svg" alt="Banque Laurentienne"></span><span class="bank-chip-name">Banque Laurentienne</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/tangerine-bank-logo.svg" alt="Tangerine"></span><span class="bank-chip-name">Tangerine</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/simplii-financial-bank-logo.svg" alt="Simplii Financial"></span><span class="bank-chip-name">Simplii Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/pc-financial.svg" alt="PC Financial"></span><span class="bank-chip-name">PC Financial</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/canadian-western-bank.svg" alt="Canadian Western"></span><span class="bank-chip-name">Canadian Western</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/hsbc-bank-logo.svg" alt="HSBC"></span><span class="bank-chip-name">HSBC</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/eq-bank-logo.svg" alt="EQ Bank"></span><span class="bank-chip-name">EQ Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/vancity-bank-logo.svg" alt="Vancity"></span><span class="bank-chip-name">Vancity</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/manulife-bank-logo.svg" alt="Manulife Bank"></span><span class="bank-chip-name">Manulife Bank</span></div>
+      <div class="bank-chip"><span class="bank-chip-abbr"><img src="img/hero%20img/icons/bank-logos/coast-capital-logo.svg" alt="Coast Capital"></span><span class="bank-chip-name">Coast Capital</span></div>
     </div>
   </div>
   <p class="banks-footnote">* 32% APR, Repay in 91–120 days + more time if needed. Non-qualifiers may need a surety to comply, amounts listed on contract. And other small banks (e.g. Credit Union Bank).</p>
