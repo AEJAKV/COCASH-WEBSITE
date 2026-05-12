@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon | CoCASH.ca</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --color-primary: #439C6F;
+  --color-primary-dark: #2A5E41;
+  --color-accent: #66BFA6;
+  --color-text: #333;
+  --color-text-light: #666;
+  --font-base: 'Lato', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-base);
+  background: #F7FAF8;
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-dark); }
+
+/* HEADER */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+.logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.logo span { color: var(--color-primary-dark); }
+.btn-nav-orange {
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 20px;
+  padding: 9px 20px;
+  font-weight: 900;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-nav-orange:hover { background: #FFD700; color: #6B0000; transform: translateY(-1px); }
+
+/* MAIN */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+.cs-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(67,156,111,0.12);
+  border: 1px solid rgba(67,156,111,0.15);
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  padding: 60px 48px 52px;
+}
+.cs-icon {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #E8F6EF, #D0EEE0);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+}
+.cs-badge {
+  display: inline-block;
+  background: rgba(67,156,111,0.1);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 18px;
+}
+.cs-card h1 {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.cs-card p {
+  font-size: 1rem;
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+.cs-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 2px;
+  margin: 0 auto 32px;
+}
+.btn-back {
+  display: inline-block;
+  background: #FFE033;
+  color: #7A1010;
+  border: 1.5px solid rgba(180,30,30,0.28);
+  border-radius: 50px;
+  padding: 13px 32px;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-back:hover { background: #FFD700; color: #6B0000; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,215,0,0.4); }
+
+/* FOOTER */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 0.78rem;
+}
+footer a { color: var(--color-accent); }
+
+@media (max-width: 600px) {
+  .cs-card { padding: 40px 24px 36px; }
+  .cs-card h1 { font-size: 1.7rem; }
+  .nav-inner { padding: 12px 0; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Co<span>CASH</span>.ca</a>
+    <a href="index.html#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
+  </div>
+</header>
+
+<main>
+  <div class="cs-card">
+    <div class="cs-icon" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#439C6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+    </div>
+    <span class="cs-badge">Coming Soon</span>
+    <h1>We're Working On It</h1>
+    <div class="cs-divider"></div>
+    <p>This page is under construction. Check back soon — we're putting the finishing touches on something great for you.</p>
+    <a href="index.html" class="btn-back">← Back to Home</a>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 CoCASH.ca — All rights reserved. &nbsp;|&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms-of-service.html">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>
