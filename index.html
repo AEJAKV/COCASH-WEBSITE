@@ -2103,7 +2103,9 @@ footer {
   .nav-inner { display: none; }
   .mobile-header-bar { display: block; }
   .logo-text { display: none; }
-  .logo-img { height: 26px; }
+  .logo-img { height: auto; max-height: 26px; max-width: 38vw; width: auto; }
+  .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
+  .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
 
   /* ── Hero mobile overhaul ── */
   .hero {
