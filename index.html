@@ -642,57 +642,11 @@ nav ul li a:hover {
 /* Hero form card */
 /* ===================== LIQUID GLASS LOAN CARD ===================== */
 #loan-form-section {
-  position: relative;
   padding: 52px 0 64px;
-  overflow: hidden;
-  isolation: isolate;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(102,191,166,0.10), transparent 52%),
-    var(--color-bg-section);
-}
-#loan-form-section::before,
-#loan-form-section::after {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  background-image: url("img/hero img/section-two-creative.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  filter: saturate(0.9) contrast(1.02);
-}
-#loan-form-section::before {
-  width: min(42vw, 560px);
-  height: min(42vw, 560px);
-  left: -7vw;
-  top: 18px;
-  opacity: 0.12;
-  transform: rotate(-7deg);
-  animation: sectionCreativeFloatLeft 18s ease-in-out infinite;
-}
-#loan-form-section::after {
-  width: min(38vw, 500px);
-  height: min(38vw, 500px);
-  right: -6vw;
-  bottom: -18px;
-  opacity: 0.1;
-  transform: scaleX(-1) rotate(-2deg);
-  animation: sectionCreativeFloatRight 20s ease-in-out infinite;
+  background: var(--color-bg-section);
 }
 .lg-wrap {
-  position: relative;
-  z-index: 1;
   padding: 0 var(--space-m);
-}
-
-@keyframes sectionCreativeFloatLeft {
-  0%, 100% { transform: translate3d(0, 0, 0) rotate(-7deg); }
-  50% { transform: translate3d(0, -10px, 0) rotate(-4deg); }
-}
-@keyframes sectionCreativeFloatRight {
-  0%, 100% { transform: translate3d(0, 0, 0) scaleX(-1) rotate(-2deg); }
-  50% { transform: translate3d(0, 12px, 0) scaleX(-1) rotate(2deg); }
 }
 
 /* Spinning gradient border outer ring */
@@ -2127,20 +2081,6 @@ footer {
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1023px) {
-  #loan-form-section::before {
-    width: min(48vw, 420px);
-    height: min(48vw, 420px);
-    left: -12vw;
-    top: 28px;
-    opacity: 0.1;
-  }
-  #loan-form-section::after {
-    width: min(44vw, 360px);
-    height: min(44vw, 360px);
-    right: -14vw;
-    bottom: 8px;
-    opacity: 0.08;
-  }
   .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; min-height: auto; }
   .hero-image-col { max-width: 400px; height: auto; margin: 0 auto; animation: none; }
   .hero-content { text-align: center; }
@@ -2162,22 +2102,6 @@ footer {
   .hamburger { display: flex; }
 }
 @media (max-width: 767px) {
-  #loan-form-section::before {
-    width: 74vw;
-    height: 74vw;
-    left: -24vw;
-    top: -6px;
-    opacity: 0.08;
-    transform: rotate(-10deg);
-  }
-  #loan-form-section::after {
-    width: 58vw;
-    height: 58vw;
-    right: -20vw;
-    bottom: 8px;
-    opacity: 0.06;
-    transform: scaleX(-1) rotate(8deg);
-  }
   .nav-inner { display: none; }
   .mobile-header-bar { display: block; }
   .logo-text { display: none; }
@@ -2263,7 +2187,6 @@ footer {
   .top-bar .container { flex-direction: column; gap: 4px; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #loan-form-section::before, #loan-form-section::after,
   .hero-content > *, .hero-image-col, .hero-image-col img,
   .hero-service-badge::before, .hero-service-badge::after,
   .btn-primary-lg::after, .btn-throb { animation: none !important; transition: none !important; }
