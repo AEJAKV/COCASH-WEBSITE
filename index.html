@@ -642,10 +642,58 @@ nav ul li a:hover {
 /* Hero form card */
 /* ===================== LIQUID GLASS LOAN CARD ===================== */
 #loan-form-section {
+  position: relative;
   padding: 52px 0 64px;
-  background: var(--color-bg-section);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(102,191,166,0.10), transparent 52%),
+    var(--color-bg-section);
 }
-.lg-wrap { padding: 0 var(--space-m); }
+#loan-form-section::before,
+#loan-form-section::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("img/hero img/section-two-creative.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: saturate(0.9) contrast(1.02);
+}
+#loan-form-section::before {
+  width: min(42vw, 560px);
+  height: min(42vw, 560px);
+  left: -7vw;
+  top: 18px;
+  opacity: 0.12;
+  transform: rotate(-7deg);
+  animation: sectionCreativeFloatLeft 18s ease-in-out infinite;
+}
+#loan-form-section::after {
+  width: min(38vw, 500px);
+  height: min(38vw, 500px);
+  right: -6vw;
+  bottom: -18px;
+  opacity: 0.1;
+  transform: scaleX(-1) rotate(-2deg);
+  animation: sectionCreativeFloatRight 20s ease-in-out infinite;
+}
+.lg-wrap {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--space-m);
+}
+
+@keyframes sectionCreativeFloatLeft {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-7deg); }
+  50% { transform: translate3d(0, -10px, 0) rotate(-4deg); }
+}
+@keyframes sectionCreativeFloatRight {
+  0%, 100% { transform: translate3d(0, 0, 0) scaleX(-1) rotate(-2deg); }
+  50% { transform: translate3d(0, 12px, 0) scaleX(-1) rotate(2deg); }
+}
 
 /* Spinning gradient border outer ring */
 .lg-outer {
@@ -2079,6 +2127,20 @@ footer {
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1023px) {
+  #loan-form-section::before {
+    width: min(48vw, 420px);
+    height: min(48vw, 420px);
+    left: -12vw;
+    top: 28px;
+    opacity: 0.1;
+  }
+  #loan-form-section::after {
+    width: min(44vw, 360px);
+    height: min(44vw, 360px);
+    right: -14vw;
+    bottom: 8px;
+    opacity: 0.08;
+  }
   .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; min-height: auto; }
   .hero-image-col { max-width: 400px; height: auto; margin: 0 auto; animation: none; }
   .hero-content { text-align: center; }
@@ -2100,6 +2162,22 @@ footer {
   .hamburger { display: flex; }
 }
 @media (max-width: 767px) {
+  #loan-form-section::before {
+    width: 74vw;
+    height: 74vw;
+    left: -24vw;
+    top: -6px;
+    opacity: 0.08;
+    transform: rotate(-10deg);
+  }
+  #loan-form-section::after {
+    width: 58vw;
+    height: 58vw;
+    right: -20vw;
+    bottom: 8px;
+    opacity: 0.06;
+    transform: scaleX(-1) rotate(8deg);
+  }
   .nav-inner { display: none; }
   .mobile-header-bar { display: block; }
   .logo-text { display: none; }
@@ -2185,6 +2263,7 @@ footer {
   .top-bar .container { flex-direction: column; gap: 4px; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
+  #loan-form-section::before, #loan-form-section::after,
   .hero-content > *, .hero-image-col, .hero-image-col img,
   .hero-service-badge::before, .hero-service-badge::after,
   .btn-primary-lg::after, .btn-throb { animation: none !important; transition: none !important; }
@@ -2534,7 +2613,7 @@ footer {
         </div>
         <div class="lc-highlight-card">
           <div class="lc-highlight-label">Bi-weekly Repayment</div>
-          <div class="lc-highlight-value" id="lcRepayment">$89.50</div>
+          <div class="lc-highlight-value" id="lcRepayment">$107.00</div>
         </div>
       </div>
       <!-- Details grid -->
@@ -2549,7 +2628,7 @@ footer {
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Nominal Rate</div>
-          <div class="lc-detail-value" id="lcNominal">16.06%</div>
+          <div class="lc-detail-value" id="lcNominal">20-22%</div>
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Cost / Debit</div>
@@ -2557,7 +2636,7 @@ footer {
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">No. of Payments</div>
-          <div class="lc-detail-value" id="lcPayments">6+/-</div>
+          <div class="lc-detail-value" id="lcPayments">6</div>
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Repay &amp; Save Early</div>
@@ -2565,11 +2644,11 @@ footer {
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Guarantor Fee</div>
-          <div class="lc-detail-value" id="lcGuarantorFee">$175</div>
+          <div class="lc-detail-value" id="lcGuarantorFee">$245</div>
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Total Repayable</div>
-          <div class="lc-detail-value" id="lcTotal">$525.46</div>
+          <div class="lc-detail-value" id="lcTotal">$626.00</div>
         </div>
         <div class="lc-detail-item">
           <div class="lc-detail-label">Effective Credit Rate</div>
@@ -2582,7 +2661,6 @@ footer {
         <a href="#loan-form" class="lc-cta-btn">Apply Now</a>
         <p class="lc-trust-note">Clear repayment details before you apply.</p>
       </div>
-      <p class="lc-disclaimer">Representative example: 31.99% effective credit rate. Bi-weekly repayments. Rates and terms vary by loan amount. CoCASH.ca is an online surety (guarantor) service offering installment loans. Please borrow responsibly. See full <a href="terms-of-service">Terms of Service</a>.</p>
     </div>
   </div>
 </section>
@@ -2988,9 +3066,9 @@ function toggleFaq(btn) {
 
 // ===================== LOAN COMPARISON MODULE =====================
 var lcData = {
-  '350': { amount:'$350', repayment:'$89.50',  frequency:'Bi-weekly', term:'3 months', nominal:'16.06%', costDebit:'$1', payments:'6+/-', repayEarly:'Yes', guarantorFee:'$175',  total:'$525.46',  ecr:'31.99%' },
-  '500': { amount:'$500', repayment:'$129.05', frequency:'Bi-weekly', term:'3 months', nominal:'16.63%', costDebit:'$1', payments:'6+/-', repayEarly:'Yes', guarantorFee:'$250',  total:'$753.64',  ecr:'31.99%' },
-  '750': { amount:'$750', repayment:'$145.51', frequency:'Bi-weekly', term:'4 months', nominal:'16.06%', costDebit:'$1', payments:'8+/-', repayEarly:'Yes', guarantorFee:'$375',  total:'$1,125.00', ecr:'28.56%' }
+  '350': { amount:'$350', repayment:'$107.00', frequency:'Bi-weekly', term:'3 months', nominal:'20-22%', costDebit:'$1', payments:'6', repayEarly:'Yes', guarantorFee:'$245', total:'$626.00', ecr:'31.99%' },
+  '500': { amount:'$500', repayment:'$152.00', frequency:'Bi-weekly', term:'3 months', nominal:'20-22%', costDebit:'$1', payments:'6', repayEarly:'Yes', guarantorFee:'$350', total:'$885.00', ecr:'31.99%' },
+  '750': { amount:'$750', repayment:'$161.00', frequency:'Bi-weekly', term:'4 months', nominal:'20-22%', costDebit:'$1', payments:'8', repayEarly:'Yes', guarantorFee:'$450', total:'$1,239.00', ecr:'31.99%' }
 };
 var lcFieldMap = {
   lcAmount:'amount', lcRepayment:'repayment', lcFrequency:'frequency', lcTerm:'term',
