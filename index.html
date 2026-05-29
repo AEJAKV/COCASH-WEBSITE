@@ -511,6 +511,63 @@ nav ul li a:hover {
   line-height: 1.6;
 }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.hero-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 270px;
+  padding: 18px 34px;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  border-radius: 30px;
+  box-shadow: 0 14px 32px rgba(255,215,0,0.28), 0 2px 10px rgba(0,0,0,0.12);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, color 0.24s ease, border-color 0.24s ease;
+}
+.hero-cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--hero-cta-x, 50%) var(--hero-cta-y, 50%), rgba(255,255,255,0.28), transparent 38%);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+  z-index: -1;
+}
+.hero-cta-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -38%;
+  width: 34%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+  transform: skewX(-22deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.hero-cta-btn:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 22px 42px rgba(255,215,0,0.34), 0 4px 12px rgba(0,0,0,0.14);
+}
+.hero-cta-btn:hover::before {
+  opacity: 1;
+}
+.hero-cta-btn:hover::after {
+  left: 118%;
+}
+.hero-cta-btn:active {
+  transform: translateY(-1px) scale(0.992);
+}
+.hero-cta-btn:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.78);
+  outline-offset: 4px;
+}
 /* ── Hero trust bar ── */
 .hero-trust-bar {
   display: flex;
@@ -1896,11 +1953,35 @@ section { padding: var(--space-xl) 0; }
   opacity: 0;
   transform: translateY(16px);
 }
+.ap-province-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
 .ap-province-item:hover {
   transform: translateY(-3px);
   background: rgba(255,255,255,0.16);
   box-shadow: 0 16px 30px rgba(14,46,31,0.14);
   border-color: rgba(255,224,51,0.24);
+}
+.ap-province-item:focus-within {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.18);
+  box-shadow: 0 16px 30px rgba(14,46,31,0.16);
+  border-color: rgba(255,224,51,0.34);
+}
+.ap-province-button:focus-visible {
+  outline: 2px solid rgba(255,224,51,0.9);
+  outline-offset: 6px;
+  border-radius: 12px;
 }
 .ap-pin {
   flex: 0 0 auto;
@@ -1908,15 +1989,25 @@ section { padding: var(--space-xl) 0; }
   height: 40px;
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
   border-radius: 14px;
   background: linear-gradient(135deg, rgba(255,224,51,0.2), rgba(255,201,40,0.08));
   color: #FFE033;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
 }
-.ap-pin svg {
-  width: 18px;
-  height: 18px;
+.ap-pin::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(16,54,34,0.12));
+  pointer-events: none;
+}
+.ap-pin-image {
+  width: 100%;
+  height: 100%;
   display: block;
+  object-fit: cover;
 }
 .ap-province-text {
   display: flex;
@@ -1935,6 +2026,154 @@ section { padding: var(--space-xl) 0; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(231,248,237,0.74);
+}
+.province-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8,19,13,0.62);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+.province-modal-overlay.visible {
+  display: flex;
+  opacity: 1;
+}
+.province-modal-overlay.fading-out {
+  opacity: 0;
+  pointer-events: none;
+}
+.province-modal {
+  position: relative;
+  width: min(900px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.95fr);
+  gap: 20px;
+  padding: 20px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(182,231,201,0.1));
+  border: 1px solid rgba(255,255,255,0.28);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.34), 0 10px 30px rgba(67,156,111,0.18);
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.32s cubic-bezier(.34,1.56,.64,1);
+  overflow: hidden;
+}
+.province-modal-overlay.visible .province-modal {
+  transform: translateY(0) scale(1);
+}
+.province-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 50%;
+  background: rgba(12,42,28,0.48);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 2;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.province-modal-close:hover {
+  transform: rotate(90deg);
+  background: rgba(255,255,255,0.18);
+}
+.province-modal-close:focus-visible {
+  outline: 2px solid rgba(255,224,51,0.9);
+  outline-offset: 3px;
+}
+.province-modal-figure {
+  position: relative;
+  margin: 0;
+  min-height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+}
+.province-modal-figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.province-modal-figure::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 42%;
+  background: linear-gradient(180deg, rgba(7,18,11,0) 0%, rgba(7,18,11,0.72) 100%);
+  pointer-events: none;
+}
+.province-modal-caption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1;
+  margin: 0;
+  color: rgba(244,255,247,0.88);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.province-modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 12px 16px 4px;
+  color: #F7FFF8;
+}
+.province-modal-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.16);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244,255,247,0.78);
+}
+.province-modal-label::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFE033;
+  box-shadow: 0 0 0 6px rgba(255,224,51,0.12);
+}
+.province-modal-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  line-height: 1.02;
+  color: #fff;
+}
+.province-modal-meta {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(234,248,239,0.82);
+}
+.province-modal-copy {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(225,242,231,0.8);
 }
 .ap-section.ap-visible .ap-shell {
   opacity: 1;
@@ -2053,7 +2292,67 @@ section { padding: var(--space-xl) 0; }
 }
 .cta-banner h2 { font-size: 2.2rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -0.02em; }
 .cta-banner p { font-size: 1.05rem; opacity: 0.85; margin-bottom: 28px; }
-.cta-banner .btn-white { padding: 1rem 2.8rem; font-size: 1rem; }
+.cta-banner .cta-banner-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 312px;
+  padding: 15px 32px;
+  background: #FFE033;
+  color: #7A1010;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(180,30,30,0.30);
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(59,24,0,0.14), inset 0 1px 0 rgba(255,255,255,0.28);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.24s ease, box-shadow 0.24s ease, background 0.24s ease, color 0.24s ease, border-color 0.24s ease;
+}
+.cta-banner .cta-banner-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--cta-x, 50%) var(--cta-y, 50%), rgba(255,255,255,0.28), transparent 38%);
+  opacity: 0;
+  transition: opacity 0.24s ease;
+  z-index: -1;
+}
+.cta-banner .cta-banner-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -38%;
+  width: 34%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+  transform: skewX(-22deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.cta-banner .cta-banner-btn:hover {
+  background: #FFD700;
+  color: #6B0000;
+  border-color: rgba(180,30,30,0.50);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 18px 38px rgba(59,24,0,0.18), inset 0 1px 0 rgba(255,255,255,0.34);
+}
+.cta-banner .cta-banner-btn:hover::before {
+  opacity: 1;
+}
+.cta-banner .cta-banner-btn:hover::after {
+  left: 118%;
+}
+.cta-banner .cta-banner-btn:active {
+  transform: translateY(-1px) scale(0.992);
+}
+.cta-banner .cta-banner-btn:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.78);
+  outline-offset: 4px;
+}
 
 /* ===================== SECURITY BADGES ===================== */
 /* ===================== SECURITY SECTION ===================== */
@@ -2401,12 +2700,19 @@ footer {
   .ap-pin { width: 36px; height: 36px; border-radius: 12px; }
   .ap-province-name { font-size: 0.92rem; }
   .ap-province-code { font-size: 0.72rem; }
+  .province-modal { grid-template-columns: 1fr; padding: 14px; gap: 14px; border-radius: 24px; }
+  .province-modal-figure { min-height: 220px; border-radius: 18px; }
+  .province-modal-body { padding: 4px 4px 6px; }
+  .province-modal-title { font-size: 1.75rem; }
+  .province-modal-copy { font-size: 0.92rem; line-height: 1.62; }
+  .hero-cta-btn { min-width: min(100%, 270px); width: 100%; }
   .nav-inner { display: none; }
   .mobile-header-bar { display: block; }
   .logo-text { display: none; }
   .logo-img { height: auto; max-height: 26px; max-width: 38vw; width: auto; }
   .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
   .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
+  .cta-banner .cta-banner-btn { min-width: min(100%, 290px); padding: 14px 24px; }
 
   /* ── Hero mobile overhaul ── */
   .hero {
@@ -2594,7 +2900,7 @@ footer {
         <h1>No Credit-Check<br><em>Canada-Wide</em> Loans</h1>
         <p class="hero-sub">Available as quickly as 10 minutes after approval. <a href="#loan-form" style="color:#FF8C00;font-weight:700;text-decoration:none;">Apply Now.</a></p>
         <div class="hero-actions">
-          <a href="#loan-form" class="btn btn-orange btn-primary-lg btn-throb">Apply Now</a>
+          <a href="#loan-form" class="btn-nav-orange hero-cta-btn" id="heroCtaBtn">Apply Now</a>
         </div>
         <p class="hero-banks-label hero-banks-label--mobile">Your funds received in record time to these banks</p>
         <p class="hero-banks-label hero-banks-label--desktop">Trusted by Leading Institutions</p>
@@ -2677,6 +2983,23 @@ footer {
         <span class="timer-num" id="timerSec">00</span>
         <span class="timer-sub">sec</span>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROVINCE IMAGE MODAL -->
+<div class="province-modal-overlay" id="provinceOverlay" role="dialog" aria-modal="true" aria-labelledby="provinceModalTitle" aria-describedby="provinceModalCopy" onclick="handleProvinceOverlayClick(event)">
+  <div class="province-modal">
+    <button class="province-modal-close" type="button" onclick="closeProvinceModal()" aria-label="Close province image">&times;</button>
+    <figure class="province-modal-figure">
+      <img id="provinceModalImage" src="" alt="">
+      <figcaption class="province-modal-caption" id="provinceModalCaption"></figcaption>
+    </figure>
+    <div class="province-modal-body">
+      <div class="province-modal-label">Available Province</div>
+      <h3 class="province-modal-title" id="provinceModalTitle"></h3>
+      <p class="province-modal-meta" id="provinceModalMeta"></p>
+      <p class="province-modal-copy" id="provinceModalCopy">This province is currently included in the CoCASH.ca coverage area. Tap claim your cash to continue your application.</p>
     </div>
   </div>
 </div>
@@ -3018,7 +3341,7 @@ footer {
   <div class="container">
     <h2>Ready to Claim Your Cash?</h2>
     <p>No credit check. No paperwork. Fast e-Transfer. Apply in 2 minutes.</p>
-    <a href="#loan-form" class="btn btn-white">CLAIM YOUR CASH!</a>
+    <a href="#loan-form" class="btn-nav-orange cta-banner-btn" id="ctaBannerBtn">CLAIM YOUR CASH!</a>
   </div>
 </section>
 
@@ -3290,6 +3613,36 @@ function lgApply() {
   });
 })();
 
+// CTA banner button pointer glow
+(function() {
+  var btn = document.getElementById('ctaBannerBtn');
+  if (!btn) return;
+  btn.addEventListener('mousemove', function(e) {
+    var rect = btn.getBoundingClientRect();
+    btn.style.setProperty('--cta-x', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+    btn.style.setProperty('--cta-y', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
+  });
+  btn.addEventListener('mouseleave', function() {
+    btn.style.setProperty('--cta-x', '50%');
+    btn.style.setProperty('--cta-y', '50%');
+  });
+})();
+
+// Hero CTA button pointer glow
+(function() {
+  var btn = document.getElementById('heroCtaBtn');
+  if (!btn) return;
+  btn.addEventListener('mousemove', function(e) {
+    var rect = btn.getBoundingClientRect();
+    btn.style.setProperty('--hero-cta-x', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+    btn.style.setProperty('--hero-cta-y', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
+  });
+  btn.addEventListener('mouseleave', function() {
+    btn.style.setProperty('--hero-cta-x', '50%');
+    btn.style.setProperty('--hero-cta-y', '50%');
+  });
+})();
+
 // FAQ accordion
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
@@ -3392,19 +3745,96 @@ function lcSelect(btn) {
 (function() {
   var list = document.getElementById('apProvinceList');
   var section = document.getElementById('available-provinces');
+  var overlay = document.getElementById('provinceOverlay');
+  var modalImage = document.getElementById('provinceModalImage');
+  var modalTitle = document.getElementById('provinceModalTitle');
+  var modalMeta = document.getElementById('provinceModalMeta');
+  var modalCaption = document.getElementById('provinceModalCaption');
   if (!list || !section) return;
   var provinces = [
-    { name: 'Alberta', code: 'AB' },
-    { name: 'British Columbia', code: 'BC' },
-    { name: 'New Brunswick', code: 'NB' },
-    { name: 'Ontario', code: 'ON' },
-    { name: 'Newfoundland and Labrador', code: 'NL' },
-    { name: 'Prince Edward Island', code: 'PEI' }
+    {
+      name: 'Alberta',
+      code: 'AB',
+      image: 'img/hero img/province images/calgary-alberta.png',
+      alt: 'Calgary skyline representing Alberta',
+      location: 'Calgary, Alberta'
+    },
+    {
+      name: 'British Columbia',
+      code: 'BC',
+      image: 'img/hero img/province images/vancouver-british-columbia.png',
+      alt: 'Vancouver skyline representing British Columbia',
+      location: 'Vancouver, British Columbia'
+    },
+    {
+      name: 'New Brunswick',
+      code: 'NB',
+      image: 'img/hero img/province images/moncton-new-brunswick.png',
+      alt: 'Moncton city view representing New Brunswick',
+      location: 'Moncton, New Brunswick'
+    },
+    {
+      name: 'Ontario',
+      code: 'ON',
+      image: 'img/hero img/province images/toronto-ontario.png',
+      alt: 'Toronto skyline representing Ontario',
+      location: 'Toronto, Ontario'
+    },
+    {
+      name: 'Newfoundland and Labrador',
+      code: 'NL',
+      image: 'img/hero img/province images/st-johns-newfoundland-and-labrador.png',
+      alt: 'St. John\'s city view representing Newfoundland and Labrador',
+      location: 'St. John\'s, Newfoundland and Labrador'
+    },
+    {
+      name: 'Prince Edward Island',
+      code: 'PEI',
+      image: 'img/hero img/province images/charlottetown-prince-edward-island.png',
+      alt: 'Charlottetown city view representing Prince Edward Island',
+      location: 'Charlottetown, Prince Edward Island'
+    }
   ];
-  var pinSvg = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c-3.6-4.3-5.4-7.3-5.4-9.5A5.4 5.4 0 0 1 12 6.1a5.4 5.4 0 0 1 5.4 5.4c0 2.2-1.8 5.2-5.4 9.5Z" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="11.5" r="1.9" fill="currentColor"/></svg>';
-  list.innerHTML = provinces.map(function(province) {
-    return '<li class="ap-province-item"><span class="ap-pin">' + pinSvg + '</span><span class="ap-province-text"><span class="ap-province-name">' + province.name + '</span><span class="ap-province-code">' + province.code + '</span></span></li>';
+  function openProvinceModal(index) {
+    var province = provinces[index];
+    if (!province || !overlay || !modalImage || !modalTitle || !modalMeta || !modalCaption) return;
+    modalImage.src = province.image;
+    modalImage.alt = province.alt;
+    modalTitle.textContent = province.name;
+    modalMeta.textContent = province.code + ' · ' + province.location;
+    modalCaption.textContent = province.location;
+    overlay.style.display = 'flex';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        overlay.classList.add('visible');
+      });
+    });
+    document.body.style.overflow = 'hidden';
+  }
+  window.closeProvinceModal = function() {
+    if (!overlay) return;
+    overlay.classList.add('fading-out');
+    setTimeout(function() {
+      overlay.classList.remove('visible', 'fading-out');
+      overlay.style.display = 'none';
+      modalImage.src = '';
+      var glassOverlay = document.getElementById('glassOverlay');
+      if (!(glassOverlay && glassOverlay.classList.contains('visible'))) {
+        document.body.style.overflow = '';
+      }
+    }, 280);
+  };
+  window.handleProvinceOverlayClick = function(e) {
+    if (e.target === overlay) window.closeProvinceModal();
+  };
+  list.innerHTML = provinces.map(function(province, index) {
+    return '<li class="ap-province-item"><button type="button" class="ap-province-button" data-province-index="' + index + '" aria-label="View ' + province.name + ' image"><span class="ap-pin"><img class="ap-pin-image" src="' + province.image + '" alt="" aria-hidden="true"></span><span class="ap-province-text"><span class="ap-province-name">' + province.name + '</span><span class="ap-province-code">' + province.code + '</span></span></button></li>';
   }).join('');
+  list.addEventListener('click', function(e) {
+    var button = e.target.closest('.ap-province-button');
+    if (!button) return;
+    openProvinceModal(parseInt(button.getAttribute('data-province-index'), 10));
+  });
   if (!window.IntersectionObserver) {
     section.classList.add('ap-visible');
     return;
@@ -3421,6 +3851,10 @@ function lcSelect(btn) {
 // Keyboard: close mobile menu on escape is handled in glass modal keydown above
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
+    var provinceOverlay = document.getElementById('provinceOverlay');
+    if (provinceOverlay && provinceOverlay.classList.contains('visible')) {
+      closeProvinceModal();
+    }
     const menu = document.getElementById('mobileMenu');
     menu.classList.remove('open');
     const btn = document.querySelector('.hamburger');
