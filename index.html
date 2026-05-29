@@ -1754,9 +1754,23 @@ section { padding: var(--space-xl) 0; }
 /* ===================== AVAILABLE PROVINCES CTA ===================== */
 .ap-section {
   position: relative;
-  padding: 18px 0 var(--space-xxl);
+  padding: 18px 0 44px;
   background: var(--color-bg-section);
   overflow: hidden;
+}
+.ap-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('img/hero img/province images/province-section-bg.png') center center / cover no-repeat;
+  opacity: 0.11;
+  filter: saturate(0.72) brightness(1.05) contrast(0.94);
+  transform: scale(1.03);
+  pointer-events: none;
+}
+.ap-section > .container {
+  position: relative;
+  z-index: 1;
 }
 .ap-shell {
   position: relative;
@@ -1780,9 +1794,11 @@ section { padding: var(--space-xl) 0; }
   inset: 0;
   border-radius: inherit;
   background:
+    linear-gradient(135deg, rgba(24,78,52,0.62), rgba(56,140,98,0.34)),
     radial-gradient(circle at 18% 22%, rgba(202,255,232,0.24), transparent 28%),
     radial-gradient(circle at 82% 20%, rgba(255,224,51,0.14), transparent 20%),
     linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.03));
+  background-blend-mode: normal, screen, screen, normal;
   z-index: -2;
 }
 .ap-shell::after {
@@ -2674,7 +2690,7 @@ footer {
   .hamburger { display: flex; }
 }
 @media (max-width: 767px) {
-  .ap-section { padding: 8px 0 40px; }
+  .ap-section { padding: 8px 0 28px; }
   .ap-shell { padding: 28px 18px 20px; border-radius: 24px; gap: 18px; }
   .ap-glass { inset: 10px; border-radius: 18px; }
   .ap-content { padding: 2px 0 8px; }
