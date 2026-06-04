@@ -75,13 +75,13 @@ header {
   align-items: center;
 }
 .logo-img {
-  height: 52px;
+  height: 56px;
   width: auto;
   display: block;
   object-fit: contain;
 }
 footer .logo .logo-img {
-  height: 46px;
+  height: 50px;
 }
 .logo-text {
   font-size: 1.05rem;
@@ -115,7 +115,6 @@ nav ul li a {
 nav ul li a:hover,
 nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
 .nav-dropdown-menu {
   display: none;
   position: absolute;
@@ -126,10 +125,19 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   border-radius: var(--radius);
   min-width: 190px;
   box-shadow: var(--shadow-md);
-  z-index: 200;
+  z-index: 1001;
   padding: 4px 0;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+.nav-dropdown > .nav-dropdown-toggle::after {
+  content: ' \25BE';
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+.nav-dropdown.open > .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within > .nav-dropdown-toggle::after { transform: rotate(180deg); }
 .nav-dropdown-menu li a {
   display: block;
   padding: 10px 16px;
@@ -144,12 +152,42 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.95rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #31406f;
+  white-space: nowrap;
+}
+.nav-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #31406f;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+.nav-meta-link:hover { color: #0f58c9; }
+.nav-meta-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
   flex-shrink: 0;
 }
-.nav-contact { font-size: 0.82rem; color: #31406f; white-space: nowrap; }
-.nav-contact a { color: #31406f; font-weight: 600; }
-.nav-contact a:hover { color: var(--color-primary); }
+.nav-meta-sep {
+  color: rgba(49,64,111,0.22);
+  font-weight: 400;
+}
 .nav-login {
   font-size: 0.88rem;
   font-weight: 700;
@@ -164,9 +202,9 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   color: #fff;
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 999px;
-  padding: 12px 22px;
+  padding: 13px 24px;
   font-weight: 900;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -176,6 +214,8 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   box-shadow: 0 10px 22px rgba(255,122,18,0.28);
 }
 .btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-1px); }
+.nav-cta-btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+.nav-cta-btn:hover { box-shadow: 0 14px 28px rgba(255,122,18,0.32); }
 
 /* Hamburger */
 .hamburger {
@@ -642,13 +682,13 @@ footer {
   align-items: center;
 }
 .logo-img {
-  height: 36px;
+  height: 56px;
   width: auto;
   display: block;
 }
 footer .logo .logo-img {
   filter: brightness(0) invert(1);
-  height: 34px;
+  height: 50px;
 }
 .logo-text {
   font-size: 1.05rem;
@@ -709,7 +749,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
 
 @media (max-width: 767px) {
   .logo-text { display: none; }
-    .logo-img { height: auto; max-height: 34px; max-width: 46vw; width: auto; }
+    .logo-img { height: auto; max-height: 44px; max-width: 48vw; width: auto; }
   .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
   .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
   .nav-inner { display: none; }
@@ -739,7 +779,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
           <li><a href="blog">Blog</a></li>
           <li><a href="faq" aria-current="page">FAQs</a></li>
           <li class="nav-dropdown">
-            <a href="#">Cashback/Discount</a>
+            <a href="#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Cashback/Discount</a>
             <ul class="nav-dropdown-menu">
               <li><a href="coming-soon">Early Repayment Program</a></li>
               <li><a href="coming-soon">Loan Cashback</a></li>
@@ -748,9 +788,19 @@ footer .logo .logo-text span { color: var(--color-accent); }
         </ul>
       </nav>
       <div class="nav-right">
-        <span class="nav-contact"><a href="tel:+18777000507">+1 (877) 700-0507</a> &nbsp;|&nbsp; <a href="faq" aria-current="page">Help &amp; FAQ</a></span>
+        <span class="nav-contact">
+          <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+1 (877) 700-0507</span>
+          </a>
+          <span class="nav-meta-sep" aria-hidden="true">|</span>
+          <a href="faq" class="nav-meta-link" aria-current="page">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+            <span>Help &amp; FAQ</span>
+          </a>
+        </span>
         <a href="/login/" class="nav-login">Login</a>
-        <a href="index.html#loan-form" class="btn-nav-orange">Claim Your Cash!</a>
+        <a href="index.html#loan-form" class="btn-nav-orange nav-cta-btn">Claim Your Cash!</a>
       </div>
       <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
         <span></span><span></span><span></span>
@@ -769,7 +819,15 @@ footer .logo .logo-text span { color: var(--color-accent); }
         </div>
       </div>
       <div class="mobile-header-sub">
-        <a href="tel:+18777000507">📞 +1 (877) 700-0507</a>
+        <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+          <span>+1 (877) 700-0507</span>
+        </a>
+        <span class="sep">|</span>
+        <a href="faq" class="nav-meta-link" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+          <span>Help &amp; FAQ</span>
+        </a>
         <span class="sep">|</span>
         <a href="/login/">Login</a>
       </div>
@@ -782,6 +840,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
       <li><a href="coming-soon">Early Repayment Program</a></li>
       <li><a href="coming-soon">Loan Cashback</a></li>
       <li><a href="/login/">Login</a></li>
+      <li><a href="index.html#loan-form">Claim Your Cash!</a></li>
     </ul>
   </div>
 </header>
@@ -1303,6 +1362,41 @@ function applyFilters() {
 
   document.getElementById('faqEmpty').style.display = totalVisible === 0 ? 'block' : 'none';
 }
+
+/* ===================== NAV DROPDOWN TOGGLE ===================== */
+function closeNavDropdowns(except) {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+    if (except && d === except) return;
+    d.classList.remove('open');
+    var t = d.querySelector('.nav-dropdown-toggle');
+    if (t) t.setAttribute('aria-expanded', 'false');
+  });
+}
+(function() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
+    var trigger = dropdown.querySelector('.nav-dropdown-toggle');
+    if (!trigger) return;
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isOpen = dropdown.classList.contains('open');
+      closeNavDropdowns(dropdown);
+      dropdown.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+    trigger.addEventListener('keydown', function(e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowDown') {
+        e.preventDefault(); trigger.click();
+      }
+    });
+    dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+      link.addEventListener('click', function() { closeNavDropdowns(); });
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) closeNavDropdowns();
+  });
+})();
 
 /* ===================== MOBILE MENU ===================== */
 function toggleMenu(btn) {

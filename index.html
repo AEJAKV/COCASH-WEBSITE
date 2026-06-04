@@ -206,21 +206,31 @@ nav ul li a:hover {
 }
 /* Dropdown nav item */
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
+.nav-dropdown > .nav-dropdown-toggle::after {
+  content: ' ▾';
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+.nav-dropdown.open > .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within > .nav-dropdown-toggle::after {
+  transform: rotate(180deg);
+}
 .nav-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 0;
   background: #fff;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   min-width: 190px;
   box-shadow: var(--shadow-md);
-  z-index: 200;
+  z-index: 1001;
   padding: 4px 0;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
 .nav-dropdown-menu li a {
   display: block;
   padding: 10px 16px;
@@ -2946,7 +2956,7 @@ footer {
           <li><a href="blog">Blog</a></li>
           <li><a href="faq">FAQs</a></li>
           <li class="nav-dropdown">
-            <a href="#">Cashback/Discount</a>
+            <a href="#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Cashback/Discount</a>
             <ul class="nav-dropdown-menu">
               <li><a href="coming-soon">Early Repayment Program</a></li>
               <li><a href="coming-soon">Loan Cashback</a></li>
@@ -3608,6 +3618,48 @@ function toggleMenu(btn) {
   menu.setAttribute('aria-hidden', String(isOpen));
 }
 
+function closeNavDropdowns(except) {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function(dropdown) {
+    if (except && dropdown === except) return;
+    dropdown.classList.remove('open');
+    var trigger = dropdown.querySelector('.nav-dropdown-toggle');
+    if (trigger) trigger.setAttribute('aria-expanded', 'false');
+  });
+}
+
+(function() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
+    var trigger = dropdown.querySelector('.nav-dropdown-toggle');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isOpen = dropdown.classList.contains('open');
+      closeNavDropdowns(dropdown);
+      dropdown.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    trigger.addEventListener('keydown', function(e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        trigger.click();
+      }
+    });
+
+    dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        closeNavDropdowns();
+      });
+    });
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) closeNavDropdowns();
+  });
+})();
+
 // ===================== GLASS PROMO MODAL =====================
 var glassCountdownInterval = null;
 var glassSecondsLeft = 60;
@@ -4003,6 +4055,7 @@ function lcSelect(btn) {
 // Keyboard: close mobile menu on escape is handled in glass modal keydown above
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
+    closeNavDropdowns();
     var provinceOverlay = document.getElementById('provinceOverlay');
     if (provinceOverlay && provinceOverlay.classList.contains('visible')) {
       closeProvinceModal();
