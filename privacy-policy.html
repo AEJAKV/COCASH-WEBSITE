@@ -13,14 +13,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --color-primary: #439C6F;
-  --color-primary-hover: #367A56;
-  --color-primary-dark: #2A5E41;
-  --color-accent: #66BFA6;
+  --color-primary: #0F58C9;
+  --color-primary-hover: #0B4AA8;
+  --color-primary-dark: #103B7A;
+  --color-accent: #FF8A1D;
   --color-text: #333333;
   --color-text-light: #666666;
   --color-bg: #FFFFFF;
-  --color-bg-section: #F4FAF7;
+  --color-bg-section: #F4F8FF;
   --color-border: #DDDDDD;
   --font-base: 'Lato', sans-serif;
   --radius: 4px;
@@ -38,7 +38,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-base);
   color: var(--color-text);
-  background: var(--color-bg);
+  background: #F4F8FF;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -76,13 +76,13 @@ header {
   align-items: center;
 }
 .logo-img {
-  height: 36px;
+  height: 52px;
   width: auto;
   display: block;
+  object-fit: contain;
 }
 footer .logo .logo-img {
-  filter: brightness(0) invert(1);
-  height: 34px;
+  height: 46px;
 }
 .logo-text {
   font-size: 1.05rem;
@@ -102,7 +102,7 @@ nav ul {
   gap: 0.2rem;
 }
 nav ul li a {
-  color: var(--color-text);
+  color: #31406f;
   font-weight: 700;
   font-size: 0.88rem;
   padding: 8px 14px;
@@ -113,7 +113,7 @@ nav ul li a {
   white-space: nowrap;
   transition: background 0.2s, color 0.2s;
 }
-nav ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+nav ul li a:hover { background: rgba(15,88,201,0.08); color: var(--color-primary); }
 .nav-dropdown { position: relative; }
 .nav-dropdown > a::after { content: ' \25BE'; font-size: 0.75em; }
 .nav-dropdown-menu {
@@ -135,13 +135,13 @@ nav ul li a:hover { background: var(--color-bg-section); color: var(--color-prim
   padding: 10px 16px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: #31406f;
   text-transform: none;
   letter-spacing: 0;
   border-radius: 0;
   white-space: nowrap;
 }
-.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown-menu li a:hover { background: rgba(15,88,201,0.08); color: var(--color-primary); }
 .nav-right {
   display: flex;
   align-items: center;
@@ -149,31 +149,32 @@ nav ul li a:hover { background: var(--color-bg-section); color: var(--color-prim
   flex-shrink: 0;
   font-size: 0.82rem;
 }
-.nav-right .nav-contact { color: var(--color-text-light); font-weight: 600; white-space: nowrap; }
-.nav-right .nav-contact a { color: var(--color-text-light); font-weight: 700; }
+.nav-right .nav-contact { color: #31406f; font-weight: 600; white-space: nowrap; }
+.nav-right .nav-contact a { color: #31406f; font-weight: 700; }
 .nav-right .nav-contact a:hover { color: var(--color-primary); }
 .nav-right .nav-login {
   font-weight: 700;
   font-size: 0.88rem;
-  color: var(--color-text);
+  color: #20346f;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .nav-right .nav-login:hover { color: var(--color-primary); }
 .btn-nav-orange {
-  background: #FFE033;
-  color: #7A1010;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
   font-family: var(--font-base);
-  font-weight: 700;
+  font-weight: 900;
   font-size: 0.88rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  padding: 9px 20px;
-  border: 1.5px solid rgba(180,30,30,0.30);
-  border-radius: 20px;
+  padding: 12px 22px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
   cursor: pointer;
+  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
 }
-.btn-nav-orange:hover { background: #FFD700; color: #6B0000; border-color: rgba(180,30,30,0.50); }
+.btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; border-color: rgba(255,255,255,0.24); }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -226,30 +227,31 @@ nav ul li a:hover { background: var(--color-bg-section); color: var(--color-prim
   padding-top: 6px;
   padding-bottom: 10px;
 }
-.mobile-header-sub a { color: var(--color-text-light); font-weight: 700; text-decoration: none; }
+.mobile-header-sub a { color: #31406f; font-weight: 700; text-decoration: none; }
 .mobile-header-sub a:hover { color: var(--color-primary); }
 .mobile-header-sub .sep { color: var(--color-border); }
 .btn-mobile-cta {
-  background: #FFE033;
-  color: #7A1010;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
   font-family: var(--font-base);
-  font-weight: 700;
+  font-weight: 900;
   font-size: 0.82rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  padding: 8px 14px;
-  border: 1.5px solid rgba(180,30,30,0.30);
-  border-radius: 20px;
+  padding: 9px 15px;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
   white-space: nowrap;
+  box-shadow: 0 8px 18px rgba(255,122,18,0.24);
 }
-.btn-mobile-cta:hover { background: #FFD700; color: #6B0000; }
+.btn-mobile-cta:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; }
 
 /* ===================== PAGE HERO ===================== */
 .pp-hero {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #3BAA7A 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #2C88FF 100%);
   color: #fff;
   padding: 52px 0 48px;
   position: relative;
@@ -509,7 +511,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
 }
 @media (max-width: 767px) {
   .logo-text { display: none; }
-    .logo-img { height: auto; max-height: 26px; max-width: 38vw; width: auto; }
+    .logo-img { height: auto; max-height: 34px; max-width: 46vw; width: auto; }
   .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
   .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
   .nav-inner { display: none; }
@@ -532,7 +534,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
 <header>
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+      <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
       <nav role="navigation" aria-label="Main navigation">
         <ul>
           <li><a href="blog">Blog</a></li>
@@ -559,7 +561,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
   <div class="mobile-header-bar">
     <div class="container">
       <div class="mobile-header-top">
-        <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
         <a href="/" class="btn-mobile-cta">Apply Now</a>
         <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
           <span></span><span></span><span></span>
@@ -723,7 +725,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
         <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to finding a Cosigner. If your monthly debt utilization is low (below 45%) you don&apos;t need a co-signer. If they are above 45% you will. Cosigner services are available in Alberta, BC, Ontario, PEI, NB &amp; NFLD.</p>
         <div class="footer-contact">
           <p>&#128205; Alberta, Canada</p>

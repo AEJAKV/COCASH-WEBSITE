@@ -12,14 +12,14 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --color-primary: #439C6F;
-  --color-primary-hover: #367A56;
-  --color-primary-dark: #2A5E41;
-  --color-accent: #66BFA6;
+  --color-primary: #0F58C9;
+  --color-primary-hover: #0B4AA8;
+  --color-primary-dark: #103B7A;
+  --color-accent: #FF8A1D;
   --color-text: #333333;
   --color-text-light: #666666;
   --color-bg: #FFFFFF;
-  --color-bg-section: #F4FAF7;
+  --color-bg-section: #F4F8FF;
   --color-border: #DDDDDD;
   --font-base: 'Lato', sans-serif;
   --radius: 4px;
@@ -37,7 +37,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-base);
   color: var(--color-text);
-  background: #F7FAF8;
+  background: #F4F8FF;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -75,13 +75,13 @@ header {
   align-items: center;
 }
 .logo-img {
-  height: 36px;
+  height: 52px;
   width: auto;
   display: block;
+  object-fit: contain;
 }
 footer .logo .logo-img {
-  filter: brightness(0) invert(1);
-  height: 34px;
+  height: 46px;
 }
 .logo-text {
   font-size: 1.05rem;
@@ -101,7 +101,7 @@ nav ul {
   gap: 0.2rem;
 }
 nav ul li a {
-  color: var(--color-text);
+  color: #31406f;
   font-weight: 700;
   font-size: 0.88rem;
   padding: 8px 14px;
@@ -113,7 +113,7 @@ nav ul li a {
   transition: background 0.2s, color 0.2s;
 }
 nav ul li a:hover,
-nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: var(--color-primary); }
+nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
 .nav-dropdown { position: relative; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 0.75em; }
 .nav-dropdown-menu {
@@ -137,44 +137,45 @@ nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: v
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0;
-  color: var(--color-text);
+  color: #31406f;
   border-radius: 0;
 }
-.nav-dropdown-menu li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.nav-dropdown-menu li a:hover { background: rgba(15,88,201,0.08); color: var(--color-primary); }
 .nav-right {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
 }
-.nav-contact { font-size: 0.82rem; color: var(--color-text-light); white-space: nowrap; }
-.nav-contact a { color: var(--color-text-light); font-weight: 600; }
+.nav-contact { font-size: 0.82rem; color: #31406f; white-space: nowrap; }
+.nav-contact a { color: #31406f; font-weight: 600; }
 .nav-contact a:hover { color: var(--color-primary); }
 .nav-login {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #20346f;
   padding: 8px 14px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .nav-login:hover { color: var(--color-primary); }
 .btn-nav-orange {
-  background: #FFE033;
-  color: #7A1010;
-  border: 1.5px solid rgba(180,30,30,0.28);
-  border-radius: 20px;
-  padding: 9px 20px;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 12px 22px;
   font-weight: 900;
   font-size: 0.88rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
   transition: background 0.2s, color 0.2s, transform 0.2s;
   text-decoration: none;
   display: inline-block;
+  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
 }
-.btn-nav-orange:hover { background: #FFD700; color: #6B0000; transform: translateY(-1px); }
+.btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-1px); }
 
 /* Hamburger */
 .hamburger {
@@ -231,20 +232,21 @@ nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: v
   font-size: 0.82rem;
   color: var(--color-text-light);
 }
-.mobile-header-sub a { color: var(--color-text-light); font-weight: 600; }
+.mobile-header-sub a { color: #31406f; font-weight: 600; }
 .mobile-header-sub .sep { color: #ccc; }
 .btn-mobile-cta {
-  background: #FFE033;
-  color: #7A1010;
-  border: 1.5px solid rgba(180,30,30,0.28);
-  border-radius: 20px;
-  padding: 7px 14px;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 8px 15px;
   font-weight: 900;
   font-size: 0.78rem;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
   text-decoration: none;
+  box-shadow: 0 8px 18px rgba(255,122,18,0.24);
 }
 
 /* ===================== BUTTONS ===================== */
@@ -263,11 +265,11 @@ nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: v
   border: none;
 }
 .btn-yellow {
-  background: #FFE033;
-  color: #7A1010;
-  border: 1.5px solid rgba(180,30,30,0.28);
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
 }
-.btn-yellow:hover { background: #FFD700; color: #6B0000; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(255,215,0,0.35); }
+.btn-yellow:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,18,0.28); }
 .btn-outline-green {
   background: transparent;
   color: var(--color-primary);
@@ -277,7 +279,7 @@ nav ul li a[aria-current="page"] { background: var(--color-bg-section); color: v
 
 /* ===================== FAQ HERO ===================== */
 .faq-hero {
-  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #3BAA7A 100%);
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #2C88FF 100%);
   padding: 64px 0 56px;
   text-align: center;
   position: relative;
@@ -707,7 +709,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
 
 @media (max-width: 767px) {
   .logo-text { display: none; }
-    .logo-img { height: auto; max-height: 26px; max-width: 38vw; width: auto; }
+    .logo-img { height: auto; max-height: 34px; max-width: 46vw; width: auto; }
   .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
   .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
   .nav-inner { display: none; }
@@ -731,7 +733,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
 <header>
   <div class="container">
     <div class="nav-inner">
-      <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+      <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
       <nav role="navigation" aria-label="Main navigation">
         <ul>
           <li><a href="blog">Blog</a></li>
@@ -758,7 +760,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
   <div class="mobile-header-bar">
     <div class="container">
       <div class="mobile-header-top">
-        <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
         <div style="display:flex;align-items:center;gap:8px;">
           <a href="index.html#loan-form" class="btn-mobile-cta">Claim Your Cash!</a>
           <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
@@ -891,7 +893,7 @@ footer .logo .logo-text span { color: var(--color-accent); }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="logo"><img src="logo-img/final-logo.png" alt="CoCASH.ca" class="logo-img"></a>
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="CoCASH.ca" class="logo-img"></a>
         <p class="footer-desc">CoCASH.ca is one of the most popular alternatives to finding a Cosigner. If your monthly debt utilization is low (below 45%) you don&apos;t need a co-signer. If they are above 45% you will. Cosigner services are available in Alberta, BC, Ontario, PEI, NB &amp; NFLD.</p>
         <div class="footer-contact">
           <p>📍 Alberta, Canada</p>
@@ -1192,7 +1194,7 @@ function renderAll() {
       html += '<div class="faq-item" id="' + id + '" data-cat="' + escAttr(cat) + '" data-q="' + escAttr(item.q.toLowerCase()) + '" data-a="' + escAttr(item.a.toLowerCase().replace(/<[^>]+>/g,'')) + '">';
       html += '<button class="faq-q" aria-expanded="false" aria-controls="' + id + '-body" onclick="toggleFAQ(\'' + id + '\')">';
       html += '<span>' + escHtml(item.q) + '</span>';
-      html += '<span class="faq-chevron" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#439C6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      html += '<span class="faq-chevron" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#0F58C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
       html += '</button>';
       html += '<div class="faq-a" id="' + id + '-body" role="region" aria-labelledby="' + id + '">';
       html += '<div class="faq-a-inner"><p>' + item.a + '</p></div>';
