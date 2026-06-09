@@ -11,7 +11,6 @@ export default defineConfig({
         'privacy-policy': resolve(__dirname, 'privacy-policy.html'),
         'terms-of-service': resolve(__dirname, 'terms-of-service.html'),
         'coming-soon': resolve(__dirname, 'coming-soon.html'),
-        'express-document-uploader': resolve(__dirname, 'express-document-uploader.html'),
       }
     }
   }
