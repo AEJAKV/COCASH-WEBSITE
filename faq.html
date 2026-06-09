@@ -609,7 +609,7 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   overflow: hidden;
   transition: max-height 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.faq-item.open .faq-a { max-height: 600px; }
+.faq-item.open .faq-a { max-height: 1200px; }
 
 .faq-a-inner {
   padding: 0 20px 18px;
@@ -889,16 +889,22 @@ footer .logo .logo-text span { color: var(--color-accent); }
       <aside class="faq-sidebar" aria-label="FAQ categories">
         <p class="faq-sidebar-title">Categories</p>
         <ul class="faq-cat-list" id="catList">
-          <li><button class="faq-cat-btn active" data-cat="all" onclick="filterCat(this)">All <span class="faq-cat-count" id="cnt-all">35</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Application" onclick="filterCat(this)">Application <span class="faq-cat-count" id="cnt-Application">4</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Eligibility" onclick="filterCat(this)">Eligibility <span class="faq-cat-count" id="cnt-Eligibility">6</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Documents" onclick="filterCat(this)">Documents <span class="faq-cat-count" id="cnt-Documents">5</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Approval" onclick="filterCat(this)">Approval <span class="faq-cat-count" id="cnt-Approval">4</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Rates &amp; Fees" onclick="filterCat(this)">Rates &amp; Fees <span class="faq-cat-count" id="cnt-Rates &amp; Fees">5</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Repayment" onclick="filterCat(this)">Repayment <span class="faq-cat-count" id="cnt-Repayment">5</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Funding" onclick="filterCat(this)">Funding <span class="faq-cat-count" id="cnt-Funding">4</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Security" onclick="filterCat(this)">Security <span class="faq-cat-count" id="cnt-Security">4</span></button></li>
-          <li><button class="faq-cat-btn" data-cat="Support" onclick="filterCat(this)">Support <span class="faq-cat-count" id="cnt-Support">5</span></button></li>
+          <li><button class="faq-cat-btn active" data-cat="all" onclick="filterCat(this)">All <span class="faq-cat-count" id="cnt-all">60</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="About Cosign Financial" onclick="filterCat(this)">About Cosign Financial <span class="faq-cat-count">4</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Application Status and Processing" onclick="filterCat(this)">Application Status and Processing <span class="faq-cat-count">6</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Eligibility Requirements" onclick="filterCat(this)">Eligibility Requirements <span class="faq-cat-count">5</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Denied or Cancelled Applications" onclick="filterCat(this)">Denied or Cancelled Applications <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Loan Amounts and Terms" onclick="filterCat(this)">Loan Amounts and Terms <span class="faq-cat-count">5</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Renewals" onclick="filterCat(this)">Renewals <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Repayments, Deferrals, and Early Payoff" onclick="filterCat(this)">Repayments, Deferrals, and Early Payoff <span class="faq-cat-count">7</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Cashback and Responsible Repayment Rewards" onclick="filterCat(this)">Cashback and Responsible Repayment Rewards <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Deposits and Funding" onclick="filterCat(this)">Deposits and Funding <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Documents and Uploads" onclick="filterCat(this)">Documents and Uploads <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Cosigner/Guarantor/Surety Service" onclick="filterCat(this)">Cosigner/Guarantor/Surety Service <span class="faq-cat-count">8</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Instant Bank Verification" onclick="filterCat(this)">Instant Bank Verification <span class="faq-cat-count">3</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Credit Reporting and Credit Building" onclick="filterCat(this)">Credit Reporting and Credit Building <span class="faq-cat-count">2</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Responsible Borrowing" onclick="filterCat(this)">Responsible Borrowing <span class="faq-cat-count">2</span></button></li>
+          <li><button class="faq-cat-btn" data-cat="Contact Information" onclick="filterCat(this)">Contact Information <span class="faq-cat-count">3</span></button></li>
         </ul>
       </aside>
 
@@ -908,15 +914,21 @@ footer .logo .logo-text span { color: var(--color-accent); }
         <!-- Mobile filter chips -->
         <div class="faq-chips-row" id="faqChips" role="group" aria-label="Filter by category">
           <button class="faq-chip active" data-cat="all" onclick="filterCat(this)">All</button>
-          <button class="faq-chip" data-cat="Application" onclick="filterCat(this)">Application</button>
-          <button class="faq-chip" data-cat="Eligibility" onclick="filterCat(this)">Eligibility</button>
-          <button class="faq-chip" data-cat="Documents" onclick="filterCat(this)">Documents</button>
-          <button class="faq-chip" data-cat="Approval" onclick="filterCat(this)">Approval</button>
-          <button class="faq-chip" data-cat="Rates &amp; Fees" onclick="filterCat(this)">Rates &amp; Fees</button>
-          <button class="faq-chip" data-cat="Repayment" onclick="filterCat(this)">Repayment</button>
-          <button class="faq-chip" data-cat="Funding" onclick="filterCat(this)">Funding</button>
-          <button class="faq-chip" data-cat="Security" onclick="filterCat(this)">Security</button>
-          <button class="faq-chip" data-cat="Support" onclick="filterCat(this)">Support</button>
+          <button class="faq-chip" data-cat="About Cosign Financial" onclick="filterCat(this)">About</button>
+          <button class="faq-chip" data-cat="Application Status and Processing" onclick="filterCat(this)">Application</button>
+          <button class="faq-chip" data-cat="Eligibility Requirements" onclick="filterCat(this)">Eligibility</button>
+          <button class="faq-chip" data-cat="Denied or Cancelled Applications" onclick="filterCat(this)">Denied/Cancelled</button>
+          <button class="faq-chip" data-cat="Loan Amounts and Terms" onclick="filterCat(this)">Loan Terms</button>
+          <button class="faq-chip" data-cat="Renewals" onclick="filterCat(this)">Renewals</button>
+          <button class="faq-chip" data-cat="Repayments, Deferrals, and Early Payoff" onclick="filterCat(this)">Repayments</button>
+          <button class="faq-chip" data-cat="Cashback and Responsible Repayment Rewards" onclick="filterCat(this)">Cashback</button>
+          <button class="faq-chip" data-cat="Deposits and Funding" onclick="filterCat(this)">Funding</button>
+          <button class="faq-chip" data-cat="Documents and Uploads" onclick="filterCat(this)">Documents</button>
+          <button class="faq-chip" data-cat="Cosigner/Guarantor/Surety Service" onclick="filterCat(this)">Cosigner</button>
+          <button class="faq-chip" data-cat="Instant Bank Verification" onclick="filterCat(this)">IBV</button>
+          <button class="faq-chip" data-cat="Credit Reporting and Credit Building" onclick="filterCat(this)">Credit</button>
+          <button class="faq-chip" data-cat="Responsible Borrowing" onclick="filterCat(this)">Responsible</button>
+          <button class="faq-chip" data-cat="Contact Information" onclick="filterCat(this)">Contact</button>
         </div>
 
         <!-- FAQ items rendered by JS -->
@@ -1001,233 +1013,337 @@ footer .logo .logo-text span { color: var(--color-accent); }
 <script>
 /* ===================== FAQ DATA ===================== */
 var FAQ_DATA = [
-  /* APPLICATION */
+  /* ABOUT COSIGN FINANCIAL */
   {
-    cat: 'Application',
-    q: 'How do I apply with Cosign Financial?',
-    a: 'You can start by clicking "Claim Your Cash!" or "Apply Now" on the website. Complete the online form with your basic details, review the required information, and submit your application for review.'
-  },
-  {
-    cat: 'Application',
-    q: 'How do I check my application status?',
-    a: 'You can check your application status by logging in to your account or contacting Cosign Financial support. If additional information is needed, you may receive an email, call, or message from the support team.'
-  },
-  {
-    cat: 'Application',
-    q: 'What do the application status stages mean?',
-    a: 'Your application may move through stages such as submitted, document review, validation, evaluation, agreement/signature, approved, denied, cancelled, or expired. Each stage reflects where your request is in the review process.'
-  },
-  {
-    cat: 'Application',
-    q: 'How long does the application process take?',
-    a: 'The online application can usually be completed quickly. Review and funding timelines depend on how fast you provide the required information, complete verification, and sign any required agreement.'
-  },
-
-  /* ELIGIBILITY */
-  {
-    cat: 'Eligibility',
-    q: 'Who can apply?',
-    a: 'Eligibility may depend on your age, residency, income, employment status, banking history, and the province or territory where you live. You must be legally eligible to apply for financial services in your location.'
-  },
-  {
-    cat: 'Eligibility',
-    q: 'What basic requirements may be needed?',
-    a: 'You may be asked to provide proof of identity, contact details, income information, banking information, employment details, and other information needed to review your application.'
-  },
-  {
-    cat: 'Eligibility',
-    q: 'Can I apply if I just started a new job?',
-    a: 'Employment history may be considered during review. If your job is very new, additional information may be required, and approval is not guaranteed.'
-  },
-  {
-    cat: 'Eligibility',
-    q: 'Can I apply if I receive government assistance?',
-    a: 'Some income sources may be considered depending on the application requirements and review process. Submit accurate information so your application can be assessed properly.'
-  },
-  {
-    cat: 'Eligibility',
-    q: 'Can I apply if I had a past bankruptcy?',
-    a: 'Past bankruptcy may not automatically prevent you from applying, but you may need to provide additional details or supporting documents. Approval is not guaranteed.'
-  },
-  {
-    cat: 'Eligibility',
-    q: 'Can I apply if I already have another loan?',
-    a: 'You may still be able to apply, but your current repayment obligations and debt level may be reviewed to determine whether another loan is manageable for your situation.'
-  },
-
-  /* DOCUMENTS */
-  {
-    cat: 'Documents',
-    q: 'What documents may be required?',
-    a: 'You may be asked for identification, banking information, income verification, employment details, or other documents needed to complete the review.'
-  },
-  {
-    cat: 'Documents',
-    q: 'How do I upload documents?',
-    a: 'Documents can usually be uploaded through your account, a secure application link, or another secure upload method provided by Cosign Financial.'
-  },
-  {
-    cat: 'Documents',
-    q: 'What is Instant Bank Verification?',
-    a: 'Instant Bank Verification allows a secure, read-only review of recent banking information to help verify identity, income, and application details. It can help speed up the review process significantly.'
-  },
-  {
-    cat: 'Documents',
-    q: 'Is Instant Bank Verification safe?',
-    a: 'Yes. Secure verification providers are designed to protect your information. Cosign Financial only requests information through trusted and secure channels.'
-  },
-  {
-    cat: 'Documents',
-    q: 'What if I cannot complete bank verification?',
-    a: 'If verification does not work, contact support and provide details about the issue. You may be asked for screenshots or alternative documentation to continue the review.'
-  },
-
-  /* APPROVAL */
-  {
-    cat: 'Approval',
-    q: 'Does submitting an application guarantee approval?',
-    a: 'No. Submitting an application does not guarantee approval, funding, a specific amount, or specific terms. Final decisions depend on eligibility, verification, partner review, and applicable requirements.'
-  },
-  {
-    cat: 'Approval',
-    q: 'Why was my application denied or cancelled?',
-    a: 'Applications may be denied or cancelled if eligibility requirements are not met, required information is missing, verification cannot be completed, or the application does not meet review criteria.'
-  },
-  {
-    cat: 'Approval',
-    q: 'Can I reapply after being denied or cancelled?',
-    a: 'You may be able to reapply after a waiting period or once your situation changes. Contact Cosign Financial support for guidance on your specific case. <em>[Exact reapplication timeline to be confirmed.]</em>'
-  },
-  {
-    cat: 'Approval',
-    q: 'Why was I approved for less than I requested?',
-    a: 'Approved amounts may depend on income, repayment ability, verification results, existing obligations, and responsible lending criteria applied during review.'
-  },
-
-  /* RATES & FEES */
-  {
-    cat: 'Rates & Fees',
-    q: 'What rates and fees apply?',
-    a: 'Rates, fees, repayment amounts, and terms may vary by loan amount, provider, eligibility, and agreement. Always review the full agreement and disclosures carefully before accepting.'
-  },
-  {
-    cat: 'Rates & Fees',
-    q: 'Are there hidden fees?',
-    a: 'Cosign Financial discloses applicable fees and repayment details before you agree to proceed. Always review your agreement carefully before signing — if anything is unclear, contact support.'
-  },
-  {
-    cat: 'Rates & Fees',
-    q: 'What is a cosign lender fee?',
-    a: 'A cosign lender fee may apply when a service helps support or structure the loan arrangement. The exact terms should be clearly explained before you accept any agreement.'
-  },
-  {
-    cat: 'Rates & Fees',
-    q: 'Can I save money by repaying early?',
-    a: 'Early repayment may reduce certain costs depending on the agreement and program rules. Confirm the exact early repayment terms in your agreement before signing.'
-  },
-  {
-    cat: 'Rates & Fees',
-    q: 'Is there a penalty for paying early?',
-    a: 'Early repayment rules depend on the specific agreement. If there is no penalty or if savings are available through early repayment, this should be clearly stated in your agreement or program terms.'
-  },
-
-  /* REPAYMENT */
-  {
-    cat: 'Repayment',
-    q: 'How are repayments made?',
-    a: 'Repayments may be made through pre-authorized debit, e-Transfer, or another approved payment method depending on the agreement and provider.'
-  },
-  {
-    cat: 'Repayment',
-    q: 'Can I change my payment date?',
-    a: 'Payment date changes may be possible, but they usually need to be requested before the scheduled payment date. Contact support as early as possible to review your options.'
-  },
-  {
-    cat: 'Repayment',
-    q: 'Can I defer a payment?',
-    a: 'Payment deferrals may be available in limited cases and may require advance notice. Approval depends on your agreement, account status, and provider rules.'
-  },
-  {
-    cat: 'Repayment',
-    q: 'What should I do if I cannot make my next payment?',
-    a: 'Contact support as early as possible. Waiting until the payment fails may lead to NSF fees, missed payment issues, or fewer available options. Acting early gives you the best chance of a workable solution.'
-  },
-  {
-    cat: 'Repayment',
-    q: 'What happens if I miss a payment?',
-    a: 'A missed payment may result in fees, collection activity, account restrictions, or other consequences depending on your agreement. Contact support immediately if this happens — do not wait.'
-  },
-
-  /* FUNDING */
-  {
-    cat: 'Funding',
-    q: 'How fast can I receive funds?',
-    a: 'Funding may be available quickly after approval, verification, and signing, but exact timing depends on your bank, funding method, cutoff times, and whether all required steps have been completed.'
-  },
-  {
-    cat: 'Funding',
-    q: 'Can funds arrive the same day?',
-    a: 'Same-day funding may be possible in some cases, especially when all documents are completed quickly and the funding method supports fast deposit. Timing is not guaranteed.'
-  },
-  {
-    cat: 'Funding',
-    q: 'What if I have not received my funds?',
-    a: 'Check your email, account dashboard, and bank account first. If enough time has passed and funds are still missing, contact support so the payment can be reviewed and traced.'
-  },
-  {
-    cat: 'Funding',
-    q: 'What funding methods are available?',
-    a: 'Funding may be sent by Interac e-Transfer, direct deposit, or another approved method depending on the provider and your application flow.'
-  },
-
-  /* SECURITY */
-  {
-    cat: 'Security',
-    q: 'Is my information secure?',
-    a: 'Cosign Financial uses secure systems, encrypted connections, trusted verification tools, and responsible data practices to help protect your personal information throughout the application process.'
-  },
-  {
-    cat: 'Security',
-    q: 'Do you share my personal information?',
-    a: 'Personal information may be shared only as needed to process applications, provide services, verify information, prevent fraud, comply with legal requirements, or as explained in the Privacy Policy.'
-  },
-  {
-    cat: 'Security',
-    q: 'Will applying affect my credit score?',
-    a: 'This depends on the application process and whether a credit check is required. If you have questions about whether your application involves a credit check, contact support before submitting.'
-  },
-  {
-    cat: 'Security',
-    q: 'How do I unsubscribe from marketing emails?',
-    a: 'Use the unsubscribe link in any marketing email, or contact Cosign Financial support directly to request removal from marketing communications.'
-  },
-
-  /* SUPPORT */
-  {
-    cat: 'Support',
+    cat: 'About Cosign Financial',
     q: 'What is Cosign Financial?',
-    a: 'Cosign Financial is a cosigner and lender matching service designed to help eligible Canadians explore online loan-related options through a simple, fast digital process.'
+    a: '<p>Cosign Financial is an online cosigner support service that helps eligible Canadians access fast and flexible installment loan options through a partner lender.</p><p>Cosign Financial is not the lender. The loan itself is provided by our partner lender, Funded in Canada.</p>'
   },
   {
-    cat: 'Support',
-    q: 'Does Cosign Financial have physical branches?',
-    a: 'Cosign Financial is designed as a fully online service. All applications, reviews, and support are handled digitally — no branch visit required.'
+    cat: 'About Cosign Financial',
+    q: 'Is Cosign Financial the lender?',
+    a: '<p>No. Cosign Financial is not the lender.</p><p>Cosign Financial may provide cosigner support for eligible applicants. The lender for the loan is Funded in Canada.</p>'
   },
   {
-    cat: 'Support',
-    q: 'What are your support hours?',
-    a: 'Support hours are available during regular business days. For the most up-to-date hours, contact us directly. <em>[Confirmed hours to be added before publishing.]</em>'
+    cat: 'About Cosign Financial',
+    q: 'Who is Funded in Canada?',
+    a: '<p>Funded in Canada is our partner lender. If your loan is approved, Funded in Canada is responsible for lender-related matters such as issuing the loan, repayment arrangements, payment deferrals, and early payoff requests.</p><p>For lender-related support, please contact:<br><a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a></p>'
   },
   {
-    cat: 'Support',
-    q: 'How do I contact Cosign Financial?',
-    a: 'You can reach Cosign Financial via the official support email at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>, by phone at <a href="tel:+18777000507">+1 (877) 700-0507</a>, or through the contact form on the website.'
+    cat: 'About Cosign Financial',
+    q: 'Is this a payday loan?',
+    a: '<p>No. This is not a payday loan service.</p><p>The loan options available through our partner lender are installment loans, which are typically repaid over a set period of time through scheduled payments.</p>'
+  },
+
+  /* APPLICATION STATUS AND PROCESSING */
+  {
+    cat: 'Application Status and Processing',
+    q: 'What is the status of my application?',
+    a: '<p>You should receive an email once your application has been accepted for evaluation. Please allow at least 2&#8211;3 hours for your loan request to be reviewed.</p><p>In some cases, we may contact you for clarification or request additional documents if we cannot complete the evaluation with the information provided.</p>'
   },
   {
-    cat: 'Support',
-    q: 'How do I make a complaint?',
-    a: 'If you have a concern, contact Cosign Financial support with your full name, contact information, and a clear description of the issue. The team will review and respond as promptly as possible.'
+    cat: 'Application Status and Processing',
+    q: 'How fast is the application process?',
+    a: '<p>The online application can usually be completed in just a few minutes.</p><p>After you submit your application, your request will be reviewed. If more information is needed, we may contact you by email, SMS, or phone.</p>'
+  },
+  {
+    cat: 'Application Status and Processing',
+    q: 'How quickly can I receive funds?',
+    a: '<p>Once approved, funds may be sent by Interac e-Transfer, often within the same day.</p><p>Actual timing may vary depending on approval time, payment processor availability, business hours, and your bank&#8217;s processing schedule.</p>'
+  },
+  {
+    cat: 'Application Status and Processing',
+    q: 'Why is Cosign Financial reviewing my application?',
+    a: '<p>Cosign Financial may review your application to determine whether you are eligible for cosigner support.</p><p>This review may include your income, banking history, repayment capacity, identity details, and other information provided during your application.</p>'
+  },
+  {
+    cat: 'Application Status and Processing',
+    q: 'Does Cosign Financial guarantee approval?',
+    a: '<p>No. Cosign Financial does not guarantee loan approval.</p><p>All applications are subject to review and approval. Cosign Financial may only provide support if your application meets the required criteria.</p>'
+  },
+  {
+    cat: 'Application Status and Processing',
+    q: 'I cannot apply. What should I do?',
+    a: '<p>Please send us a screenshot of the error you are seeing.</p><p>Email the screenshot to: <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>.</p><p>Once received, we will review the issue and provide further assistance.</p>'
+  },
+
+  /* ELIGIBILITY REQUIREMENTS */
+  {
+    cat: 'Eligibility Requirements',
+    q: 'Which provinces do you support?',
+    a: '<p>We currently support applicants from the following provinces:</p><ul><li>Alberta</li><li>British Columbia</li><li>New Brunswick</li><li>Prince Edward Island</li><li>Ontario</li><li>Newfoundland and Labrador</li></ul>'
+  },
+  {
+    cat: 'Eligibility Requirements',
+    q: 'Do you accept Child Tax, ODSP, or government assistance?',
+    a: '<p>We accept most income as long as it meets the minimum required income threshold and all other criteria are met.</p>'
+  },
+  {
+    cat: 'Eligibility Requirements',
+    q: 'Do you accept people with bad credit?',
+    a: '<p>Yes. Applicants with different credit backgrounds may be considered.</p><p>The evaluation process is not based only on your credit score. We may review factors such as income, banking history, repayment capacity, and other application details.</p><p>If your application requires additional support, you may be offered an option that includes cosigner support through Cosign Financial.</p>'
+  },
+  {
+    cat: 'Eligibility Requirements',
+    q: 'Do you pull credit?',
+    a: '<p>No. We do not perform a traditional hard credit check when you apply.</p><p>Your application may be evaluated using other information, including income and banking history.</p>'
+  },
+  {
+    cat: 'Eligibility Requirements',
+    q: 'Do I need a bank account?',
+    a: '<p>Yes. A valid Canadian bank account is generally required so your banking history, income activity, and repayment setup can be reviewed.</p>'
+  },
+
+  /* DENIED OR CANCELLED APPLICATIONS */
+  {
+    cat: 'Denied or Cancelled Applications',
+    q: 'Why was my loan request denied or cancelled?',
+    a: '<p>Your loan request may be denied if it does not meet one or more requirements. You may re-apply after 30 days.</p><p>Your loan request may also be cancelled for one or more of the following reasons:</p><ul><li>Bank account history is less than 3 months</li><li>Job seniority is less than 3 months</li><li>Your province is not currently supported</li><li>You are not a Canadian citizen or eligible Canadian resident</li><li>You have an active bankruptcy</li><li>Your consumer proposal is less than 6 months old</li><li>Your income is below the minimum required threshold</li><li>You currently have an active loan that must be completed before renewal can be considered</li></ul><p>If you have an existing loan, we may not be able to support a renewal until your active loan has been completed or is near completion.</p>'
+  },
+  {
+    cat: 'Denied or Cancelled Applications',
+    q: 'If Cosign Financial cannot support my application, can I still get approved?',
+    a: '<p>Approval depends on the lender&#8217;s review and the loan options available to you.</p><p>If Cosign Financial is unable to provide cosigner support, the lender may still review whether another option is available. Approval is not guaranteed.</p>'
+  },
+  {
+    cat: 'Denied or Cancelled Applications',
+    q: 'Can I re-apply if I was denied?',
+    a: '<p>Yes. You may re-apply after 30 days.</p><p>Before re-applying, it may help to improve your banking history, income stability, or repayment capacity.</p>'
+  },
+
+  /* LOAN AMOUNTS AND TERMS */
+  {
+    cat: 'Loan Amounts and Terms',
+    q: 'How much can I apply for?',
+    a: '<p>You may request a loan amount based on the options available in the application form.</p><p>The final approved amount is not guaranteed. Depending on your overall application, you may be approved for a lower or higher amount than requested.</p>'
+  },
+  {
+    cat: 'Loan Amounts and Terms',
+    q: 'Can I ask to be approved for more than what I was offered?',
+    a: '<p>Yes, you may request a higher amount. However, any increase is still subject to review and approval by the underwriter.</p>'
+  },
+  {
+    cat: 'Loan Amounts and Terms',
+    q: 'Why was I approved for less than I requested?',
+    a: '<p>The approved amount may depend on your income, banking history, repayment capacity, existing obligations, and overall application profile.</p><p>A lower amount may be offered to help keep your repayment schedule manageable.</p>'
+  },
+  {
+    cat: 'Loan Amounts and Terms',
+    q: 'How long is the repayment term?',
+    a: '<p>Repayment terms may vary depending on your agreement.</p><p>Many installment loan options are repaid over approximately 91&#8211;120 days, or around 3&#8211;4 months&#8211;or more, depending on the approved terms.</p>'
+  },
+  {
+    cat: 'Loan Amounts and Terms',
+    q: 'What is the APR?',
+    a: '<p>The lender&#8217;s APR is set to a maximum of 31%.</p><p>Please review your loan agreement carefully before accepting. Your agreement will show the loan amount, repayment schedule, APR, applicable fees, and total repayable amount.</p>'
+  },
+
+  /* RENEWALS */
+  {
+    cat: 'Renewals',
+    q: 'Can I renew my loan?',
+    a: '<p>Renewal eligibility is subject to review.</p><p>If you still have an active loan, you may be allowed to have one repayment left or be required to have a zero balance before a renewal can be considered. Approval is not guaranteed and will depend on your updated application and repayment history.</p>'
+  },
+  {
+    cat: 'Renewals',
+    q: 'Does Cosign Financial automatically approve renewals?',
+    a: '<p>No. Renewals are not automatically approved.</p><p>Each renewal request is reviewed based on your current situation, repayment history, and eligibility at the time of application.</p>'
+  },
+  {
+    cat: 'Renewals',
+    q: 'How do I request a renewal?',
+    a: '<p>If you are an existing customer, you may submit a renewal request through the renewal option provided to you or contact support for assistance at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>.</p><p>Renewal approval is not guaranteed.</p>'
+  },
+
+  /* REPAYMENTS, DEFERRALS, AND EARLY PAYOFF */
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'How much are my repayments?',
+    a: '<p>Your repayment amount can be found in your loan agreement.</p><p>Please review your agreement carefully, including the repayment schedule, total repayable amount, applicable fees, and due dates.</p><p>Once your loan has been issued, the lender will send you a copy of your account statement.</p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'Can I defer my payment?',
+    a: '<p>For payment deferral requests, please email the partner lender: <a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a></p><p>Please note that your first payment cannot be deferred. We recommend submitting deferral requests at least 3 days before your scheduled debit date.</p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'Can I renegotiate my monthly payment?',
+    a: '<p>If you are experiencing financial difficulty, please contact us so your situation can be reviewed and available options can be explored.</p><p>You may email: <a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a></p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'I changed my bank account, what should I do?',
+    a: '<p>Access your online banking and download a copy of your Void Cheque or Preauthorized Debit Form and email it to: <a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a>.</p><p>Make sure to do this before your next scheduled debit date, otherwise, you may incur a non-sufficient fee charge.</p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'How do I pay off my loan early?',
+    a: '<p>To request an early payoff, please contact our partner lender: <a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a></p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'Is there a penalty for paying off my loan early?',
+    a: '<p>No. There is no penalty for paying off your loan early.</p><p>Early repayment may also make you eligible for a discount or rebate, depending on the timing and the terms available at the time of your request.</p>'
+  },
+  {
+    cat: 'Repayments, Deferrals, and Early Payoff',
+    q: 'What early repayment discounts are available?',
+    a: '<p>Early repayment discounts may be available for customers who pay off their loan ahead of schedule.</p><p>Available discounts may vary. Please contact support to request your personalized early payoff quote.</p>'
+  },
+
+  /* CASHBACK AND RESPONSIBLE REPAYMENT REWARDS */
+  {
+    cat: 'Cashback and Responsible Repayment Rewards',
+    q: 'What is the Loan Cashback program?',
+    a: '<p>The Loan Cashback program may reward eligible customers who make all payments on time and complete their loan in full.</p><p>If eligible, you may be able to claim a rebate after your loan is fully paid.</p><p>To know more, please email us at: <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>.</p>'
+  },
+  {
+    cat: 'Cashback and Responsible Repayment Rewards',
+    q: 'Who qualifies for cashback?',
+    a: '<p>Eligibility may depend on your repayment history, whether all payments were made on time, whether the loan was completed in full, and the terms of the offer available to you.</p><p>Cashback is not guaranteed and may be subject to additional conditions.</p>'
+  },
+  {
+    cat: 'Cashback and Responsible Repayment Rewards',
+    q: 'How do I claim my cashback?',
+    a: '<p>Once your loan is completed, you may contact support at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a> or follow the claim instructions provided to you.</p><p>Your file will be reviewed to confirm whether you qualify for the cashback reward.</p>'
+  },
+
+  /* DEPOSITS AND FUNDING */
+  {
+    cat: 'Deposits and Funding',
+    q: 'I have not received my loan deposit yet. What should I do?',
+    a: '<p>There may be delays caused by the payment processor or your bank.</p><p>Please contact us at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a> so we can investigate the status of your deposit.</p>'
+  },
+  {
+    cat: 'Deposits and Funding',
+    q: 'Do you send funds by e-transfer?',
+    a: '<p>Yes. If approved, funds may be sent by Interac e-Transfer.</p><p>An additional fee may apply depending on the funding method and the terms provided to you.</p>'
+  },
+  {
+    cat: 'Deposits and Funding',
+    q: 'Why is my e-transfer delayed?',
+    a: '<p>E-transfer delays may happen because of bank processing times, payment processor delays, incorrect information, security reviews, or high transaction volume.</p><p>Please contact support at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a> if you have not received your funds within the expected timeframe.</p>'
+  },
+
+  /* DOCUMENTS AND UPLOADS */
+  {
+    cat: 'Documents and Uploads',
+    q: 'How do I upload my documents or ID?',
+    a: '<p>You may securely upload your documents or ID here:<br><a href="https://cosignfinancial.com/express_upload_here/" target="_blank" rel="noopener">https://cosignfinancial.com/express_upload_here/</a></p>'
+  },
+  {
+    cat: 'Documents and Uploads',
+    q: 'Why am I being asked for additional documents?',
+    a: '<p>Additional documents may be requested if we need to verify information in your application or complete the evaluation.</p><p>This may include identity verification, income confirmation, banking information, or other details needed to assess your request.</p>'
+  },
+  {
+    cat: 'Documents and Uploads',
+    q: 'Is the upload process secure?',
+    a: '<p>Yes. Documents should be uploaded only through the secure upload link provided by Cosign Financial.</p><p>Please avoid sending sensitive documents through unsecured channels unless specifically instructed.</p>'
+  },
+
+  /* COSIGNER, GUARANTOR, AND SURETY SERVICE */
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'What is a cosigner service?',
+    a: '<p>A cosigner service may help support your loan request when additional assurance is needed for the lender.</p><p>For eligible applicants, this service may be provided by Cosign Financial.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Why do I need Cosign Financial?',
+    a: '<p>Cosign Financial helps support a borrower&#8217;s loan application by giving the lender extra confidence that the loan will be repaid.</p><p>In simple terms:</p><ol><li><strong>Cosign Financial supports the borrower&#8217;s application</strong><br>They help strengthen the loan request when the borrower may not qualify on their own.</li><li><strong>Cosign Financial gives the lender extra assurance</strong><br>The lender may feel more comfortable approving the loan because there is additional support behind the borrower.</li><li><strong>May be responsible if the borrower does not pay</strong><br>Cosign Financial may become responsible for the debt if the borrower misses payments or defaults.</li></ol>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'What is the Cosign Financial fee?',
+    a: '<p>The Cosign Financial fee is the fee charged in exchange for providing cosigner support for your loan request.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Is the Cosign Financial fee interest?',
+    a: '<p>No. The Cosign Financial fee is not interest charged by the lender.</p><p>It is a separate fee for cosigner support provided by Cosign Financial.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Do I need to pay the Cosign Financial fee upfront?',
+    a: '<p>No. The fee is not paid upfront. It is included in your repayment schedule and paid in installments together with your loan.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Is Cosign Financial the same as collateral?',
+    a: '<p>No. Cosign Financial is not collateral.</p><p>Collateral usually means you pledge an asset, such as a vehicle or property. Cosign Financial provides support through a cosigner service instead.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Do I need collateral?',
+    a: '<p>No. You do not need to provide collateral.</p><p>However, depending on your application, you may be required to have additional support such as a cosigner service.</p>'
+  },
+  {
+    cat: 'Cosigner/Guarantor/Surety Service',
+    q: 'Can I remove the Cosign Financial fee from my loan?',
+    a: '<p>The Cosign Financial fee applies when your loan requires cosigner support.</p><p>If you have questions about your agreement or repayment schedule, please contact us at <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a> so we can review your file.</p>'
+  },
+
+  /* INSTANT BANK VERIFICATION */
+  {
+    cat: 'Instant Bank Verification',
+    q: 'What is IBV?',
+    a: '<p>IBV stands for Instant Bank Verification.</p><p>It is a secure way to verify your identity, income, and banking information. Once you access the IBV link, your bank may provide an electronic statement that allows us to review your banking history and evaluate your application.</p><p>IBV helps us assess your application.</p>'
+  },
+  {
+    cat: 'Instant Bank Verification',
+    q: 'Is IBV required?',
+    a: '<p>IBV may be required so we can verify your banking history, income activity, and other information needed for evaluation.</p><p>Without IBV, we may not be able to complete the review of your application.</p>'
+  },
+  {
+    cat: 'Instant Bank Verification',
+    q: 'Is IBV secure?',
+    a: '<p>Yes. IBV is completed through a secure verification process. It allows us to review the information needed to evaluate your application without asking you to manually send full bank statements by email.</p>'
+  },
+
+  /* CREDIT REPORTING AND CREDIT BUILDING */
+  {
+    cat: 'Credit Reporting and Credit Building',
+    q: 'Can this help build my credit?',
+    a: '<p>On-time repayment may help support your credit profile if repayment activity is reported to credit bureaus.</p><p>Credit reporting availability may depend on the lender, program, and account status.</p>'
+  },
+  {
+    cat: 'Credit Reporting and Credit Building',
+    q: 'Will applying affect my credit score?',
+    a: '<p>No. We do not perform a traditional hard credit check when you apply, so applying should not affect your credit score through a hard inquiry.</p>'
+  },
+
+  /* RESPONSIBLE BORROWING */
+  {
+    cat: 'Responsible Borrowing',
+    q: 'Should I borrow the maximum amount available?',
+    a: '<p>You should only borrow what you can comfortably afford to repay.</p><p>Before accepting any loan, review your repayment schedule, total repayable amount, due dates, and fees.</p>'
+  },
+  {
+    cat: 'Responsible Borrowing',
+    q: 'What should I do if I am having financial difficulty?',
+    a: '<p>Please contact the lender at <a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a> as soon as possible to discuss options. We encourage customers to reach out before a missed payment so available options can be reviewed.</p>'
+  },
+
+  /* CONTACT INFORMATION */
+  {
+    cat: 'Contact Information',
+    q: 'Who should I contact for payment deferrals, payment arrangements, early payoff, or lender-related requests?',
+    a: '<p>All lender-related inquiries, please contact:</p><p>Funded in Canada<br><a href="mailto:support@fundedincanada.com">support@fundedincanada.com</a></p>'
+  },
+  {
+    cat: 'Contact Information',
+    q: 'Who should I contact for document uploads or Cosign Financial support?',
+    a: '<p>For document uploads, please use:<br><a href="https://cosignfinancial.com/express_upload_here/" target="_blank" rel="noopener">https://cosignfinancial.com/express_upload_here/</a></p><p>For application or support questions, you may contact:<br><a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a></p>'
+  },
+  {
+    cat: 'Contact Information',
+    q: 'What are your operating hours?',
+    a: '<p>Applications may be submitted online 24/7.</p><p>Our operating hours are:</p><p>6:00 AM to 9:00 PM Mountain Time, Monday to Sunday</p>'
   }
+
+  /* END OF FAQ DATA */
 ];
 
 /* ===================== STATE ===================== */
@@ -1242,7 +1358,7 @@ function buildId(cat, idx) {
 
 function renderAll() {
   var container = document.getElementById('faqBlocks');
-  var cats = ['Application','Eligibility','Documents','Approval','Rates & Fees','Repayment','Funding','Security','Support'];
+  var cats = ['About Cosign Financial','Application Status and Processing','Eligibility Requirements','Denied or Cancelled Applications','Loan Amounts and Terms','Renewals','Repayments, Deferrals, and Early Payoff','Cashback and Responsible Repayment Rewards','Deposits and Funding','Documents and Uploads','Cosigner/Guarantor/Surety Service','Instant Bank Verification','Credit Reporting and Credit Building','Responsible Borrowing','Contact Information'];
   var html = '';
   cats.forEach(function(cat) {
     var items = FAQ_DATA.filter(function(f) { return f.cat === cat; });
