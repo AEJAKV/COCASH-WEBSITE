@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Express Document Uploader | Cosign Financial</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #0F58C9;
+  --color-primary-hover: #0B4AA8;
+  --color-primary-dark: #103B7A;
+  --color-accent: #FF8A1D;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4F8FF;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 860px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.11);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: #F4F8FF;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+}
+.logo {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ===================== HERO BANNER ===================== */
+.uploader-hero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #2C88FF 100%);
+  padding: 52px 0 44px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.uploader-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.uploader-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.uploader-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+}
+.uploader-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #6EDBA8;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.uploader-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.uploader-hero-sub {
+  font-size: 1.03rem;
+  color: rgba(255,255,255,0.84);
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+main {
+  flex: 1;
+  padding: 48px 0 64px;
+}
+.uploader-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.uploader-card-header {
+  background: var(--color-bg-section);
+  border-bottom: 1px solid var(--color-border);
+  padding: 22px 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.uploader-card-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--color-primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.uploader-card-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.uploader-card-title {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--color-primary-dark);
+  letter-spacing: -0.01em;
+}
+.uploader-card-title span {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+/* ===================== JOTFORM EMBED ===================== */
+.jotform-wrap {
+  padding: 32px;
+  min-height: 520px;
+}
+.jotform-wrap iframe,
+.jotform-wrap > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* ===================== PRIVACY NOTE ===================== */
+.privacy-note {
+  margin: 0 32px 28px;
+  background: #EEF5FF;
+  border: 1px solid rgba(15,88,201,0.18);
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.84rem;
+  color: var(--color-text-light);
+  line-height: 1.65;
+}
+.privacy-note-icon {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--color-primary);
+}
+.privacy-note-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.privacy-note strong { color: var(--color-primary-dark); }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.85);
+  padding: 28px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.4);
+}
+footer a { color: rgba(255,255,255,0.55); }
+footer a:hover { color: var(--color-accent); }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 767px) {
+  .logo-img { height: 42px; }
+  .uploader-hero { padding: 40px 0 36px; }
+  .uploader-hero h1 { font-size: 1.75rem; }
+  .uploader-hero-sub { font-size: 0.95rem; }
+  main { padding: 28px 0 48px; }
+  .uploader-card-header { padding: 18px 20px; }
+  .jotform-wrap { padding: 20px; min-height: 400px; }
+  .privacy-note { margin: 0 20px 24px; }
+  .container { padding: 0 var(--space-m); }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER — logo only, not in main nav -->
+<header>
+  <div class="container" style="max-width: 1140px;">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Cosign Financial — Home">
+        <img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img">
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="uploader-hero" aria-label="Express Document Uploader">
+  <div class="container">
+    <div class="uploader-hero-inner">
+      <span class="uploader-badge">Secure Upload</span>
+      <h1>Express Document Uploader</h1>
+      <p class="uploader-hero-sub">Securely upload the documents requested by our team. Submitting your files through this form helps us complete your review faster and keeps your information protected.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+    <div class="uploader-card">
+
+      <!-- Card header -->
+      <div class="uploader-card-header">
+        <div class="uploader-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        </div>
+        <div class="uploader-card-title">
+          Upload Your Documents
+          <span>Fill in the form below and attach the files requested by our team.</span>
+        </div>
+      </div>
+
+      <!-- Jotform embed -->
+      <div class="jotform-wrap" id="jotform-container">
+        <script type="text/javascript" src="https://form.jotform.com/jsform/261594657956072"></script>
+      </div>
+
+      <!-- Privacy note -->
+      <div class="privacy-note" role="note">
+        <span class="privacy-note-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <span>
+          <strong>Your privacy is protected.</strong> All documents are transmitted over an encrypted connection and handled in accordance with our <a href="/privacy-policy">Privacy Policy</a>. Cosign Financial will never share your personal information or documents with unauthorized third parties.
+        </span>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER — minimal -->
+<footer>
+  <div class="footer-links">
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="/terms-of-service">Terms of Service</a>
+    <a href="/faq">FAQs</a>
+    <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>
+  </div>
+  <p>© 2026 Cosign Financial — All rights reserved.</p>
+</footer>
+
+</body>
+</html>
