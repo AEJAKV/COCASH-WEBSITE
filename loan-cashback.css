@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loan Cashback | Cosign Financial</title>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-<style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -13,28 +5,44 @@
   --color-primary-hover: #0B4AA8;
   --color-primary-dark: #103B7A;
   --color-accent: #FF8A1D;
-  --color-text: #25334d;
-  --color-text-light: #5e6c84;
-  --color-bg: #F6FAFF;
+  --color-text: #25334D;
+  --color-text-light: #5E6C84;
+  --color-bg: #F4F8FF;
+  --color-bg-soft: #EEF5FF;
   --color-panel: #FFFFFF;
   --color-border: rgba(15,88,201,0.12);
   --font-base: 'Lato', sans-serif;
+  --space-xs: 4px;
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
   --shadow: 0 16px 42px rgba(16,59,122,0.08);
   --shadow-soft: 0 8px 24px rgba(16,59,122,0.06);
-  --container: 1140px;
+  --radius: 20px;
+  --radius-lg: 30px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-base);
-  background: linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 100%);
+  background: linear-gradient(180deg, var(--color-bg) 0%, #FFFFFF 100%);
   color: var(--color-text);
   min-height: 100vh;
 }
 
 a { color: var(--color-primary); text-decoration: none; transition: color 0.2s ease; }
 a:hover { color: var(--color-primary-hover); }
+
+a:focus-visible,
+button:focus-visible,
+.btn-nav-orange:focus-visible,
+.btn-primary:focus-visible {
+  outline: 3px solid rgba(255,138,29,0.36);
+  outline-offset: 3px;
+}
 
 .container {
   width: min(var(--container), calc(100% - 40px));
@@ -56,7 +64,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--space-m);
   padding: 14px 20px;
 }
 
@@ -70,7 +78,219 @@ header {
   height: 56px;
   width: auto;
   display: block;
+  object-fit: contain;
 }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+nav ul li a {
+  color: #31406f;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav ul li a:hover,
+nav ul li a[aria-current="page"] {
+  background: rgba(15,88,201,0.08);
+  color: var(--color-primary);
+}
+
+.nav-dropdown { position: relative; }
+
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 220px;
+  box-shadow: var(--shadow);
+  z-index: 1001;
+  padding: 4px 0;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+
+.nav-dropdown > .nav-dropdown-toggle::after {
+  content: ' \25BE';
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown.open > .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within > .nav-dropdown-toggle::after { transform: rotate(180deg); }
+
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #31406f;
+  border-radius: 0;
+}
+
+.nav-dropdown-menu li a:hover,
+.nav-dropdown-menu li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #31406f;
+  white-space: nowrap;
+}
+
+.nav-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #31406f;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.nav-meta-link:hover { color: #0f58c9; }
+
+.nav-meta-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.nav-meta-sep {
+  color: rgba(49,64,111,0.22);
+  font-weight: 400;
+}
+
+.nav-login {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #20346f;
+  padding: 8px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-login:hover { color: var(--color-primary); }
+
+.nav-cta-btn:hover { box-shadow: 0 14px 28px rgba(255,122,18,0.32); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+
+.mobile-menu ul li a {
+  display: block;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  border-bottom: 1px solid #f0f0f0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mobile-menu ul li a:hover,
+.mobile-menu ul li a[aria-current="page"] { background: var(--color-bg-soft); color: var(--color-primary); }
+
+.mobile-header-bar { display: none; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 10px;
+  gap: 10px;
+}
+
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 0 12px;
+  color: #31406f;
+  font-size: 0.8rem;
+}
+
+.mobile-header-sub a { color: #31406f; font-weight: 700; }
+.mobile-header-sub .sep { color: rgba(49,64,111,0.25); }
+
+.btn-mobile-cta {
+  padding: 11px 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  box-shadow: 0 10px 22px rgba(255,122,18,0.24);
+}
+
+.btn-mobile-cta:hover { color: #fff; }
 
 .btn-nav-orange,
 .btn-primary {
@@ -109,7 +329,7 @@ section {
 .section-shell {
   background: rgba(255,255,255,0.88);
   border: 1px solid var(--color-border);
-  border-radius: 30px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
@@ -144,11 +364,11 @@ section {
   content: '';
   position: absolute;
   inset: 7px;
-  border-radius: 23px;
+  border-radius: calc(var(--radius-lg) - 7px);
   background:
     radial-gradient(circle at top right, rgba(255,138,29,0.28), transparent 32%),
     radial-gradient(circle at bottom left, rgba(15,88,201,0.08), transparent 26%),
-    linear-gradient(135deg, rgba(255,255,255,0.98) 0%, #F7FAFF 52%, #EEF5FF 100%);
+    linear-gradient(135deg, rgba(255,255,255,0.98) 0%, #F7FAFF 52%, var(--color-bg-soft) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.85),
     inset 0 0 0 1px rgba(255,255,255,0.60);
@@ -157,8 +377,8 @@ section {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-  gap: 28px;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  gap: 32px;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -237,44 +457,49 @@ section {
 }
 
 .hero-media {
-  position: relative;
   display: grid;
   place-items: center;
-  min-height: 100%;
 }
 
 .hero-media-frame {
-  width: min(100%, 430px);
-  aspect-ratio: 5 / 4;
-  border-radius: 28px;
-  border: 1px dashed rgba(15,88,201,0.22);
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.72), rgba(238,245,255,0.92)),
-    repeating-linear-gradient(45deg, rgba(15,88,201,0.05) 0, rgba(15,88,201,0.05) 14px, rgba(255,255,255,0.16) 14px, rgba(255,255,255,0.16) 28px);
+  width: min(100%, 520px);
   display: grid;
   place-items: center;
-  padding: 20px;
-  box-shadow: var(--shadow-soft);
+  padding: 0;
 }
 
 .hero-media-frame img,
 .placeholder-visual img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
   display: block;
-}
-
-.hero-media-frame span,
-.placeholder-visual span {
-  text-align: center;
-  color: var(--color-text-light);
-  font-size: 0.95rem;
-  line-height: 1.6;
 }
 
 .content-block {
   margin-top: 28px;
 }
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal="hero"] { transition-delay: 0.02s; }
+[data-reveal="steps"] { transition-delay: 0.06s; }
+[data-reveal="cards"] { transition-delay: 0.08s; }
+[data-reveal="card-left"] { transition-delay: 0.1s; }
+[data-reveal="card-right"] { transition-delay: 0.16s; }
+[data-reveal="reminder"] { transition-delay: 0.08s; }
+[data-reveal="cta"] { transition-delay: 0.08s; }
 
 .content-block h2 {
   font-size: clamp(1.9rem, 3vw, 2.6rem);
@@ -286,12 +511,6 @@ section {
   font-size: 1.08rem;
   line-height: 1.35;
   color: var(--color-primary-dark);
-}
-
-.block-intro {
-  margin-top: 12px;
-  color: var(--color-text-light);
-  line-height: 1.7;
 }
 
 .steps-list {
@@ -472,9 +691,16 @@ section {
   box-shadow: 0 18px 42px rgba(16,59,122,0.18);
 }
 
+.reminder-layout {
+  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+  align-items: center;
+  gap: 26px;
+}
+
 .reminder-shell h2 {
   font-size: clamp(1.9rem, 3vw, 2.5rem);
   line-height: 1.1;
+  color: #fff;
 }
 
 .reminder-copy {
@@ -494,12 +720,61 @@ section {
   font-weight: 900;
 }
 
+.reminder-placeholder {
+  position: relative;
+  width: min(100%, 460px);
+  margin-inline: auto;
+  border-radius: 30px;
+  background: transparent;
+  padding: 10px;
+  display: block;
+  isolation: isolate;
+  line-height: 0;
+}
+
+.reminder-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255,138,29,0.9), transparent 24%),
+    radial-gradient(circle at 82% 24%, rgba(124,194,255,0.92), transparent 26%),
+    radial-gradient(circle at 72% 80%, rgba(15,88,201,0.86), transparent 28%),
+    linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+  filter: blur(10px);
+  opacity: 0.92;
+  z-index: 0;
+}
+
+.reminder-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.08));
+  border: 1px solid rgba(255,255,255,0.24);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.reminder-placeholder img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 22px;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 34px rgba(9,35,82,0.22));
+}
+
 .cta-shell {
   padding: clamp(28px, 4vw, 42px);
   background:
     radial-gradient(circle at left bottom, rgba(15,88,201,0.08), transparent 28%),
     radial-gradient(circle at top right, rgba(255,138,29,0.16), transparent 22%),
-    linear-gradient(135deg, #FFFFFF 0%, #F7FAFF 100%);
+    linear-gradient(135deg, #F8FBFF 0%, #EEF5FF 100%);
   text-align: center;
 }
 
@@ -537,9 +812,17 @@ footer {
 
 footer a { color: var(--color-accent); }
 
-@media (max-width: 900px) {
+@media (max-width: 960px) {
+  .nav-inner > nav,
+  .nav-inner > .nav-right { display: none; }
+
+  .nav-inner > .hamburger { display: flex; }
+
+  .mobile-header-bar { display: block; }
+
   .hero-layout,
-  .dual-grid {
+  .dual-grid,
+  .reminder-layout {
     grid-template-columns: 1fr;
   }
 
@@ -568,6 +851,10 @@ footer a { color: var(--color-accent); }
 
   .nav-inner {
     padding: 12px;
+  }
+
+  .logo {
+    min-width: 0;
   }
 
   .logo-img {
@@ -627,6 +914,11 @@ footer a { color: var(--color-accent); }
   .step-text {
     max-width: none;
   }
+
+  .reminder-placeholder {
+    width: min(100%, 380px);
+    padding: 9px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -636,103 +928,11 @@ footer a { color: var(--color-accent); }
   .hero-layout::after {
     animation: none;
   }
+
+  .reveal-on-scroll,
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="nav-inner">
-    <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
-    <a href="mailto:support@cosignfinancial.com" class="btn-nav-orange">Claim Your Cash!</a>
-  </div>
-</header>
-
-<main>
-  <div class="container">
-    <section class="section-shell hero-shell" aria-labelledby="cashback-hero-heading">
-      <div class="hero-layout">
-        <div class="hero-copy">
-          <span class="eyebrow">Cashback Program</span>
-          <h1 id="cashback-hero-heading">Get Rewarded for Completing Your Loan the Right Way</h1>
-          <p>At Cosign Financial, we reward responsible repayment. If you complete your loan in full and on time, without any payment issues, you may be eligible for a rebate on a portion of your surety/guarantor fee or interest (if you were offered one) after your loan is completed.</p>
-          <div class="hero-actions">
-            <a href="mailto:support@cosignfinancial.com" class="btn-primary">Claim Your Cash!</a>
-          </div>
-          <p class="hero-disclaimer">This rebate is a post-completion benefit and does not change your loan terms or payment schedule.</p>
-          <p class="hero-note">If approved, your rebate will be issued according to our processing timelines.</p>
-        </div>
-        <div class="hero-media">
-          <div class="hero-media-frame">
-            <img src="" alt="Loan cashback hero illustration">
-            <span>Hero image placeholder</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-block" aria-labelledby="how-it-works-heading">
-      <h2 id="how-it-works-heading">How it Works</h2>
-      <ol class="steps-list">
-        <li><span class="step-icon" aria-hidden="true">✓</span><span class="step-text">Complete your loan in full</span></li>
-        <li><span class="step-icon" aria-hidden="true">▦</span><span class="step-text">Make all payments on time &mdash; no payment errors, deferrals, or interruptions</span></li>
-        <li><span class="step-icon" aria-hidden="true">$</span><span class="step-text">Request your rebate within 90 days of loan completion</span></li>
-        <li><span class="step-icon" aria-hidden="true">⌕</span><span class="step-text">We review your account and confirm eligibility</span></li>
-      </ol>
-    </section>
-
-    <section class="content-block dual-grid" aria-label="Eligibility and rebate details">
-      <div class="panel">
-        <h2 id="eligibility-heading">Who is Eligible</h2>
-        <ul class="checklist" aria-labelledby="eligibility-heading">
-          <li><span class="checkmark" aria-hidden="true">✓</span><span>Your loan is paid in full</span></li>
-          <li><span class="checkmark" aria-hidden="true">✓</span><span>All payments were made on time</span></li>
-          <li><span class="checkmark" aria-hidden="true">✓</span><span>No payment errors</span></li>
-          <li><span class="checkmark" aria-hidden="true">✓</span><span>No deferrals, payment changes, or collections activity</span></li>
-        </ul>
-        <p class="eligibility-note">Validated claims of rebates are given after loan completion.</p>
-      </div>
-
-      <div class="panel">
-        <h2 id="rebate-applies-heading">What the Rebate Applies To</h2>
-        <ul class="basic-list" aria-labelledby="rebate-applies-heading">
-          <li><span class="list-mark" aria-hidden="true">1</span><span>Rebates apply only to what was offered to you: either the surety/guarantor fee or interest</span></li>
-          <li><span class="list-mark" aria-hidden="true">2</span><span>Principal, bank fees, and third-party charges are not eligible</span></li>
-          <li><span class="list-mark" aria-hidden="true">3</span><span>Rebate amounts are confirmed after review</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="content-block reminder-shell" aria-labelledby="reminder-heading">
-      <div class="dual-grid" style="grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr); align-items:center; gap:26px;">
-        <div>
-          <h2 id="reminder-heading">Important Reminder</h2>
-          <div class="reminder-copy">
-            <p>90-day claim window or rebate is forfeited</p>
-            <p>Rebates sent every Wednesday; claims after the weekly cutoff roll to the next Wednesday. <span class="closing-line">So keep that in mind! Here at Cosign Financial, Good customers are rewarded!</span></p>
-          </div>
-        </div>
-        <div class="placeholder-visual" style="min-height:220px; border-radius:24px; border:1px dashed rgba(255,255,255,0.26); background:rgba(255,255,255,0.08); padding:18px; display:grid; place-items:center;">
-          <img src="" alt="Cashback reminder illustration">
-          <span style="color:rgba(255,255,255,0.84);">Reminder image placeholder</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-shell cta-shell content-block" aria-labelledby="cashback-cta-heading">
-      <h2 id="cashback-cta-heading">Ready to Claim your Rebate?</h2>
-      <div class="cta-actions">
-        <a href="mailto:support@cosignfinancial.com" class="btn-primary">Claim Your Rebate!</a>
-        <p class="terms-link"><a href="/terms-of-service">Terms &amp; Conditions</a></p>
-      </div>
-    </section>
-  </div>
-</main>
-
-<footer>
-  <p>Our loans use a surety. If you don&apos;t want to use the surety, we will need to do a credit check and you need a score of 770 or more. Contact us by phone to apply without a surety.</p>
-  <p>&copy; 2026 Cosign Financial &mdash; All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a href="/terms-of-service">Terms of Service</a></p>
-</footer>
-
-</body>
-</html>

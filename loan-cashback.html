@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Cashback | Cosign Financial</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="loan-cashback.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/faq">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="/early-repayment">Early Repayment Program</a></li>
+              <li><a href="loan-cashback" aria-current="page">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact">
+          <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+1 (877) 700-0507</span>
+          </a>
+          <span class="nav-meta-sep" aria-hidden="true">|</span>
+          <a href="/faq" class="nav-meta-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+            <span>Help &amp; FAQ</span>
+          </a>
+        </span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="mailto:support@cosignfinancial.com" class="btn-nav-orange nav-cta-btn" aria-label="Claim your cash by emailing Cosign Financial support">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="mailto:support@cosignfinancial.com" class="btn-mobile-cta">Claim Your Cash!</a>
+          <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>+1 (877) 700-0507</span>
+        </a>
+        <span class="sep">|</span>
+        <a href="/faq" class="nav-meta-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+          <span>Help &amp; FAQ</span>
+        </a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/faq">FAQs</a></li>
+      <li><a href="/early-repayment">Early Repayment Program</a></li>
+      <li><a href="loan-cashback" aria-current="page">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="mailto:support@cosignfinancial.com">Claim Your Cash!</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="section-shell hero-shell reveal-on-scroll" aria-labelledby="cashback-hero-heading" data-reveal="hero">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <span class="eyebrow">Cashback Program</span>
+          <h1 id="cashback-hero-heading">Get Rewarded for Completing Your Loan the Right Way</h1>
+          <p>At Cosign Financial, we reward responsible repayment. If you complete your loan in full and on time, without any payment issues, you may be eligible for a rebate on a portion of your surety/guarantor fee or interest (if you were offered one) after your loan is completed.</p>
+          <div class="hero-actions">
+            <a href="mailto:support@cosignfinancial.com" class="btn-primary" aria-label="Claim your cash by contacting Cosign Financial support">Claim Your Cash!</a>
+          </div>
+          <p class="hero-disclaimer">This rebate is a post-completion benefit and does not change your loan terms or payment schedule.</p>
+          <p class="hero-note">If approved, your rebate will be issued according to our processing timelines.</p>
+        </div>
+        <div class="hero-media">
+          <div class="hero-media-frame">
+            <img src="img/loan-cashback/loan-cashback-image.png" alt="Loan cashback illustration">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-block reveal-on-scroll" aria-labelledby="how-it-works-heading" data-reveal="steps">
+      <h2 id="how-it-works-heading">How it Works</h2>
+      <ol class="steps-list">
+        <li><span class="step-icon" aria-hidden="true">✓</span><span class="step-text">Complete your loan in full</span></li>
+        <li><span class="step-icon" aria-hidden="true">▦</span><span class="step-text">Make all payments on time &mdash; no payment errors, deferrals, or interruptions</span></li>
+        <li><span class="step-icon" aria-hidden="true">$</span><span class="step-text">Request your rebate within 90 days of loan completion</span></li>
+        <li><span class="step-icon" aria-hidden="true">⌕</span><span class="step-text">We review your account and confirm eligibility</span></li>
+      </ol>
+    </section>
+
+    <section class="content-block dual-grid reveal-on-scroll" aria-label="Eligibility and rebate details" data-reveal="cards">
+      <div class="panel reveal-on-scroll" data-reveal="card-left">
+        <h2 id="eligibility-heading">Who is Eligible</h2>
+        <ul class="checklist" aria-labelledby="eligibility-heading">
+          <li><span class="checkmark" aria-hidden="true">✓</span><span>Your loan is paid in full</span></li>
+          <li><span class="checkmark" aria-hidden="true">✓</span><span>All payments were made on time</span></li>
+          <li><span class="checkmark" aria-hidden="true">✓</span><span>No payment errors</span></li>
+          <li><span class="checkmark" aria-hidden="true">✓</span><span>No deferrals, payment changes, or collections activity</span></li>
+        </ul>
+        <p class="eligibility-note">Validated claims of rebates are given after loan completion.</p>
+      </div>
+
+      <div class="panel reveal-on-scroll" data-reveal="card-right">
+        <h2 id="rebate-applies-heading">What the Rebate Applies To</h2>
+        <ul class="basic-list" aria-labelledby="rebate-applies-heading">
+          <li><span class="list-mark" aria-hidden="true">1</span><span>Rebates apply only to what was offered to you: either the surety/guarantor fee or interest</span></li>
+          <li><span class="list-mark" aria-hidden="true">2</span><span>Principal, bank fees, and third-party charges are not eligible</span></li>
+          <li><span class="list-mark" aria-hidden="true">3</span><span>Rebate amounts are confirmed after review</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-block reminder-shell reveal-on-scroll" aria-labelledby="reminder-heading" data-reveal="reminder">
+      <div class="dual-grid reminder-layout">
+        <div>
+          <h2 id="reminder-heading">Important Reminder</h2>
+          <div class="reminder-copy">
+            <p>90-day claim window or rebate is forfeited</p>
+            <p>Rebates sent every Wednesday; claims after the weekly cutoff roll to the next Wednesday. <span class="closing-line">So keep that in mind! Here at Cosign Financial, Good customers are rewarded!</span></p>
+          </div>
+        </div>
+        <div class="placeholder-visual reminder-placeholder">
+          <img src="img/loan-cashback/reminder-image.png" alt="Cashback reminder illustration">
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell cta-shell content-block reveal-on-scroll" aria-labelledby="cashback-cta-heading" data-reveal="cta">
+      <h2 id="cashback-cta-heading">Ready to Claim your Rebate?</h2>
+      <div class="cta-actions">
+        <a href="mailto:support@cosignfinancial.com" class="btn-primary" aria-label="Claim your rebate by emailing Cosign Financial support">Claim Your Rebate!</a>
+        <p class="terms-link"><a href="/terms-of-service">Terms &amp; Conditions</a></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <p>Our loans use a surety. If you don&apos;t want to use the surety, we will need to do a credit check and you need a score of 770 or more. Contact us by phone to apply without a surety.</p>
+  <p>&copy; 2026 Cosign Financial &mdash; All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy">Privacy Policy</a> &nbsp;|&nbsp; <a href="/terms-of-service">Terms of Service</a></p>
+</footer>
+
+<script>
+(function () {
+  function closeNavDropdowns() {
+    document.querySelectorAll('.nav-dropdown').forEach(function (dropdown) {
+      dropdown.classList.remove('open');
+      var toggle = dropdown.querySelector('.nav-dropdown-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  document.querySelectorAll('.nav-dropdown-toggle').forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+      var dropdown = toggle.closest('.nav-dropdown');
+      var isOpen = dropdown.classList.contains('open');
+      closeNavDropdowns();
+      dropdown.classList.toggle('open', !isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      closeNavDropdowns();
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    if (!event.target.closest('.nav-dropdown')) closeNavDropdowns();
+  });
+
+  var revealItems = document.querySelectorAll('.reveal-on-scroll');
+
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {
+      root: null,
+      threshold: 0.16,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
+    });
+  } else {
+    revealItems.forEach(function (item) {
+      item.classList.add('is-visible');
+    });
+  }
+
+  document.querySelectorAll('a[href]').forEach(function (link) {
+    var href = link.getAttribute('href');
+    if (!href || href.charAt(0) !== '#' || href.length < 2) return;
+
+    var target;
+    try {
+      target = document.querySelector(href);
+    } catch (error) {
+      return;
+    }
+    if (!target) return;
+
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target.hasAttribute('tabindex') === false) {
+        target.setAttribute('tabindex', '-1');
+      }
+      target.focus({ preventScroll: true });
+    });
+  });
+})();
+
+function toggleMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function (button) {
+    button.classList.toggle('open', !isOpen);
+    button.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+</script>
+
+</body>
+</html>
