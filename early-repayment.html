@@ -314,10 +314,10 @@ main section { padding: 34px 0; }
   padding: 56px 0 28px;
   overflow: hidden;
   background:
-    radial-gradient(circle at top left, rgba(15,88,201,0.18), transparent 32%),
-    radial-gradient(circle at 88% 22%, rgba(255,138,29,0.20), transparent 22%),
-    linear-gradient(180deg, rgba(221,235,255,0.92) 0%, rgba(240,248,255,0.86) 52%, rgba(255,255,255,0.80) 100%),
-    url('img/province-section-bg.png') center center / cover no-repeat;
+    radial-gradient(circle at top left, rgba(15,88,201,0.22), transparent 34%),
+    radial-gradient(circle at 88% 22%, rgba(255,138,29,0.22), transparent 24%),
+    linear-gradient(180deg, rgba(220,234,255,0.72) 0%, rgba(238,246,255,0.62) 52%, rgba(255,255,255,0.58) 100%),
+    url('img/hero img/province images/province-section-bg.png') center center / cover no-repeat;
 }
 .page-hero::before,
 .page-hero::after {
@@ -500,6 +500,14 @@ main section { padding: 34px 0; }
   max-width: 46ch;
 }
 
+.section-blue {
+  background: linear-gradient(180deg, #F4F8FF 0%, #EEF5FF 100%);
+  padding-top: 52px;
+  padding-bottom: 52px;
+}
+.section-blue .section-head h2 { color: var(--color-primary-dark); }
+.section-blue .section-head p   { color: var(--color-text-light); }
+
 .steps-grid,
 .benefits-grid {
   display: grid;
@@ -541,11 +549,18 @@ main section { padding: 34px 0; }
 .step-card p,
 .step-card li,
 .benefit-card p,
-.notice-card p,
-.notice-card li,
 .faq-a-inner {
   color: var(--color-text-light);
 }
+.section-blue .step-card p,
+.section-blue .step-card li,
+.section-blue .benefit-card p { color: var(--color-text-light); }
+.section-blue .step-card h3,
+.section-blue .benefit-card h3 { color: var(--color-primary-dark); }
+.section-blue .step-card a { color: var(--color-primary); }
+.section-blue .step-card a:hover { color: var(--color-primary-hover); }
+.notice-card p,
+.notice-card li { color: var(--color-text-light); }
 .step-card ul,
 .notice-list {
   list-style: none;
@@ -558,31 +573,147 @@ main section { padding: 34px 0; }
   background: var(--color-bg-card);
   border: 1px solid #E8EFFB;
 }
-
-.benefits-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.benefit-card {
-  padding: 22px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+.section-blue .step-card li {
+  background: #F4F8FF;
+  border-color: rgba(15,88,201,0.10);
 }
-.benefit-card p { margin-top: 10px; font-size: 0.96rem; }
+
+.benefits-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+.benefit-card {
+  position: relative;
+  padding: 20px 20px 18px;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top right, rgba(15,88,201,0.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%);
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--benefit-accent, #0F58C9), rgba(15,88,201,0.08));
+}
+.section-blue .benefit-card {
+  background: #fff;
+}
+.benefit-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(15,88,201,0.12) 0%, rgba(15,88,201,0.04) 100%);
+  color: var(--benefit-accent, #0F58C9);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+.benefit-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.benefit-card h3 {
+  margin-top: 16px;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.benefit-card p {
+  margin-top: 10px;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  max-width: 28ch;
+}
 
 .notice-card {
+  position: relative;
   padding: clamp(26px, 4vw, 34px);
   background:
-    radial-gradient(circle at right top, rgba(255,138,29,0.12), transparent 28%),
-    linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%);
+    radial-gradient(circle at right top, rgba(255,138,29,0.18), transparent 28%),
+    radial-gradient(circle at left bottom, rgba(15,88,201,0.08), transparent 34%),
+    linear-gradient(135deg, #FFFFFF 0%, #F8FBFF 48%, #EEF5FF 100%);
+  border: 1px solid rgba(15,88,201,0.10);
+  box-shadow: 0 14px 36px rgba(16,59,122,0.08);
+  overflow: hidden;
+}
+.notice-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-primary) 100%);
+}
+.notice-card h2 {
+  padding-left: 2px;
 }
 .notice-card p { margin-top: 12px; max-width: 60ch; }
 .notice-list {
   margin-top: 18px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .notice-list li {
-  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px 18px;
   border-radius: 18px;
   background: #fff;
   border: 1px solid #E6EDF8;
   font-weight: 700;
+  box-shadow: 0 10px 24px rgba(16,59,122,0.06);
+}
+.notice-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(15,88,201,0.12) 0%, rgba(15,88,201,0.04) 100%);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+.notice-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.notice-copy {
+  display: grid;
+  gap: 4px;
+}
+.notice-copy strong {
+  font-size: 0.98rem;
+  color: var(--color-primary-dark);
+}
+.notice-copy span {
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+.notice-link-card {
+  background: linear-gradient(135deg, rgba(15,88,201,0.08) 0%, rgba(255,138,29,0.08) 100%);
+  border-color: rgba(15,88,201,0.14);
+}
+.notice-link-card a {
+  color: var(--color-primary);
+  font-weight: 900;
+}
+.notice-link-card a:hover {
+  color: var(--color-primary-hover);
 }
 
 .faq-section {
@@ -872,7 +1003,7 @@ footer {
     </div>
   </section>
 
-  <section aria-labelledby="steps-heading">
+  <section class="section-blue" aria-labelledby="steps-heading">
     <div class="container">
       <div class="section-head">
         <h2 id="steps-heading">How to Repay Early</h2>
@@ -883,7 +1014,7 @@ footer {
           <h3>Contact us for your payoff quote</h3>
           <ul>
             <li>Email: <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a></li>
-            <li>SMS: [Insert Cosign SMS Number]</li>
+            <li>SMS: <a href="tel:+18777792088">+1 (877) 779-2088</a></li>
           </ul>
         </article>
         <article class="step-card">
@@ -893,7 +1024,7 @@ footer {
         </article>
         <article class="step-card">
           <span class="step-number">3</span>
-          <h3>E-transfer your payment to: <a href="mailto:payments@cosignfinancial.com">payments@cosignfinancial.com</a></h3>
+          <h3>E-transfer your payment to: <a href="mailto:payment@fundedincanada.com">payment@fundedincanada.com</a></h3>
           <p>Once your payoff quote is issued, send the full approved amount using the instructions we provide.</p>
         </article>
       </div>
@@ -904,21 +1035,50 @@ footer {
     <div class="container">
       <div class="section-head">
         <h2 id="benefits-heading">Benefits of Early Payoff</h2>
+        <p>Paying off early can improve your cash flow, reduce extra costs, and strengthen your position for future borrowing.</p>
       </div>
       <div class="benefits-grid">
-        <article class="benefit-card">
+        <article class="benefit-card" style="--benefit-accent:#0F58C9;">
+          <span class="benefit-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2v20"></path>
+              <path d="M16.5 6.5c0-1.93-2.01-3.5-4.5-3.5S7.5 4.57 7.5 6.5 9 9.27 12 10s4.5 1.57 4.5 3.5S14.49 17 12 17s-4.5-1.57-4.5-3.5"></path>
+            </svg>
+          </span>
           <h3>Save on future interest</h3>
           <p>You stop paying interest on future scheduled repayments.</p>
         </article>
-        <article class="benefit-card">
+        <article class="benefit-card" style="--benefit-accent:#215BB6;">
+          <span class="benefit-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 22s7-4 7-10V5l-7-3-7 3v7c0 6 7 10 7 10z"></path>
+              <path d="M9.5 12l1.8 1.8 3.7-4"></path>
+            </svg>
+          </span>
           <h3>No pre-termination fees</h3>
           <p>There are no pre-termination fees.</p>
         </article>
-        <article class="benefit-card">
+        <article class="benefit-card" style="--benefit-accent:#0C4D9A;">
+          <span class="benefit-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 9V5a3 3 0 0 0-6 0v4"></path>
+              <path d="M4 11h16"></path>
+              <path d="M6 11v5a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-5"></path>
+              <path d="M12 14v.01"></path>
+            </svg>
+          </span>
           <h3>Reduce guarantor fees</h3>
           <p>You save on guarantor fees–up to 100%.</p>
         </article>
-        <article class="benefit-card">
+        <article class="benefit-card" style="--benefit-accent:#3568BD;">
+          <span class="benefit-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M8 7V3"></path>
+              <path d="M16 7V3"></path>
+              <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+              <path d="M3 10h18"></path>
+            </svg>
+          </span>
           <h3>Rebuild eligibility sooner</h3>
           <p>You may be eligible for a new loan sooner.</p>
         </article>
@@ -926,14 +1086,49 @@ footer {
     </div>
   </section>
 
-  <section aria-labelledby="notice-heading">
+  <section class="section-blue" aria-labelledby="notice-heading">
     <div class="container">
       <div class="notice-card">
         <h2 id="notice-heading">Not Ready to Repay Early? No Problem.</h2>
         <p>Just continue making your scheduled payments as agreed. You'll still enjoy:</p>
         <ul class="notice-list">
-          <li>No extra penalties for regular repayment</li>
-          <li>Opportunities for future rebates and loyalty offers</li>
+          <li>
+            <span class="notice-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2v20"></path>
+                <path d="M16.5 6.5c0-1.93-2.01-3.5-4.5-3.5S7.5 4.57 7.5 6.5 9 9.27 12 10s4.5 1.57 4.5 3.5S14.49 17 12 17s-4.5-1.57-4.5-3.5"></path>
+              </svg>
+            </span>
+            <span class="notice-copy">
+              <strong>No extra penalties for regular repayment</strong>
+              <span>Stay on your current schedule without added payoff penalties.</span>
+            </span>
+          </li>
+          <li>
+            <span class="notice-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l2.7 5.48 6.05.88-4.38 4.27 1.03 6.02L12 16.77 6.6 19.65l1.03-6.02L3.25 9.36l6.05-.88L12 3z"></path>
+              </svg>
+            </span>
+            <span class="notice-copy">
+              <strong>Opportunities for future rebates and loyalty offers</strong>
+              <span>Maintain good standing and stay eligible for upcoming customer promotions.</span>
+            </span>
+          </li>
+          <li class="notice-link-card">
+            <span class="notice-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 7V3"></path>
+                <path d="M16 7V3"></path>
+                <rect x="3" y="5" width="18" height="16" rx="3"></rect>
+                <path d="M3 10h18"></path>
+              </svg>
+            </span>
+            <span class="notice-copy">
+              <strong>If you were offered a rebate, check this page:</strong>
+              <span><a href="coming-soon">Rebate program</a></span>
+            </span>
+          </li>
         </ul>
       </div>
     </div>
