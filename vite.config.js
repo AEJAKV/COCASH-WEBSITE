@@ -10,6 +10,7 @@ export default defineConfig({
         'early-repayment': resolve(__dirname, 'early-repayment.html'),
         faq: resolve(__dirname, 'faq.html'),
         'loan-cashback': resolve(__dirname, 'loan-cashback.html'),
+        'loan-cashback-terms': resolve(__dirname, 'loan-cashback-terms.html'),
         'privacy-policy': resolve(__dirname, 'privacy-policy.html'),
         'terms-of-service': resolve(__dirname, 'terms-of-service.html'),
         'coming-soon': resolve(__dirname, 'coming-soon.html'),
