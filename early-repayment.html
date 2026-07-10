@@ -959,12 +959,12 @@ footer {
           <p class="page-hero-subtitle">Repay Early – Pay Less</p>
           <p>At Cosign Financial, we reward you for responsible borrowing. If you choose to repay your loan early, you could save on your guarantor / surety fees–and potentially keep more of your money.</p>
           <div class="hero-actions">
-            <a href="index.html#loan-form" class="btn btn-primary">Calculate Your Savings</a>
+            <button type="button" class="btn btn-primary" onclick="openQuoteModal()">Calculate Your Savings</button>
             <a href="#repayment-faq" class="btn btn-secondary">View FAQs</a>
           </div>
         </div>
         <aside class="page-hero-card" aria-label="Cosign Financial early repayment visual">
-          <img src="img/early repayment page/rebate-page-creative.png" alt="Accelerate your payoff and maximize your savings with Cosign Financial early repayment discounts">
+          <img src="img/early repayment page/new-creative-for-erp-page.webp" alt="Accelerate your payoff and maximize your savings with Cosign Financial early repayment discounts">
         </aside>
       </div>
     </div>
@@ -1001,7 +1001,7 @@ footer {
         </table>
         <div class="savings-cta">
           <p>Request a payoff quote and compare your remaining schedule against the discounted amount before you send payment.</p>
-          <a href="index.html#loan-form" class="btn btn-primary">Calculate Your Savings</a>
+          <button type="button" class="btn btn-primary" onclick="openQuoteModal()">Calculate Your Savings</button>
         </div>
       </div>
     </div>
@@ -1024,12 +1024,12 @@ footer {
         <article class="step-card">
           <span class="step-number">2</span>
           <h3>We calculate your discounted early payoff amount</h3>
-          <p>Our team will confirm the remaining balance and apply the eligible discount on unpaid guarantor / surety fees.</p>
+          <p>Our team will confirm the remaining balance and apply the eligible discount.</p>
         </article>
         <article class="step-card">
           <span class="step-number">3</span>
           <h3>E-transfer your payment to: <a href="mailto:payment@fundedincanada.com">payment@fundedincanada.com</a></h3>
-          <p>Once your payoff quote is issued, send the full approved amount using the instructions we provide.</p>
+          <p>Once your payoff quote is issued, send the full approved amount to our partnered lender.</p>
         </article>
       </div>
     </div>
@@ -1310,6 +1310,256 @@ function closeNavDropdowns(except) {
   });
 })();
 
+/* ===== QUOTE MODAL STYLES ===== */
+(function(){
+  var s = document.createElement('style');
+  s.textContent = `
+    #erp-quote-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,20,50,0.68);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 9000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #erp-quote-overlay.is-open { display: flex; }
+    #erp-quote-modal {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      max-height: 94vh;
+      overflow-y: auto;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 32px 80px rgba(16,59,122,0.26), 0 8px 24px rgba(0,0,0,0.14);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .eq-modal-header {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,138,29,0.28), transparent 40%),
+        linear-gradient(135deg, #103B7A 0%, #0F58C9 60%, #1A6FDE 100%);
+      padding: 36px 40px 32px;
+      position: relative;
+    }
+    .eq-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 12px;
+    }
+    #erp-quote-modal h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    #erp-quote-modal h2 span {
+      color: #FFB253;
+    }
+    .eq-header-sub {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.5;
+    }
+    .eq-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: #fff;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s;
+    }
+    .eq-close:hover { background: rgba(255,255,255,0.26); }
+    .eq-modal-body {
+      padding: 32px 40px 36px;
+      background: #F8FBFF;
+    }
+    .eq-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .eq-row.full { grid-template-columns: 1fr; }
+    .eq-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .eq-field label {
+      font-size: 0.76rem;
+      font-weight: 900;
+      color: #103B7A;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .eq-input-wrap {
+      position: relative;
+    }
+    .eq-input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      stroke: #0F58C9;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .eq-field input {
+      width: 100%;
+      padding: 13px 16px 13px 40px;
+      border-radius: 12px;
+      border: 1.5px solid #D0DCF0;
+      background: #fff;
+      font-size: 0.95rem;
+      color: #1a2a3a;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      box-shadow: 0 2px 8px rgba(16,59,122,0.04);
+    }
+    .eq-field input::placeholder { color: #9aaac4; }
+    .eq-field input:focus {
+      border-color: #0F58C9;
+      box-shadow: 0 0 0 3px rgba(15,88,201,0.12);
+    }
+    .eq-field input[type="file"] {
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: #4a5a7a;
+    }
+    .eq-file-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1.5px dashed #A8C0E8;
+      background: #EEF5FF;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 0.9rem;
+      color: #0F58C9;
+      font-weight: 700;
+    }
+    .eq-file-label:hover { border-color: #0F58C9; background: #E0EEFF; }
+    .eq-file-label svg {
+      width: 18px; height: 18px;
+      stroke: #0F58C9; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+    .eq-file-name {
+      font-size: 0.8rem;
+      color: #5e6c84;
+      margin-top: 4px;
+      margin-left: 4px;
+    }
+    .eq-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(15,88,201,0.12), transparent);
+      margin: 8px 0 20px;
+    }
+    .eq-submit {
+      width: 100%;
+      padding: 17px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(255,122,18,0.30);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .eq-submit:hover {
+      background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(255,122,18,0.36);
+    }
+    .eq-submit svg {
+      width: 18px; height: 18px;
+      stroke: #fff; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .eq-footer-note {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: #7a8aa8;
+      line-height: 1.5;
+    }
+    .eq-footer-note svg {
+      width: 13px; height: 13px;
+      stroke: #7a8aa8; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+      vertical-align: -2px;
+      margin-right: 3px;
+    }
+    @media (max-width: 560px) {
+      .eq-modal-header { padding: 28px 24px 24px; }
+      .eq-modal-body { padding: 24px 20px 28px; }
+      .eq-row { grid-template-columns: 1fr; }
+      #erp-quote-modal h2 { font-size: 1.35rem; }
+    }
+  `;
+  document.head.appendChild(s);
+})();
+
+function openQuoteModal() {
+  document.getElementById('erp-quote-overlay').classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuoteModal() {
+  document.getElementById('erp-quote-overlay').classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeQuoteModal();
+});
+
 function toggleMenu() {
   var menu = document.getElementById('mobileMenu');
   var isOpen = menu.classList.contains('open');
@@ -1321,5 +1571,96 @@ function toggleMenu() {
   menu.setAttribute('aria-hidden', String(isOpen));
 }
 </script>
+
+<!-- EARLY PAYOFF QUOTE MODAL -->
+<div id="erp-quote-overlay" role="dialog" aria-modal="true" aria-labelledby="eq-title" onclick="if(event.target===this)closeQuoteModal()">
+  <div id="erp-quote-modal">
+
+    <!-- Header -->
+    <div class="eq-modal-header">
+      <button class="eq-close" onclick="closeQuoteModal()" aria-label="Close form">&times;</button>
+      <div class="eq-badge">
+        <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Early Repayment Program
+      </div>
+      <h2 id="eq-title">Request Your <span>Payoff Quote</span></h2>
+      <p class="eq-header-sub">Fill in your details and our team will calculate your discounted early payoff amount.</p>
+    </div>
+
+    <!-- Body -->
+    <div class="eq-modal-body">
+      <form id="erp-quote-form" onsubmit="return false;">
+        <div class="eq-row">
+          <div class="eq-field">
+            <label for="eq-first">First Name</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="eq-first" name="first_name" placeholder="First name" required autocomplete="given-name">
+            </div>
+          </div>
+          <div class="eq-field">
+            <label for="eq-last">Last Name</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="eq-last" name="last_name" placeholder="Last name" required autocomplete="family-name">
+            </div>
+          </div>
+        </div>
+        <div class="eq-row">
+          <div class="eq-field">
+            <label for="eq-email">Email</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="eq-email" name="email" placeholder="your@email.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="eq-field">
+            <label for="eq-phone">Phone</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+              <input type="tel" id="eq-phone" name="phone" placeholder="+1 (___) ___-____" required autocomplete="tel">
+            </div>
+          </div>
+        </div>
+        <div class="eq-row">
+          <div class="eq-field">
+            <label for="eq-loan">Loan ID</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <input type="text" id="eq-loan" name="loan_id" placeholder="e.g. CF-00123" required>
+            </div>
+          </div>
+          <div class="eq-field">
+            <label for="eq-date">Planned Payoff Date</label>
+            <div class="eq-input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <input type="date" id="eq-date" name="payoff_date" required>
+            </div>
+          </div>
+        </div>
+        <div class="eq-row full">
+          <div class="eq-field">
+            <label>Upload Proof <span style="font-weight:400;text-transform:none;font-size:0.75rem;color:#7a8aa8">(optional &mdash; image or PDF)</span></label>
+            <label class="eq-file-label" for="eq-proof">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="eq-file-name-display">Choose file&hellip;</span>
+            </label>
+            <input type="file" id="eq-proof" name="proof" accept="image/*,.pdf" style="display:none" onchange="document.getElementById('eq-file-name-display').textContent=this.files[0]?this.files[0].name:'Choose file\u2026'">
+          </div>
+        </div>
+        <div class="eq-divider"></div>
+        <button type="submit" class="eq-submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Get my Early Pay Off Quote
+        </button>
+        <p class="eq-footer-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Your information is kept secure and used only to process your quote.
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
