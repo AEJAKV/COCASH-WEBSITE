@@ -1,0 +1,6 @@
+# Cline / AI assistant rules
+# Never scan, read, or index these folders — they are build artefacts and dependencies.
+
+ignore:
+  - node_modules/**
+  - dist/**
