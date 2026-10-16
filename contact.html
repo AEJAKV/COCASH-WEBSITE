@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<title>Contact Us | Cosign Financial</title>
+<meta name="description" content="Contact Cosign Financial by phone or email. Get help with your application, repayment, early payoff and more.">
+<link rel="canonical" href="https://cosignfinancial.com/contact">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ContactPage","name":"Contact Cosign Financial","url":"https://cosignfinancial.com/contact","mainEntity":{"@type":"Organization","name":"Cosign Financial","telephone":"+1-877-700-0507","email":"support@cosignfinancial.com","contactPoint":{"@type":"ContactPoint","contactType":"customer service","telephone":"+1-877-700-0507","email":"support@cosignfinancial.com","areaServed":"CA","availableLanguage":["English"]}}}
+</script>
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-primary: #0F58C9;
+  --color-primary-hover: #0B4AA8;
+  --color-primary-dark: #103B7A;
+  --color-accent: #FF8A1D;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-bg: #FFFFFF;
+  --color-bg-section: #F4F8FF;
+  --color-border: #DDDDDD;
+  --font-base: 'Lato', sans-serif;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --space-m: 16px;
+  --space-l: 32px;
+  --space-xl: 56px;
+  --container: 1140px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.11);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-text);
+  background: #F4F8FF;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--color-primary-hover); }
+
+/* ===================== HEADER / NAV ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  gap: 1.5rem;
+}
+.logo {
+  text-decoration: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+footer .logo .logo-img {
+  height: 50px;
+}
+.logo-text {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin-left: 8px;
+}
+.logo-text span { color: var(--color-primary-dark); }
+footer .logo .logo-text { color: #fff; }
+footer .logo .logo-text span { color: var(--color-accent); }
+nav { display: flex; align-items: center; }
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+nav ul li a {
+  color: #31406f;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: block;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+nav ul li a:hover,
+nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  min-width: 190px;
+  box-shadow: var(--shadow-md);
+  z-index: 1001;
+  padding: 4px 0;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+.nav-dropdown > .nav-dropdown-toggle::after {
+  content: ' \25BE';
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+.nav-dropdown.open > .nav-dropdown-toggle::after,
+.nav-dropdown:focus-within > .nav-dropdown-toggle::after { transform: rotate(180deg); }
+.nav-dropdown-menu li a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #31406f;
+  border-radius: 0;
+}
+.nav-dropdown-menu li a:hover { background: rgba(15,88,201,0.08); color: var(--color-primary); }
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+}
+.nav-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #31406f;
+  white-space: nowrap;
+}
+.nav-meta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #31406f;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+.nav-meta-link:hover { color: #0f58c9; }
+.nav-meta-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.nav-meta-sep {
+  color: rgba(49,64,111,0.22);
+  font-weight: 400;
+}
+.nav-login {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #20346f;
+  padding: 8px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.nav-login:hover { color: var(--color-primary); }
+.btn-nav-orange {
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 13px 24px;
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
+}
+.btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-1px); }
+.nav-cta-btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; }
+.nav-cta-btn:hover { box-shadow: 0 14px 28px rgba(255,122,18,0.32); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), opacity 0.2s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: scaleX(0); opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.mobile-menu { display: none; background: #fff; border-top: 1px solid var(--color-border); }
+.mobile-menu.open { display: block; }
+.mobile-menu ul { list-style: none; }
+.mobile-menu ul li a {
+  display: block;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  border-bottom: 1px solid #f0f0f0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mobile-menu ul li a:hover { background: var(--color-bg-section); color: var(--color-primary); }
+.mobile-header-bar { display: none; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.mobile-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 6px;
+}
+.mobile-header-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+.mobile-header-sub a { color: #31406f; font-weight: 600; }
+.mobile-header-sub .sep { color: #ccc; }
+.btn-mobile-cta {
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 8px 15px;
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(255,122,18,0.24);
+}
+
+/* ===================== BUTTONS ===================== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 20px;
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.22s ease;
+  border: none;
+}
+.btn-yellow {
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+.btn-yellow:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,122,18,0.28); }
+.btn-outline-green {
+  background: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+.btn-outline-green:hover { background: var(--color-primary); color: #fff; transform: translateY(-2px); }
+
+/* ===================== FAQ HERO ===================== */
+.faq-hero {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #2C88FF 100%);
+  padding: 64px 0 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.faq-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.faq-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.faq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  margin-bottom: 20px;
+  animation: pulse-ring 2.4s ease-in-out infinite;
+}
+.faq-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #6EDBA8;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(110,219,168,0.6);
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(110,219,168,0.6); }
+  50% { box-shadow: 0 0 0 5px rgba(110,219,168,0); }
+}
+.faq-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+.faq-hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.btn-faq-hero {
+  display: inline-block;
+  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50px;
+  padding: 13px 32px;
+  font-weight: 900;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-faq-hero:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; border-color: rgba(255,255,255,0.26); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(255,122,18,0.32); }
+/* ===================== BOTTOM CTA ===================== */
+.faq-cta-section {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+  padding: 64px 0;
+  text-align: center;
+  margin-top: 16px;
+}
+.faq-cta-inner { max-width: 560px; margin: 0 auto; }
+.faq-cta-inner h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.faq-cta-inner p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.faq-cta-btns {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--color-primary-dark);
+  color: rgba(255,255,255,0.85);
+  padding: 56px 0 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand .logo {
+  text-decoration: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+footer .logo .logo-img {
+  filter: brightness(0) invert(1);
+  height: 50px;
+}
+.logo-text {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin-left: 8px;
+}
+.logo-text span { color: var(--color-primary-dark); }
+footer .logo .logo-text { color: #fff; }
+footer .logo .logo-text span { color: var(--color-accent); }
+.footer-brand .logo span { color: var(--color-accent); }
+.footer-desc { font-size: 0.84rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+.footer-contact { margin-top: 16px; font-size: 0.84rem; }
+.footer-contact p { margin-bottom: 4px; }
+.footer-contact a { color: var(--color-accent); }
+.footer-col h4 {
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { font-size: 0.88rem; color: rgba(255,255,255,0.7); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--color-accent); }
+.footer-col ul li a[aria-current="page"] { color: #fff; font-weight: 700; }
+.responsible-lending {
+  padding: 18px 0;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  line-height: 1.65;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 0 24px;
+  gap: 12px;
+}
+.footer-legal { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.65; max-width: 800px; }
+.footer-copyright { margin-top: 4px; font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+
+/* ===================== CONTACT ===================== */
+.contact-main { padding: 56px 0 24px; }
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.contact-card {
+  background: #fff; border: 1px solid #E3ECFA; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); padding: 32px 28px; display: flex; flex-direction: column;
+}
+.contact-card-icon {
+  width: 52px; height: 52px; border-radius: 50%; background: var(--color-bg-section);
+  color: var(--color-primary); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+.contact-card h2 { font-size: 1.2rem; font-weight: 900; color: var(--color-primary-dark); margin-bottom: 8px; }
+.contact-card p { font-size: 0.95rem; color: var(--color-text-light); margin-bottom: 16px; flex: 1; }
+.contact-card-link { font-size: 1.05rem; font-weight: 700; color: var(--color-primary); word-break: break-word; }
+.contact-card-link:hover { color: var(--color-accent); }
+.contact-help { padding: 40px 0 56px; }
+.contact-help h2 { font-size: 1.5rem; font-weight: 900; color: var(--color-primary-dark); margin-bottom: 20px; }
+.contact-help-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; }
+.contact-help-list a {
+  display: block; background: #fff; border: 1px solid #E3ECFA; border-radius: var(--radius-lg);
+  padding: 18px 20px; font-weight: 700; color: var(--color-primary); height: 100%;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.contact-help-list a:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.contact-help-list span { display: block; font-weight: 400; font-size: 0.88rem; color: var(--color-text-light); margin-top: 4px; }
+@media (max-width: 1023px) {
+  .nav-right { display: none; }
+  nav ul { display: none; }
+  .hamburger { display: flex; }
+  .mobile-header-bar { display: none; }
+  .nav-inner { display: flex; }
+  .contact-grid, .contact-help-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 767px) {
+  .logo-text { display: none; }
+  .logo-img { height: auto; max-height: 44px; max-width: 48vw; width: auto; }
+  .mobile-header-top .logo { flex-shrink: 1; min-width: 0; }
+  .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
+  .nav-inner { display: none; }
+  .mobile-header-bar { display: block; }
+  .faq-hero { padding: 44px 0 40px; }
+  .faq-hero h1 { font-size: 1.9rem; }
+  .faq-hero-sub { font-size: 0.95rem; }
+  .contact-main { padding: 32px 0 16px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-bottom { flex-direction: column; }
+  .container { padding: 0 var(--space-m); }
+  .faq-cta-inner h2 { font-size: 1.55rem; }
+  section { padding: 40px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
+      <nav role="navigation" aria-label="Main navigation">
+        <ul>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/faq">FAQs</a></li>
+          <li class="nav-dropdown">
+            <a href="#" class="nav-dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Cashback/Discount</a>
+            <ul class="nav-dropdown-menu">
+              <li><a href="early-repayment">Early Repayment Program</a></li>
+              <li><a href="loan-cashback">Loan Cashback</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <span class="nav-contact">
+          <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+1 (877) 700-0507</span>
+          </a>
+          <span class="nav-meta-sep" aria-hidden="true">|</span>
+          <a href="/faq" class="nav-meta-link">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+            <span>Help &amp; FAQ</span>
+          </a>
+        </span>
+        <a href="/login/" class="nav-login">Login</a>
+        <a href="index.html#loan-form" class="btn-nav-orange nav-cta-btn">Claim Your Cash!</a>
+      </div>
+      <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-header-bar">
+    <div class="container">
+      <div class="mobile-header-top">
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <a href="index.html#loan-form" class="btn-mobile-cta">Claim Your Cash!</a>
+          <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" onclick="toggleMenu(this)">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-header-sub">
+        <a href="tel:+18777000507" class="nav-meta-link" aria-label="Call +1 (877) 700-0507">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.63a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.45-1.29a2 2 0 0 1 2.11-.45c.85.3 1.73.51 2.63.63A2 2 0 0 1 22 16.92z"/></svg>
+          <span>+1 (877) 700-0507</span>
+        </a>
+        <span class="sep">|</span>
+        <a href="/faq" class="nav-meta-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.09 9a3 3 0 1 1 5.82 1c0 2-3 2-3 4"></path><path d="M12 17h.01"></path></svg>
+          <span>Help &amp; FAQ</span>
+        </a>
+        <span class="sep">|</span>
+        <a href="/login/">Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/faq">FAQs</a></li>
+      <li><a href="early-repayment">Early Repayment Program</a></li>
+      <li><a href="loan-cashback">Loan Cashback</a></li>
+      <li><a href="/login/">Login</a></li>
+      <li><a href="index.html#loan-form">Claim Your Cash!</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="faq-hero" aria-label="Contact header">
+  <div class="container">
+    <div class="faq-hero-inner">
+      <span class="faq-badge">We're here to help</span>
+      <h1>Contact Us</h1>
+      <p class="faq-hero-sub">Questions about your application, repayment or your account? Reach our support team by phone or email.</p>
+    </div>
+  </div>
+</section>
+
+<main class="contact-main">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <h2>Call Us</h2>
+        <p>Speak with our team about your application, or to apply without a surety.</p>
+        <a class="contact-card-link" href="tel:+18777000507">+1 (877) 700-0507</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+        <h2>Email Support</h2>
+        <p>Questions, technical issues or renewals. Include a screenshot if you're seeing an error.</p>
+        <a class="contact-card-link" href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M6 10v8M10 10v8M14 10v8M18 10v8"/></svg></div>
+        <h2>Lender Support</h2>
+        <p>For loan issuing, repayment arrangements, payment deferrals and early payoff requests, contact our partner lender, Funded in Canada.</p>
+        <a class="contact-card-link" href="mailto:support@fundedincanada.com">support@fundedincanada.com</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="contact-help" aria-labelledby="help-heading">
+  <div class="container">
+    <h2 id="help-heading">Before you reach out</h2>
+    <ul class="contact-help-list">
+      <li><a href="/faq">Read the FAQs<span>Quick answers on applying, funding and repayment.</span></a></li>
+      <li><a href="/early-repayment">Early Repayment Program<span>See how much you could save by repaying early.</span></a></li>
+      <li><a href="/express-document-uploader">Document Uploader<span>Send the documents we've requested.</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="faq-cta-section" aria-labelledby="faq-cta-heading">
+  <div class="container">
+    <div class="faq-cta-inner">
+      <h2 id="faq-cta-heading">Ready to get started?</h2>
+      <p>Start your application in just a few minutes.</p>
+      <div class="faq-cta-btns">
+        <a href="index.html#loan-form" class="btn btn-yellow">Claim Your Cash!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo"><img src="logo-img/cosign-financial-logo.png" alt="Cosign Financial" class="logo-img"></a>
+        <p class="footer-desc">Cosign Financial is one of the most popular alternatives to finding a Cosigner. If your monthly debt utilization is low (below 45%) you don&apos;t need a co-signer. If they are above 45% you will. Cosigner services are available in Alberta, BC, Ontario, PEI, NB &amp; NFLD.</p>
+        <div class="footer-contact">
+          <p>📍 Alberta, Canada</p>
+          <p>📞 <a href="tel:+18777000507">+1 (877) 700-0507</a></p>
+          <p>✉️ <a href="mailto:support@cosignfinancial.com">support@cosignfinancial.com</a></p>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="loan-cashback">Loan Cashback</a></li>
+          <li><a href="early-repayment">Early Repayment</a></li>
+          <li><a href="/renew/">Renew Your Loan</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/faq">FAQs</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-of-service">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="responsible-lending">
+      <strong>Responsible Collections:</strong> Cosign Financial is committed to responsible and ethical collections practices. We encourage customers to contact us if they are experiencing financial difficulty. &nbsp;|&nbsp; <strong>Borrow Responsibly:</strong> Only borrow what you can comfortably afford to repay. If you are experiencing financial hardship, please seek advice from a not-for-profit credit counsellor.
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <p class="footer-legal">Representative APR: 32%. Repayment term: 91–120 days. Cosign Financial is operated by Alberta Inc. All loan applications are subject to approval. Terms and conditions apply. This is not a payday loan service.</p>
+          <p class="footer-legal">Our loans use a surety. If you don’t want to use the surety, we will need to do a credit check and you need a score of 770 or more. Contact us by phone to apply without a surety.</p>
+        <p class="footer-copyright">© 2026 Cosign Financial — All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===================== NAV DROPDOWN TOGGLE ===================== */
+function closeNavDropdowns(except) {
+  document.querySelectorAll('.nav-dropdown.open').forEach(function(d) {
+    if (except && d === except) return;
+    d.classList.remove('open');
+    var t = d.querySelector('.nav-dropdown-toggle');
+    if (t) t.setAttribute('aria-expanded', 'false');
+  });
+}
+(function() {
+  document.querySelectorAll('.nav-dropdown').forEach(function(dropdown) {
+    var trigger = dropdown.querySelector('.nav-dropdown-toggle');
+    if (!trigger) return;
+    trigger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isOpen = dropdown.classList.contains('open');
+      closeNavDropdowns(dropdown);
+      dropdown.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+    trigger.addEventListener('keydown', function(e) {
+      if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowDown') {
+        e.preventDefault(); trigger.click();
+      }
+    });
+    dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+      link.addEventListener('click', function() { closeNavDropdowns(); });
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav-dropdown')) closeNavDropdowns();
+  });
+})();
+
+/* ===================== MOBILE MENU ===================== */
+function toggleMenu(btn) {
+  var menu = document.getElementById('mobileMenu');
+  var isOpen = menu.classList.contains('open');
+  document.querySelectorAll('.hamburger').forEach(function(b) {
+    b.classList.toggle('open', !isOpen);
+    b.setAttribute('aria-expanded', String(!isOpen));
+  });
+  menu.classList.toggle('open', !isOpen);
+  menu.setAttribute('aria-hidden', String(isOpen));
+}
+
+</script>
+</body>
+</html>

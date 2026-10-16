@@ -9,6 +9,7 @@ export default defineConfig({
         blog: resolve(__dirname, 'blog.html'),
         'early-repayment': resolve(__dirname, 'early-repayment.html'),
         faq: resolve(__dirname, 'faq.html'),
+        contact: resolve(__dirname, 'contact.html'),
         'loan-cashback': resolve(__dirname, 'loan-cashback.html'),
         'loan-cashback-terms': resolve(__dirname, 'loan-cashback-terms.html'),
         'privacy-policy': resolve(__dirname, 'privacy-policy.html'),
