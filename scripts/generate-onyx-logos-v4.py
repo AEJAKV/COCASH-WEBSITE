@@ -419,6 +419,77 @@ def v_blocks(mono=None, rev=False, two=False):
     return out, st + w_a + gap + w_b + k + 4, mh
 
 
+def _skew_pts(pts, yref):
+    return " ".join(f"{x + (yref - y) * SLANT:.2f},{y:.2f}" for x, y in pts)
+
+
+def v_new(kind, mono=None, rev=False):
+    """New concepts built from Onyx's own geometry (not the GoLoans block).
+    track : installment track — rising segmented bars under the name (repayments -> growth)
+    tag   : crystal tag — LOANS inside a stretched, slanted hexagon (60-degree ends, forward point)
+    split : split slab — LOANS block cut like the hex: onyx lower-left (borrower), green upper-right lifted (cosigner)"""
+    mb, mw, mh = hex_o(palette(mono, rev))
+    base_c = mono or (WHITE if rev else ONYX)
+    gapu = 5 * mh / 140                               # hex segment gap in lockup units
+    if kind == "track":
+        size = mh * 0.50 / BARLOW.cap
+        cap = size * BARLOW.cap
+        base = mh * 0.12 + cap + 2
+        x = mw + size * 0.20
+        w1, a = word(BARLOW, "ONYX", size, x, base, base_c, 1.5, orange_x=None if mono else ORANGE)
+        w2, b = word_oa(BARLOW, "LOANS", size, x + a + size * 0.2, base, mono or GREEN, 1.5, mono=mono)
+        x1 = x + a + size * 0.2 + b
+        # 7 instalments, rising; onyx -> green like the hex (base -> lift)
+        n, gap = 7, gapu * 1.6
+        bw = (x1 - x - (n - 1) * gap) / n
+        yb = mh - mh * 0.06
+        out = ""
+        for i in range(n):
+            h = cap * (0.10 + 0.30 * (i / (n - 1)) ** 1.3)
+            x0 = x + i * (bw + gap) - (yb - base) * SLANT
+            fill = mono or (base_c if i < 3 else (GREEN if i < n - 1 else "#2FD12A"))
+            out += slab(x0, x0 + bw, yb - h, yb, fill)
+        return mb + w1 + w2 + out, x1 + 8, mh
+    size = mh * 0.50 / BARLOW.cap
+    cap = size * BARLOW.cap
+    base = mh / 2 + cap / 2
+    pv = cap * 0.30
+    y0, y1 = base - cap - pv, base + pv
+    ymid = (y0 + y1) / 2
+    x = mw + size * 0.20
+    w1, a = word(BARLOW, "ONYX", size, x, base, base_c, 1.5)
+    _, lw = word_oa(BARLOW, "LOANS", size, 0, 0, WHITE, 1.5, mono=WHITE)
+    tfill = WHITE if not mono else (WHITE if mono != WHITE else ONYX)
+    ph = size * 0.14
+    if kind == "tag":
+        e = (y1 - y0) / 2 * math.tan(math.radians(30))   # 60-degree ends, same as the hex
+        sx0 = x + a + size * 0.16
+        sx1 = sx0 + e + ph + lw + ph + e
+        pts = [(sx0, ymid), (sx0 + e, y0), (sx1 - e, y0), (sx1, ymid), (sx1 - e, y1), (sx0 + e, y1)]
+        shape = f'<polygon points="{_skew_pts(pts, ymid)}" fill="{mono or GREEN}"/>'
+        cx = (sx0 + sx1) / 2
+        w2, _ = word_oa(BARLOW, "LOANS", size, cx - lw / 2 - cap * 0.03, base, tfill, 1.5, mono=tfill)
+        return mb + w1 + shape + w2, sx1 + (ymid - y0) * SLANT + 6, mh
+    # split slab
+    sx0 = x + a + size * 0.18
+    sx1 = sx0 + ph * 2 + lw
+    k = (y1 - y0) * SLANT
+    g = gapu * 1.6
+    # cut runs from 38% along the top to 22% along the bottom (steeper than the slant = the hex's split angle)
+    ct, cb = sx0 + k + (sx1 - sx0) * 0.40, sx0 + (sx1 - sx0) * 0.20
+    lower = [(sx0 + k, y0), (ct - g / 2, y0), (cb - g / 2, y1), (sx0, y1)]
+    upper = [(ct + g / 2, y0), (sx1 + k, y0), (sx1, y1), (cb + g / 2, y1)]
+    lift = gapu * 0.9
+    up = " ".join(f"{px + lift:.2f},{py - lift:.2f}" for px, py in upper)
+    lo = " ".join(f"{px:.2f},{py:.2f}" for px, py in lower)
+    shape = (f'<polygon points="{lo}" fill="{mono or (ONYX if not rev else "#2A332E")}"/>'
+             f'<polygon points="{up}" fill="{mono or GREEN}"/>')
+    ymidc = base - cap / 2
+    cx = (sx0 + sx1) / 2 + (y1 - ymidc) * SLANT
+    w2, _ = word_oa(BARLOW, "LOANS", size, cx - lw / 2 - cap * 0.02, base, tfill, 1.5, mono=tfill)
+    return mb + w1 + shape + w2, sx1 + k + lift + 6, mh
+
+
 def v_b(mono=None, rev=False):
     """B — The mark IS the O: [O]NYX, with LOANS as a tracked tag under NYX."""
     mb, mw, mh = hex_o(palette(mono, rev))
