@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 194 198" width="194" height="198"><g transform="translate(24,24)"><defs>
+  <clipPath id="lo0059"><polygon points="-143,-121 257,279 -238,374 -238,-26"/></clipPath>
+  <clipPath id="hi0059"><polygon points="-133,-131 267,269 362,174 362,-226"/></clipPath>
+</defs>
+<g transform="matrix(1 0 -0.2126 1 17.73 0)">
+  <path d="M12 74 a50 62 0 1 0 100 0 a50 62 0 1 0 -100 0 Z M39 74 a23 36 0 1 1 46 0 a23 36 0 1 1 -46 0 Z" fill-rule="evenodd" fill="#0B0F0D" clip-path="url(#lo0059)"/>
+  <g transform="translate(6,-6)"><path d="M12 74 a50 62 0 1 0 100 0 a50 62 0 1 0 -100 0 Z M39 74 a23 36 0 1 1 46 0 a23 36 0 1 1 -46 0 Z" fill-rule="evenodd" fill="#008D05" clip-path="url(#hi0059)"/></g>
+</g></g></svg>
