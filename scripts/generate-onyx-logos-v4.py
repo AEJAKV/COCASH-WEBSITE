@@ -102,7 +102,7 @@ def hex_o(colors, italic=True, R=60, r=31, gap=5, lift=4):
         dx, dy = (lift, -lift) if k in lifted else (0, 0)
         pts = " ".join(f"{x + dx:.2f},{y + dy:.2f}" for x, y in poly)
         out += f'<polygon points="{pts}" fill="{colors[k]}"/>'
-    out += nib(cx, cy + 3, r * 0.86, colors[2], colors[0])
+    out += nib(cx, cy + 2, r * 0.66, colors[2])
     w, h = 2 * R + 16 + lift, 2 * R + 16
     if italic:
         sk = f"matrix(1 0 {-SLANT:.4f} 1 {cy * SLANT:.2f} 0)"
@@ -112,25 +112,26 @@ def hex_o(colors, italic=True, R=60, r=31, gap=5, lift=4):
     return f'<g transform="translate(0,{lift})">{out}</g>', w + 4, h + lift
 
 
-def nib(cx, cy, k, left, right):
-    """Fountain-pen nib pointing up (the Cosign pen, carried over). Slit + breather hole are real cuts.
-    Left half = base colour (borrower), right half = green (cosigner): the signature that joins them."""
-    tip, sh, bot = cy - k * 1.0, cy + k * 0.18, cy + k * 0.86
-    W = k * 0.66
-    body = (f"M{cx:.2f} {tip:.2f} L{cx + W:.2f} {sh:.2f} Q{cx + W * 1.04:.2f} {cy + k * 0.62:.2f} {cx:.2f} {bot:.2f} "
-            f"Q{cx - W * 1.04:.2f} {cy + k * 0.62:.2f} {cx - W:.2f} {sh:.2f} Z")
-    hr, hy, sw = k * 0.16, cy + k * 0.14, k * 0.085
-    # cuts drawn counter-clockwise relative to the body so they punch through under either fill rule
-    hole = (f"M{cx + hr:.2f} {hy:.2f} a{hr:.2f} {hr:.2f} 0 1 1 {-2 * hr:.2f} 0 a{hr:.2f} {hr:.2f} 0 1 1 {2 * hr:.2f} 0 Z")
-    slit = (f"M{cx - sw:.2f} {tip - 2:.2f} L{cx - sw:.2f} {hy - hr * 0.6:.2f} L{cx + sw:.2f} {hy - hr * 0.6:.2f} "
-            f"L{cx + sw:.2f} {tip - 2:.2f} Z")
-    d = f"{body} {hole} {slit}"
-    cid = uid()
-    if left == right:
-        return f'<path d="{d}" fill="{left}" fill-rule="evenodd"/>'
-    return (f'<path d="{d}" fill="{left}" fill-rule="evenodd"/>'
-            f'<clipPath id="{cid}"><rect x="{cx:.2f}" y="{tip - 5:.2f}" width="{W * 2:.2f}" height="{k * 2.2:.2f}"/></clipPath>'
-            f'<path d="{d}" fill="{right}" fill-rule="evenodd" clip-path="url(#{cid})"/>')
+def nib(cx, cy, k, colour, _unused=None):
+    """Classic fountain-pen nib pointing up (the Cosign pen, carried over).
+    Convex sides flare to shoulders, then taper to a neat rounded base. Slit runs from the
+    breather hole to (not through) the tip. Single colour; cuts are real holes."""
+    tip, base = cy - k, cy + k
+    shy, sw_ = cy + 0.22 * k, 0.52 * k          # shoulder height / half-width
+    bw = 0.30 * k                               # base half-width
+    body = (f"M{cx:.2f} {tip:.2f} "
+            f"C{cx + 0.16 * k:.2f} {tip + 0.50 * k:.2f} {cx + sw_:.2f} {cy - 0.18 * k:.2f} {cx + sw_:.2f} {shy:.2f} "
+            f"L{cx + bw + 0.04 * k:.2f} {base - 0.16 * k:.2f} "
+            f"Q{cx + bw:.2f} {base:.2f} {cx + bw - 0.14 * k:.2f} {base:.2f} "
+            f"L{cx - bw + 0.14 * k:.2f} {base:.2f} "
+            f"Q{cx - bw:.2f} {base:.2f} {cx - bw - 0.04 * k:.2f} {base - 0.16 * k:.2f} "
+            f"L{cx - sw_:.2f} {shy:.2f} "
+            f"C{cx - sw_:.2f} {cy - 0.18 * k:.2f} {cx - 0.16 * k:.2f} {tip + 0.50 * k:.2f} {cx:.2f} {tip:.2f} Z")
+    hr, hy, sl = 0.12 * k, cy + 0.10 * k, 0.045 * k
+    hole = f"M{cx + hr:.2f} {hy:.2f} a{hr:.2f} {hr:.2f} 0 1 0 {-2 * hr:.2f} 0 a{hr:.2f} {hr:.2f} 0 1 0 {2 * hr:.2f} 0 Z"
+    slit = (f"M{cx - sl:.2f} {hy:.2f} L{cx + sl:.2f} {hy:.2f} L{cx + sl * 0.4:.2f} {tip + 0.10 * k:.2f} "
+            f"L{cx - sl * 0.4:.2f} {tip + 0.10 * k:.2f} Z")
+    return f'<path d="{body} {hole} {slit}" fill="{colour}" fill-rule="evenodd"/>'
 
 
 def palette(mono=None, rev=False):
