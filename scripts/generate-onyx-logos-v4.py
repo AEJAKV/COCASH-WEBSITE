@@ -7,6 +7,7 @@ from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.pens.boundsPen import BoundsPen
+from fontTools.pens.recordingPen import RecordingPen
 
 OUT, FD = sys.argv[1], sys.argv[2]
 os.makedirs(OUT, exist_ok=True)
@@ -39,6 +40,8 @@ class Font:
             if ch != " ":
                 pen = SVGPathPen(self.gs)
                 g.draw(TransformPen(pen, (s, 0, 0, -s, x + cx, base)))
+                rp = RecordingPen(); g.draw(TransformPen(rp, (s, 0, 0, -s, x + cx, base)))
+                PTS[d_key(pen)] = [pt for _, args in rp.value for pt in args if isinstance(pt, tuple)]
                 bp = BoundsPen(self.gs); g.draw(bp)
                 xmin, ymin, xmax, ymax = bp.bounds
                 out.append((ch, pen.getCommands(),
@@ -110,8 +113,15 @@ def palette(mono=None, rev=False):
 
 
 # ───────── wordmarks ─────────
+PTS = {}
+
+
+def d_key(pen):
+    return pen.getCommands()
+
+
 XMODE = ["gradient-green"]
-GRAD = [None]   # optional custom stops: [(offset, colour), ...]
+GRAD = [[(0.0, "#005A03"), (0.55, GREEN), (1.0, "#2FD12A")]]   # green glow (single hue)   # optional custom stops: [(offset, colour), ...]
 
 
 def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
@@ -145,18 +155,31 @@ def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
                 pass
             elif mode in ("gradient", "gradient-green"):
                 gid = uid()
+                # exact rising stroke from the outline: foot = leftmost points on the baseline,
+                # head = rightmost points on the cap line
+                P = PTS[d]
+                tol = (y1 - y0) * 0.03
+                midx = (x0 + x1) / 2
+                foot = [px for px, py in P if py > y1 - tol and px < midx]
+                head = [px for px, py in P if py < y0 + tol and px > midx]
+                fl, fr, hl, hr = min(foot), max(foot), min(head), max(head)
+                stroke = f"{fl:.2f},{y1:.2f} {fr:.2f},{y1:.2f} {hr:.2f},{y0:.2f} {hl:.2f},{y0:.2f}"
+                gh = gw * 0.07
+                ext = (y1 - y0) * 0.1
+                kx = ((hl - fl) / (y1 - y0))           # drift of the stroke edges per unit height
+                pts_k = (f"{fl - gh - kx * ext:.2f},{y1 + ext:.2f} {fr + gh - kx * ext:.2f},{y1 + ext:.2f} "
+                         f"{hr + gh + kx * ext:.2f},{y0 - ext:.2f} {hl - gh + kx * ext:.2f},{y0 - ext:.2f}")
                 # remove the black "/" under the gradient: redraw the black X with the band cut out
                 out = out[: out.rfind('<path d=')]
                 knock = uid()
                 out += (f'<clipPath id="{knock}"><path clip-rule="evenodd" d="M{x0 - 50:.1f} {y0 - 50:.1f} '
-                        f'H{x1 + 50:.1f} V{y1 + 50:.1f} H{x0 - 50:.1f} Z M{pts.replace(" ", " L")} Z"/></clipPath>'
+                        f'H{x1 + 50:.1f} V{y1 + 50:.1f} H{x0 - 50:.1f} Z M{pts_k.replace(" ", " L")} Z"/></clipPath>'
                         f'<path d="{d}" fill="{fill}" clip-path="url(#{knock})"/>')
                 out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0 + f / 2:.1f}" y1="{y1:.1f}" x2="{x1 - f / 2:.1f}" y2="{y0:.1f}">' +
                         ("".join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in GRAD[0]) if GRAD[0] else
                          f'<stop offset="0.2" stop-color="{GREEN if mode == "gradient-green" else fill}"/><stop offset="0.9" stop-color="{orange_x}"/>')
                         + '</linearGradient>'
-                        f'<clipPath id="{cid}">{band}</clipPath>'
-                        f'<path d="{d}" fill="url(#{gid})" clip-path="url(#{cid})"/>')
+                        f'<polygon points="{stroke}" fill="url(#{gid})" stroke="url(#{gid})" stroke-width="0.6" stroke-linejoin="round"/>')
             elif mode == "tip":
                 # only the upper-right end of the rising stroke, cut square across the stroke
                 tx, ty = x0 + (x1 - x0) * 0.62, y1 + (y0 - y1) * 0.62
@@ -264,7 +287,7 @@ W, H = 1600, 1240
 b = f'<rect width="{W}" height="{H}" fill="#FAFBFA"/>'
 b += label("ONYX LOANS — HEX SPLIT O", 80, 84, 22, INK, 6, "start", 600)
 b += label("Onyx half = the borrower (solid base). Green half = the cosigner / lender, lifted up and forward. "
-           "Orange = the GO. The X rises from GoLoans green into that orange.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
+           "Orange = the GO. The X's rising stroke glows GoLoans green, cut clean like the hex corners.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
 b += label("Hexagon = a cut onyx crystal; gaps at the corners = clear, transparent terms.", 80, 142, 15, "#5B6B7C", 0, "start", 400)
 rows = [(180, 230), (450, 230), (720, 200)]
 for (key, title, fn), (y, hh) in zip(VARS, rows):
