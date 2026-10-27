@@ -110,6 +110,9 @@ def palette(mono=None, rev=False):
 
 
 # ───────── wordmarks ─────────
+XMODE = ["solid"]
+
+
 def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
     """Render text; if orange_x is a colour, the X's rising stroke is painted in it."""
     glyphs, w = font.runs(text, size, x, base, tracking)
@@ -128,9 +131,41 @@ def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
             L = math.hypot(nx, ny); nx, ny = nx / L * gw * 0.15, ny / L * gw * 0.15
             pts = (f"{x0 - nx - 4:.2f},{y1 - ny + 4:.2f} {x1 - nx + 4:.2f},{y0 - ny - 4:.2f} "
                    f"{x1 + nx + 4:.2f},{y0 + ny - 4:.2f} {x0 + nx - 4:.2f},{y1 + ny + 4:.2f}")
-            cid = uid()
-            out += (f'<clipPath id="{cid}"><polygon points="{pts}"/></clipPath>'
-                    f'<path d="{d}" fill="{orange_x}" clip-path="url(#{cid})"/>')
+            cid, mode = uid(), XMODE[0]
+            band = f'<polygon points="{pts}"/>'
+            if mode == "none":
+                pass
+            elif mode in ("gradient", "gradient-green"):
+                gid = uid()
+                out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0:.1f}" y1="{y1:.1f}" x2="{x1:.1f}" y2="{y0:.1f}">'
+                        f'<stop offset="0.2" stop-color="{GREEN if mode == "gradient-green" else fill}"/><stop offset="0.9" stop-color="{orange_x}"/></linearGradient>'
+                        f'<clipPath id="{cid}">{band}</clipPath>'
+                        f'<path d="{d}" fill="url(#{gid})" clip-path="url(#{cid})"/>')
+            elif mode == "tip":
+                # only the upper-right end of the rising stroke, cut square across the stroke
+                tx, ty = x0 + (x1 - x0) * 0.62, y1 + (y0 - y1) * 0.62
+                ux, uy = (x1 - x0), (y0 - y1); L = math.hypot(ux, uy); ux, uy = ux / L, uy / L
+                big = gw
+                tip = (f"{tx - uy * big:.2f},{ty + ux * big:.2f} {tx + uy * big:.2f},{ty - ux * big:.2f} "
+                       f"{tx + uy * big + ux * big:.2f},{ty - ux * big + uy * big:.2f} {tx - uy * big + ux * big:.2f},{ty + ux * big + uy * big:.2f}")
+                c2 = uid()
+                out += (f'<clipPath id="{cid}">{band}</clipPath><clipPath id="{c2}"><polygon points="{tip}"/></clipPath>'
+                        f'<g clip-path="url(#{c2})"><path d="{d}" fill="{orange_x}" clip-path="url(#{cid})"/></g>')
+            elif mode == "gap":
+                # orange stroke crosses OVER the black one with a small cut, like the hex corners
+                out = out[: out.rfind('<path d=')]          # drop the solid X just drawn
+                gpad = gw * 0.07
+                nx2, ny2 = nx / math.hypot(nx, ny) * (math.hypot(nx, ny) + gpad), ny / math.hypot(nx, ny) * (math.hypot(nx, ny) + gpad)
+                wide = (f"{x0 - nx2 - 4:.2f},{y1 - ny2 + 4:.2f} {x1 - nx2 + 4:.2f},{y0 - ny2 - 4:.2f} "
+                        f"{x1 + nx2 + 4:.2f},{y0 + ny2 - 4:.2f} {x0 + nx2 - 4:.2f},{y1 + ny2 + 4:.2f}")
+                c2 = uid()
+                out += (f'<clipPath id="{c2}"><path clip-rule="evenodd" d="M{x0 - 50:.1f} {y0 - 50:.1f} H{x1 + 50:.1f} V{y1 + 50:.1f} H{x0 - 50:.1f} Z '
+                        f'M{wide.replace(" ", " L")} Z"/></clipPath>'
+                        f'<path d="{d}" fill="{fill}" clip-path="url(#{c2})"/>'
+                        f'<clipPath id="{cid}">{band}</clipPath><path d="{d}" fill="{orange_x}" clip-path="url(#{cid})"/>')
+            else:
+                out += (f'<clipPath id="{cid}">{band}</clipPath>'
+                        f'<path d="{d}" fill="{orange_x}" clip-path="url(#{cid})"/>')
     return out, w
 
 
