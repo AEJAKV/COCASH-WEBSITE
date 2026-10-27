@@ -1,7 +1,7 @@
 """Onyx Loans v4 — Hex Split O (Split O x segmented-hexagon reference), GoLoans palette.
 Usage: python3 onyx_v4.py OUT_DIR FONT_DIR
 """
-import math, os, sys
+import math, os, re, sys
 import cairosvg
 from fontTools.ttLib import TTFont
 from fontTools.pens.svgPathPen import SVGPathPen
@@ -42,6 +42,12 @@ class Font:
                 g.draw(TransformPen(pen, (s, 0, 0, -s, x + cx, base)))
                 rp = RecordingPen(); g.draw(TransformPen(rp, (s, 0, 0, -s, x + cx, base)))
                 PTS[d_key(pen)] = [pt for _, args in rp.value for pt in args if isinstance(pt, tuple)]
+                cs, cur = [], []
+                for op, args in rp.value:
+                    cur += [pt for pt in args if isinstance(pt, tuple)]
+                    if op in ("closePath", "endPath"):
+                        cs.append(cur); cur = []
+                CONT[d_key(pen)] = cs
                 bp = BoundsPen(self.gs); g.draw(bp)
                 xmin, ymin, xmax, ymax = bp.bounds
                 out.append((ch, pen.getCommands(),
@@ -114,6 +120,7 @@ def palette(mono=None, rev=False):
 
 # ───────── wordmarks ─────────
 PTS = {}
+CONT = {}
 
 
 def d_key(pen):
@@ -208,6 +215,81 @@ def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
     return out, w
 
 
+def word_oa(font, text, size, x, base, fill, tracking=0.0, mono=None, overlap=-0.25, gap_k=0.07):
+    """O and A interlock: the A's left leg crosses OVER the O's right side with a clean cut
+    (same cut language as the X and the hex). The A's tip is split like a pen nib."""
+    glyphs, w = font.runs(text, size, x, base, tracking)
+    io = next(i for i, g in enumerate(glyphs) if g[0] in "Oo")
+    ia = io + 1
+    (_, dO, (ox0, oy0, ox1, oy1)), (_, dA, (ax0, ay0, ax1, ay1)) = glyphs[io], glyphs[ia]
+    bbox = lambda c: (min(p[0] for p in c), min(p[1] for p in c), max(p[0] for p in c), max(p[1] for p in c))
+    area = lambda c: (bbox(c)[2] - bbox(c)[0]) * (bbox(c)[3] - bbox(c)[1])
+    cO, cA = sorted(CONT[dO], key=area), sorted(CONT[dA], key=area)
+    o_out, o_in, a_out, a_in = cO[-1], cO[0], cA[-1], cA[0]
+    stem = bbox(o_out)[2] - bbox(o_in)[2]                       # O right-side thickness
+    tol = (oy1 - oy0) * 0.03
+    H = ay1 - ay0
+    foot = [p[0] for p in a_out if p[1] > ay1 - tol and p[0] < (ax0 + ax1) / 2]
+    head = [p[0] for p in a_out if p[1] < ay0 + tol]
+    afl, afr, hl, hr = min(foot), max(foot), min(head), max(head)
+    # slide the A (and everything after it) left so its left leg sits over the O's right side
+    shift = (afl - bbox(o_out)[2]) + stem * (1 + overlap)
+    T = lambda xx: xx - shift
+    afl, afr, hl, hr, ax0, ax1 = map(T, (afl, afr, hl, hr, ax0, ax1))
+    hc = (hl + hr) / 2
+    g = (ox1 - ox0) * gap_k
+    ext = H * 0.1
+    kx = (hl - afl) / H
+    leg = lambda pad: (f"{afl - pad - kx * ext:.2f},{ay1 + ext:.2f} {afr + pad - kx * ext:.2f},{ay1 + ext:.2f} "
+                       f"{hc + pad + kx * ext:.2f},{ay0 - ext:.2f} {hl - pad + kx * ext:.2f},{ay0 - ext:.2f}")
+    k1 = uid()
+    knock = (f'<clipPath id="{k1}"><path clip-rule="evenodd" d="M{ox0 - 60:.1f} {oy0 - 60:.1f} H{ox1 + 60:.1f} '
+             f'V{oy1 + 60:.1f} H{ox0 - 60:.1f} Z M{leg(g).replace(" ", " L")} Z"/></clipPath>')
+    # pen-nib slit from the A tip to the top of its counter
+    ct = min(a_in, key=lambda p: p[1]); ctx, cty = T(ct[0]), ct[1]
+    ws = stem * 0.28
+    slit = (f"{hc - ws / 2:.2f},{ay0 - 3:.2f} {hc + ws / 2:.2f},{ay0 - 3:.2f} "
+            f"{ctx + ws / 2:.2f},{cty + 1.5:.2f} {ctx - ws / 2:.2f},{cty + 1.5:.2f}")
+    k2 = uid()
+    nib = (f'<clipPath id="{k2}"><path clip-rule="evenodd" d="M{ax0 - 60:.1f} {ay0 - 60:.1f} H{ax1 + 60:.1f} '
+           f'V{ay1 + 60:.1f} H{ax0 - 60:.1f} Z M{slit.replace(" ", " L")} Z"/></clipPath>')
+    if mono:
+        paint, defs = mono, ""
+    else:
+        gid = uid()
+        defs = (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{ox0:.1f}" y1="{oy1:.1f}" '
+                f'x2="{ax1:.1f}" y2="{ay0:.1f}"><stop offset="0" stop-color="#005A03"/>'
+                f'<stop offset="0.5" stop-color="{fill}"/><stop offset="1" stop-color="#2FD12A"/></linearGradient>')
+        paint = f"url(#{gid})"
+    out = "".join(f'<path d="{d}" fill="{fill}"/>' for i, (ch, d, _) in enumerate(glyphs) if i < io)
+    out += (defs + knock + nib +
+            f'<path d="{dO}" fill="{paint}" clip-path="url(#{k1})"/>'
+            f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}" '
+            f'clip-path="url(#{k2})" transform="translate({shift:.2f},0)"/></g>')
+    # the nib clip is in shifted coords; draw A shifted by wrapping
+    # nib clip built in the A's own (unshifted) coordinates; applied on the A path inside the shifted group
+    U = lambda xx: xx + shift
+    # pen nib: short slit down from the tip ending in a round breather hole (like a real nib)
+    wsl = stem * 0.13
+    L = 0.42                                         # slit length as a share of tip -> counter
+    ex, ey = hc + (ctx - hc) * L, ay0 + (cty - ay0) * L
+    r = wsl * 1.55
+    # counter-clockwise outline: slit + circle cut as separate subpaths, both reversed vs the frame
+    slit_u = (f"{U(hc - wsl / 2):.2f},{ay0 - 3:.2f} {U(ex - wsl / 2):.2f},{ey:.2f} "
+              f"{U(ex + wsl / 2):.2f},{ey:.2f} {U(hc + wsl / 2):.2f},{ay0 - 3:.2f}")
+    hole = (f"M{U(ex) + r:.2f} {ey + r * 0.6:.2f} a{r:.2f} {r:.2f} 0 1 0 {-2 * r:.2f} 0 "
+            f"a{r:.2f} {r:.2f} 0 1 0 {2 * r:.2f} 0 Z")
+    k3 = uid()
+    nib_u = (f'<clipPath id="{k3}"><path clip-rule="evenodd" d="M{U(ax0) - 60:.1f} {ay0 - 60:.1f} H{U(ax1) + 60:.1f} '
+             f'V{ay1 + 60:.1f} H{U(ax0) - 60:.1f} Z M{slit_u.replace(" ", " L")} Z {hole}"/></clipPath>')
+    out = out.replace(f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}" '
+                      f'clip-path="url(#{k2})" transform="translate({shift:.2f},0)"/></g>',
+                      nib_u + f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}" clip-path="url(#{k3})"/></g>')
+    out += f'<g transform="translate({-shift:.2f},0)">' + "".join(
+        f'<path d="{d}" fill="{fill}"/>' for i, (ch, d, _) in enumerate(glyphs) if i > ia) + '</g>'
+    return out, w - shift
+
+
 # ───────── lockups (3 variations) ─────────
 def v_a(mono=None, rev=False):
     """A — Mark + ONYX LOANS (italic caps). Closest to Split O, X carries the orange."""
@@ -217,7 +299,7 @@ def v_a(mono=None, rev=False):
     x = mw + size * 0.20
     c1 = mono or (WHITE if rev else ONYX)
     w1, a = word(BARLOW, "ONYX", size, x, base, c1, 1.5, orange_x=None if mono else ORANGE)
-    w2, b = word(BARLOW, "LOANS", size, x + a + size * 0.2, base, mono or GREEN, 1.5)
+    w2, b = word_oa(BARLOW, "LOANS", size, x + a + size * 0.2, base, mono or GREEN, 1.5, mono=mono)
     return mb + w1 + w2, x + a + size * 0.2 + b + 4, mh
 
 
@@ -287,8 +369,8 @@ W, H = 1600, 1240
 b = f'<rect width="{W}" height="{H}" fill="#FAFBFA"/>'
 b += label("ONYX LOANS — HEX SPLIT O", 80, 84, 22, INK, 6, "start", 600)
 b += label("Onyx half = the borrower (solid base). Green half = the cosigner / lender, lifted up and forward. "
-           "Orange = the GO. The X's rising stroke glows GoLoans green, cut clean like the hex corners.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
-b += label("Hexagon = a cut onyx crystal; gaps at the corners = clear, transparent terms.", 80, 142, 15, "#5B6B7C", 0, "start", 400)
+           "Orange = the GO.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
+b += label("Hexagon = a cut onyx crystal. The X glows GoLoans green. In LOANS the A links over the O and its tip is a pen nib (the signature).", 80, 142, 15, "#5B6B7C", 0, "start", 400)
 rows = [(180, 230), (450, 230), (720, 200)]
 for (key, title, fn), (y, hh) in zip(VARS, rows):
     body, w, h = fn()

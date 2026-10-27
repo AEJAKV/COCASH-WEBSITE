@@ -12,3 +12,4 @@ GoLoans palette: green `#008D05`, orange `#FF7A00` (GoLoans accent), onyx `#0B0F
 **Variations:** `v4a` mark + ONYX LOANS (italic caps, GoLoans DNA) · `v4b` the mark is the O ([O]NYX / LOANS) · `v4c` upright, friendly lowercase.
 Each has `logo-horizontal`, `logo-reversed`, `logo-one-colour`; shared `onyx-v4-mark` and `onyx-v4-app-icon`. SVG master + PNG @2x.
 Regenerate: `python3 scripts/generate-onyx-logos-v4.py OUT_DIR FONT_DIR`.
+- LOANS (variation A): the A links over the O with a clean cut, and its tip is a pen nib (slit + breather hole) — a nod to signing / co-signing and the old Cosign pen. O and A carry a deep-to-vivid green glow.
