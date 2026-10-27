@@ -111,6 +111,7 @@ def palette(mono=None, rev=False):
 
 # ───────── wordmarks ─────────
 XMODE = ["gradient-green"]
+GRAD = [None]   # optional custom stops: [(offset, colour), ...]
 
 
 def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
@@ -150,8 +151,10 @@ def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
                 out += (f'<clipPath id="{knock}"><path clip-rule="evenodd" d="M{x0 - 50:.1f} {y0 - 50:.1f} '
                         f'H{x1 + 50:.1f} V{y1 + 50:.1f} H{x0 - 50:.1f} Z M{pts.replace(" ", " L")} Z"/></clipPath>'
                         f'<path d="{d}" fill="{fill}" clip-path="url(#{knock})"/>')
-                out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0 + f / 2:.1f}" y1="{y1:.1f}" x2="{x1 - f / 2:.1f}" y2="{y0:.1f}">'
-                        f'<stop offset="0.2" stop-color="{GREEN if mode == "gradient-green" else fill}"/><stop offset="0.9" stop-color="{orange_x}"/></linearGradient>'
+                out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0 + f / 2:.1f}" y1="{y1:.1f}" x2="{x1 - f / 2:.1f}" y2="{y0:.1f}">' +
+                        ("".join(f'<stop offset="{o}" stop-color="{c}"/>' for o, c in GRAD[0]) if GRAD[0] else
+                         f'<stop offset="0.2" stop-color="{GREEN if mode == "gradient-green" else fill}"/><stop offset="0.9" stop-color="{orange_x}"/>')
+                        + '</linearGradient>'
                         f'<clipPath id="{cid}">{band}</clipPath>'
                         f'<path d="{d}" fill="url(#{gid})" clip-path="url(#{cid})"/>')
             elif mode == "tip":
