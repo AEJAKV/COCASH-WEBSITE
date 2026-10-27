@@ -102,6 +102,7 @@ def hex_o(colors, italic=True, R=60, r=31, gap=5, lift=4):
         dx, dy = (lift, -lift) if k in lifted else (0, 0)
         pts = " ".join(f"{x + dx:.2f},{y + dy:.2f}" for x, y in poly)
         out += f'<polygon points="{pts}" fill="{colors[k]}"/>'
+    out += nib(cx, cy + 3, r * 0.86, colors[2], colors[0])
     w, h = 2 * R + 16 + lift, 2 * R + 16
     if italic:
         sk = f"matrix(1 0 {-SLANT:.4f} 1 {cy * SLANT:.2f} 0)"
@@ -109,6 +110,27 @@ def hex_o(colors, italic=True, R=60, r=31, gap=5, lift=4):
         w += 0
     # shift down by lift so nothing clips at the top
     return f'<g transform="translate(0,{lift})">{out}</g>', w + 4, h + lift
+
+
+def nib(cx, cy, k, left, right):
+    """Fountain-pen nib pointing up (the Cosign pen, carried over). Slit + breather hole are real cuts.
+    Left half = base colour (borrower), right half = green (cosigner): the signature that joins them."""
+    tip, sh, bot = cy - k * 1.0, cy + k * 0.18, cy + k * 0.86
+    W = k * 0.66
+    body = (f"M{cx:.2f} {tip:.2f} L{cx + W:.2f} {sh:.2f} Q{cx + W * 1.04:.2f} {cy + k * 0.62:.2f} {cx:.2f} {bot:.2f} "
+            f"Q{cx - W * 1.04:.2f} {cy + k * 0.62:.2f} {cx - W:.2f} {sh:.2f} Z")
+    hr, hy, sw = k * 0.16, cy + k * 0.14, k * 0.085
+    # cuts drawn counter-clockwise relative to the body so they punch through under either fill rule
+    hole = (f"M{cx + hr:.2f} {hy:.2f} a{hr:.2f} {hr:.2f} 0 1 1 {-2 * hr:.2f} 0 a{hr:.2f} {hr:.2f} 0 1 1 {2 * hr:.2f} 0 Z")
+    slit = (f"M{cx - sw:.2f} {tip - 2:.2f} L{cx - sw:.2f} {hy - hr * 0.6:.2f} L{cx + sw:.2f} {hy - hr * 0.6:.2f} "
+            f"L{cx + sw:.2f} {tip - 2:.2f} Z")
+    d = f"{body} {hole} {slit}"
+    cid = uid()
+    if left == right:
+        return f'<path d="{d}" fill="{left}" fill-rule="evenodd"/>'
+    return (f'<path d="{d}" fill="{left}" fill-rule="evenodd"/>'
+            f'<clipPath id="{cid}"><rect x="{cx:.2f}" y="{tip - 5:.2f}" width="{W * 2:.2f}" height="{k * 2.2:.2f}"/></clipPath>'
+            f'<path d="{d}" fill="{right}" fill-rule="evenodd" clip-path="url(#{cid})"/>')
 
 
 def palette(mono=None, rev=False):
@@ -284,7 +306,7 @@ def word_oa(font, text, size, x, base, fill, tracking=0.0, mono=None, overlap=-0
              f'V{ay1 + 60:.1f} H{U(ax0) - 60:.1f} Z M{slit_u.replace(" ", " L")} Z {hole}"/></clipPath>')
     out = out.replace(f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}" '
                       f'clip-path="url(#{k2})" transform="translate({shift:.2f},0)"/></g>',
-                      nib_u + f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}" clip-path="url(#{k3})"/></g>')
+                      f'<g transform="translate({-shift:.2f},0)"><path d="{dA}" fill="{paint}"/></g>')
     out += f'<g transform="translate({-shift:.2f},0)">' + "".join(
         f'<path d="{d}" fill="{fill}"/>' for i, (ch, d, _) in enumerate(glyphs) if i > ia) + '</g>'
     return out, w - shift
@@ -370,7 +392,7 @@ b = f'<rect width="{W}" height="{H}" fill="#FAFBFA"/>'
 b += label("ONYX LOANS — HEX SPLIT O", 80, 84, 22, INK, 6, "start", 600)
 b += label("Onyx half = the borrower (solid base). Green half = the cosigner / lender, lifted up and forward. "
            "Orange = the GO.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
-b += label("Hexagon = a cut onyx crystal. The X glows GoLoans green. In LOANS the A links over the O and its tip is a pen nib (the signature).", 80, 142, 15, "#5B6B7C", 0, "start", 400)
+b += label("Hexagon = a cut onyx crystal holding the Cosign pen nib (the signature). The X glows green; in LOANS the A links over the O.", 80, 142, 15, "#5B6B7C", 0, "start", 400)
 rows = [(180, 230), (450, 230), (720, 200)]
 for (key, title, fn), (y, hh) in zip(VARS, rows):
     body, w, h = fn()
