@@ -490,6 +490,22 @@ def v_new(kind, mono=None, rev=False):
     return mb + w1 + shape + w2, sx1 + k + lift + 6, mh
 
 
+def v_a2(mono=None, rev=False, link=True):
+    """A, refined: one accent in the wordmark (the green X). LOANS flat green; OA link optional."""
+    mb, mw, mh = hex_o(palette(mono, rev))
+    size = mh * 0.60 / BARLOW.cap
+    base = mh / 2 + size * BARLOW.cap / 2 + 2
+    x = mw + size * 0.20
+    c1 = mono or (WHITE if rev else ONYX)
+    w1, a = word(BARLOW, "ONYX", size, x, base, c1, 1.5, orange_x=None if mono else ORANGE)
+    c2 = mono or GREEN
+    if link:
+        w2, b = word_oa(BARLOW, "LOANS", size, x + a + size * 0.2, base, c2, 1.5, mono=c2)
+    else:
+        w2, b = word(BARLOW, "LOANS", size, x + a + size * 0.2, base, c2, 1.5)
+    return mb + w1 + w2, x + a + size * 0.2 + b + 4, mh
+
+
 def v_b(mono=None, rev=False):
     """B — The mark IS the O: [O]NYX, with LOANS as a tracked tag under NYX."""
     mb, mw, mh = hex_o(palette(mono, rev))
