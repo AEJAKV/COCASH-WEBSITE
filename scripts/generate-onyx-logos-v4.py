@@ -110,7 +110,7 @@ def palette(mono=None, rev=False):
 
 
 # ───────── wordmarks ─────────
-XMODE = ["solid"]
+XMODE = ["gradient-green"]
 
 
 def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
@@ -131,13 +131,26 @@ def word(font, text, size, x, base, fill, tracking=0.0, orange_x=None):
             L = math.hypot(nx, ny); nx, ny = nx / L * gw * 0.15, ny / L * gw * 0.15
             pts = (f"{x0 - nx - 4:.2f},{y1 - ny + 4:.2f} {x1 - nx + 4:.2f},{y0 - ny - 4:.2f} "
                    f"{x1 + nx + 4:.2f},{y0 + ny - 4:.2f} {x0 + nx - 4:.2f},{y1 + ny + 4:.2f}")
+            # band that follows the real rising stroke: foot at bottom-left, head at top-right
+            f, e, ext = gw * 0.41, 0.6, (y1 - y0) * 0.06
+            k = (x1 - f - x0) / (y1 - y0)            # horizontal drift per unit height
+            yb, yt = y1 + ext, y0 - ext
+            xb, xt = x0 - k * ext, x1 - f + k * ext   # left edge of the stroke at bottom / top
+            pts = (f"{xb - e:.2f},{yb:.2f} {xb + f + e:.2f},{yb:.2f} "
+                   f"{xt + f + e:.2f},{yt:.2f} {xt - e:.2f},{yt:.2f}")
             cid, mode = uid(), XMODE[0]
             band = f'<polygon points="{pts}"/>'
             if mode == "none":
                 pass
             elif mode in ("gradient", "gradient-green"):
                 gid = uid()
-                out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0:.1f}" y1="{y1:.1f}" x2="{x1:.1f}" y2="{y0:.1f}">'
+                # remove the black "/" under the gradient: redraw the black X with the band cut out
+                out = out[: out.rfind('<path d=')]
+                knock = uid()
+                out += (f'<clipPath id="{knock}"><path clip-rule="evenodd" d="M{x0 - 50:.1f} {y0 - 50:.1f} '
+                        f'H{x1 + 50:.1f} V{y1 + 50:.1f} H{x0 - 50:.1f} Z M{pts.replace(" ", " L")} Z"/></clipPath>'
+                        f'<path d="{d}" fill="{fill}" clip-path="url(#{knock})"/>')
+                out += (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{x0 + f / 2:.1f}" y1="{y1:.1f}" x2="{x1 - f / 2:.1f}" y2="{y0:.1f}">'
                         f'<stop offset="0.2" stop-color="{GREEN if mode == "gradient-green" else fill}"/><stop offset="0.9" stop-color="{orange_x}"/></linearGradient>'
                         f'<clipPath id="{cid}">{band}</clipPath>'
                         f'<path d="{d}" fill="url(#{gid})" clip-path="url(#{cid})"/>')
@@ -248,7 +261,7 @@ W, H = 1600, 1240
 b = f'<rect width="{W}" height="{H}" fill="#FAFBFA"/>'
 b += label("ONYX LOANS — HEX SPLIT O", 80, 84, 22, INK, 6, "start", 600)
 b += label("Onyx half = the borrower (solid base). Green half = the cosigner / lender, lifted up and forward. "
-           "Orange rising stroke = the GO — repeated in the X.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
+           "Orange = the GO. The X rises from GoLoans green into that orange.", 80, 118, 15, "#5B6B7C", 0, "start", 400)
 b += label("Hexagon = a cut onyx crystal; gaps at the corners = clear, transparent terms.", 80, 142, 15, "#5B6B7C", 0, "start", 400)
 rows = [(180, 230), (450, 230), (720, 200)]
 for (key, title, fn), (y, hh) in zip(VARS, rows):
