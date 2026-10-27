@@ -376,6 +376,49 @@ def v_d(mono=None, rev=False):
     return mb + w1 + body_slab + w2 + stripes, end, mh
 
 
+def v_blocks(mono=None, rev=False, two=False):
+    """D2 (two=False): flat green LOANS slab, plain onyx X, slab trimmed to the type.
+    D3 (two=True): ONYX in an onyx slab + LOANS in a green slab — the GoLoans block structure, mirrored."""
+    mb, mw, mh = hex_o(palette(mono, rev))
+    size = mh * 0.50 / BARLOW.cap
+    cap = size * BARLOW.cap
+    base = mh / 2 + cap / 2
+    pv = cap * 0.22                                   # tight vertical padding
+    y0, y1 = base - cap - pv, base + pv
+    k = (y1 - y0) * SLANT
+    ph = size * 0.13
+    gap = 5 * mh / 140 * 1.6                          # = hex segment gap
+    ymid = base - cap / 2
+    _, ow = word(BARLOW, "ONYX", size, 0, 0, WHITE, 1.5)
+    _, lw = word_oa(BARLOW, "LOANS", size, 0, 0, WHITE, 1.5, mono=WHITE)
+    x = mw + size * 0.22
+    out = mb
+    if two:
+        bx0, bx1 = x, x + k + ph * 2 + ow
+        bfill = mono or (WHITE if rev else ONYX)
+        out += slab(bx0, bx1, y0, y1, bfill)
+        cx = (bx0 + bx1) / 2 + (y1 - ymid) * SLANT
+        tfill = (ONYX if rev else WHITE) if not mono else (WHITE if mono != WHITE else ONYX)
+        w1, _ = word(BARLOW, "ONYX", size, cx - ow / 2 - cap * 0.05, base, tfill, 1.5)
+        out += w1
+        sx0 = bx1 + gap
+    else:
+        c1 = mono or (WHITE if rev else ONYX)
+        w1, a = word(BARLOW, "ONYX", size, x, base, c1, 1.5)      # plain X, no glow
+        out += w1
+        sx0 = x + a + size * 0.20
+    sx1 = sx0 + k + ph * 2 + lw
+    out += slab(sx0 - (1 if two else 0), sx1, y0, y1, mono or GREEN)
+    cx = (sx0 + sx1) / 2 + (y1 - ymid) * SLANT
+    tfill = WHITE if not mono else (WHITE if mono != WHITE else ONYX)
+    w2, _ = word_oa(BARLOW, "LOANS", size, cx - lw / 2 - cap * 0.05, base, tfill, 1.5, mono=tfill)
+    out += w2
+    w_a, w_b = size * 0.085, size * 0.06
+    st = sx1 + gap
+    out += slab(st, st + w_a, y0, y1, mono or GREEN_LT) + slab(st + w_a + gap, st + w_a + gap + w_b, y0, y1, mono or GREEN_DK)
+    return out, st + w_a + gap + w_b + k + 4, mh
+
+
 def v_b(mono=None, rev=False):
     """B — The mark IS the O: [O]NYX, with LOANS as a tracked tag under NYX."""
     mb, mw, mh = hex_o(palette(mono, rev))
