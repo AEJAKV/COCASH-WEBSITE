@@ -13,6 +13,7 @@ OUT, FD = sys.argv[1], sys.argv[2]
 os.makedirs(OUT, exist_ok=True)
 
 GREEN, GREEN_DK = "#008D05", "#006B04"
+GREEN_LT = "#3DAA36"
 ORANGE = "#FF7A00"
 ONYX = "#0B0F0D"
 WHITE = "#FFFFFF"
@@ -326,6 +327,55 @@ def v_a(mono=None, rev=False):
     return mb + w1 + w2, x + a + size * 0.2 + b + 4, mh
 
 
+def slab(x0, x1, y0, y1, fill):
+    """Forward-slanted block at the same 12-degree slant as the type and the hex."""
+    k = (y1 - y0) * SLANT
+    return (f'<polygon points="{x0 + k:.2f},{y0:.2f} {x1 + k:.2f},{y0:.2f} {x1:.2f},{y1:.2f} {x0:.2f},{y1:.2f}" '
+            f'fill="{fill}"/>')
+
+
+def v_d(mono=None, rev=False):
+    """D — ONYX as free type + LOANS knocked out of a GoLoans-style green slab with speed stripes.
+    Slab height = hex height; stripe gaps = hex segment gaps; slant = type slant."""
+    mb, mw, mh = hex_o(palette(mono, rev))
+    size = mh * 0.56 / BARLOW.cap
+    cap = size * BARLOW.cap
+    base = mh / 2 + cap / 2 + 2
+    x = mw + size * 0.20
+    c1 = mono or (WHITE if rev else ONYX)
+    w1, a = word(BARLOW, "ONYX", size, x, base, c1, 1.5, orange_x=None if mono else ORANGE)
+    # slab spans the hex's flat-side band so the two units read as equals
+    y0, y1 = base - cap - cap * 0.30, base + cap * 0.30
+    sx0 = x + a + size * 0.16
+    pad = size * 0.16
+    k = (y1 - y0) * SLANT
+    # measure LOANS first
+    _, lw = word_oa(BARLOW, "LOANS", size, 0, 0, WHITE, 1.5, mono=WHITE)
+    sx1 = sx0 + k * 0.5 + pad + lw + pad + k * 0.5
+    slab_fill = mono or GREEN
+    text_fill = (WHITE if mono != WHITE else ONYX) if mono else WHITE
+    gid = uid()
+    if mono:
+        body_slab = slab(sx0, sx1, y0, y1, slab_fill)
+    else:
+        body_slab = (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" x1="{sx0:.1f}" y1="0" x2="{sx1 + k:.1f}" y2="0">'
+                     f'<stop offset="0" stop-color="{GREEN_DK}"/><stop offset="0.35" stop-color="{GREEN}"/>'
+                     f'<stop offset="1" stop-color="#00A307"/></linearGradient>' + slab(sx0, sx1, y0, y1, f"url(#{gid})"))
+    # centre LOANS optically in the slab: slab centre at cap mid-height vs text centre (italic shifts it right)
+    ymid = base - cap / 2
+    slab_cx = (sx0 + sx1) / 2 + (y1 - ymid) * SLANT
+    tx = slab_cx - lw / 2 - cap * 0.5 * 0.21 * 0.5
+    w2, _ = word_oa(BARLOW, "LOANS", size, tx, base, text_fill, 1.5, mono=text_fill)
+    # speed stripes: gap = hex segment gap scaled to this lockup, widths step down
+    g = 5 * mh / 140
+    st1 = sx1 + g * 1.6
+    w_a, w_b = size * 0.095, size * 0.065
+    stripes = (slab(st1, st1 + w_a, y0, y1, mono or GREEN_LT) +
+               slab(st1 + w_a + g * 1.6, st1 + w_a + g * 1.6 + w_b, y0, y1, mono or GREEN_DK))
+    end = st1 + w_a + g * 1.6 + w_b + k + 4
+    return mb + w1 + body_slab + w2 + stripes, end, mh
+
+
 def v_b(mono=None, rev=False):
     """B — The mark IS the O: [O]NYX, with LOANS as a tracked tag under NYX."""
     mb, mw, mh = hex_o(palette(mono, rev))
@@ -356,7 +406,8 @@ def v_c(mono=None, rev=False):
 
 VARS = [("a", "A — HEX SPLIT O + ONYX LOANS", v_a),
         ("b", "B — THE MARK IS THE O", v_b),
-        ("c", "C — UPRIGHT + FRIENDLY", v_c)]
+        ("c", "C — UPRIGHT + FRIENDLY", v_c),
+        ("d", "D — ONYX + LOANS SLAB", v_d)]
 
 
 def place(body, w, h, x, y, bw, bh):

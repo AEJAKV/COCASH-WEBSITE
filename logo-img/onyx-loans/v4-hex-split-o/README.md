@@ -14,3 +14,9 @@ Each has `logo-horizontal`, `logo-reversed`, `logo-one-colour`; shared `onyx-v4-
 Regenerate: `python3 scripts/generate-onyx-logos-v4.py OUT_DIR FONT_DIR`.
 - Centre of the hexagon: a small classic fountain-pen nib pointing up (the Cosign pen, carried over), single colour with slit + breather hole — the signature that joins borrower and cosigner.
 - LOANS (variation A): the A links over the O with a clean cut; O and A carry a deep-to-vivid green glow.
+
+## Variation D — LOANS slab (GoLoans block DNA)
+- ONYX stays free type with the green-glow X; LOANS is knocked out in white from a GoLoans-style green slab with two speed stripes.
+- Slab, stripes, type and hex all share the 12° slant. Slab height matches the hex; stripe gaps match the hex segment gaps.
+- The X's green stroke hands off into the slab (momentum → approval). The linked OA cut shows the green through.
+- Files: `onyx-v4d-logo-horizontal`, `-reversed`, `-one-colour`; board `board-v4d-loans-slab.png`.
