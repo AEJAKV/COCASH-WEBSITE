@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200"><rect width="200" height="200" rx="44" fill="#0B2347"/><g transform="translate(-6.814814814814813,-3.7037037037036953) scale(1.037037037037037)">
+  <path d="M161.84 77.00 A46 46 0 0 0 114.33 54.64" fill="none" stroke="#FF8A1D" stroke-width="16"/>
+  <path d="M88.03 68.98 A46 46 0 1 0 165.23 115.73" fill="none" stroke="#FF8A1D" stroke-width="16"/>
+  <circle cx="161.84" cy="77.00" r="8.0" fill="#FF8A1D"/>
+  <path d="M178.38 120.52 L171.04 99.76 L152.07 110.94 Z" fill="#FF8A1D" stroke="#FF8A1D" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M38.16 123.00 A46 46 0 1 1 111.97 131.02" fill="none" stroke="#5B9BFF" stroke-width="16"/>
+  <circle cx="38.16" cy="123.00" r="8.0" fill="#5B9BFF"/>
+  <path d="M85.67 145.36 A46 46 0 0 1 62.27 143.23" fill="none" stroke="#5B9BFF" stroke-width="16"/>
+  <circle cx="62.27" cy="143.23" r="8.0" fill="#5B9BFF"/>
+  
+  <polygon points="92.98,86.50 107.02,86.50 113.50,95.80 100.00,117.50 86.50,95.80" fill="#1A3F7A"/>
+  <polygon points="92.98,86.50 107.02,86.50 103.86,95.80 96.14,95.80" fill="#FFFFFF"/>
+  <polygon points="107.02,86.50 113.50,95.80 103.86,95.80" fill="#5B9BFF"/>
+  <polygon points="96.14,95.80 103.86,95.80 100.00,117.50" fill="#5B9BFF"/>
+  <polygon points="103.86,95.80 113.50,95.80 100.00,117.50" fill="#FFFFFF" opacity="0.55"/>
+</g></svg>
