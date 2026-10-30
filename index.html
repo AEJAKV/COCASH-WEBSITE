@@ -591,13 +591,6 @@ nav ul li a:hover {
 .lg-sub  { display: none; }
 .lg-amount-label { display: none; }
 
-/* Amount pills */
-.lg-pills {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-  margin-bottom: 6px;
-}
 .lg-pill {
   position: relative;
   overflow: hidden;
@@ -632,19 +625,6 @@ nav ul li a:hover {
   border-color: rgba(255,255,255,0.24);
   box-shadow: 0 10px 24px rgba(247,135,31,0.34), 0 1px 4px rgba(0,0,0,0.10);
 }
-.lg-pill.wide { grid-column: 1 / -1; }
-/* Light leak shimmer on wide $2000+ pill */
-.lg-pill.wide::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -80%;
-  width: 55%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
-  transform: skewX(-20deg);
-  transition: left 0.5s ease;
-  pointer-events: none;
-}
-.lg-pill.wide:hover::after { left: 130%; }
 /* Ripple on selection */
 .lg-pill-ripple {
   position: absolute;
@@ -2555,9 +2535,6 @@ footer {
   .loan-form-section { padding: 36px 0; }
   .loan-form-section .hero-form-card { max-width: 100%; }
   /* Liquid glass card mobile */
-  .lg-pills { grid-template-columns: repeat(3, 1fr); }
-  .lg-pill.wide { grid-column: 1 / -1; }
-  .lg-pill[data-amount="1500"] { grid-column: 2 / -1; }
   .lg-card { padding: 28px 20px 24px; border-radius: 22px; }
   .lg-outer { border-radius: 24px; }
   #loan-form-section { padding: 36px 0 44px; }
@@ -2870,6 +2847,191 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .oh-intro > *, .oh-card, .oh-steps, .oh-visual, .oh-ring-ticks { animation: none !important; }
 }
+/* ===================== LOAN CARD: AMOUNT DIAL ===================== */
+.lg-outer--dial { max-width: 1120px; border-radius: 30px; }
+.lg-card--dial {
+  border-radius: 28px;
+  padding: 36px 44px 36px 36px;
+  display: grid;
+  grid-template-columns: minmax(0, 540px) minmax(0, 1fr);
+  grid-template-areas: "dial head" "dial form";
+  grid-template-rows: auto 1fr;
+  column-gap: 52px;
+  row-gap: 22px;
+  align-items: start;
+}
+.lgd-head { grid-area: head; align-self: end; display: flex; flex-direction: column; gap: 14px; }
+.lgd-eyebrow {
+  align-self: flex-start;
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #005C00;
+  background: #E4F1E4;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+.lg-card--dial .lg-heading { margin: 0; text-align: left; font-size: 2.85rem; line-height: 1.06; letter-spacing: -0.02em; }
+.lgd-sub { margin: 0; font-size: 1.05rem; line-height: 1.6; color: #3F4642; }
+
+/* Dial */
+.lgd-panel {
+  grid-area: dial;
+  align-self: center;
+  background: #fff;
+  border: 1px solid rgba(0,138,0,0.10);
+  border-radius: 24px;
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.lgd-dial {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 0.85;
+  container-type: inline-size;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+.lgd-dial.is-dragging { cursor: grabbing; }
+.lgd-svg { position: absolute; left: 15%; top: 15.29%; width: 70%; height: auto; }
+.lgd-face {
+  transform-box: view-box;
+  transform-origin: 260px 260px;
+  transform: rotate(-75deg);
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lgd-dial.is-dragging .lgd-face { transition: none; }
+.lgd-readout {
+  position: absolute;
+  left: 50%;
+  top: 56.47%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  pointer-events: none;
+  text-align: center;
+}
+.lgd-readout-amount {
+  font-size: 26px;
+  font-size: clamp(24px, 6.4cqw, 36px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.lgd-readout-label {
+  margin-top: 5px;
+  font-size: 10px;
+  font-size: clamp(9px, 2.2cqw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #A7AFAA;
+}
+.lgd-pill.lg-pill {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  min-width: 64px;
+  min-width: clamp(64px, 18cqw, 98px);
+  height: 42px;
+  height: clamp(40px, 10.5cqw, 48px);
+  padding: 0 12px;
+  padding: 0 clamp(9px, 2.8cqw, 16px);
+  font-size: 15px;
+  font-size: clamp(15px, 4.5cqw, 18px);
+  white-space: nowrap;
+  background: rgba(255,255,255,0.92);
+}
+.lgd-pill.lg-pill.selected { background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%); }
+.lgd-pill.lg-pill:hover { transform: translate(-50%, -50%) translateY(-2px); }
+.lgd-step { display: flex; align-items: center; gap: 14px; }
+.lgd-step-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0,138,0,0.25);
+  background: #fff;
+  color: #005C00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.lgd-step-btn:hover { border-color: #008A00; box-shadow: 0 0 14px rgba(0,138,0,0.18); }
+.lgd-step-hint { font-size: 0.875rem; font-weight: 700; color: #4F5752; }
+
+/* Amount, figures, CTA */
+.lgd-form { grid-area: form; display: flex; flex-direction: column; }
+.lgd-label { font-size: 0.8rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; color: #4F5752; }
+.lg-card--dial .lg-input-wrap { margin-top: 8px; }
+.lgd-stats { margin-top: 16px; }
+.lgd-stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.lgd-stats-grid--rep { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.lgd-stats-grid[hidden] { display: none; }
+.lgd-stat {
+  background: #fff;
+  border: 1px solid rgba(0,138,0,0.14);
+  border-radius: 14px;
+  padding: 13px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lgd-stat span { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; color: #4F5752; }
+.lgd-stat strong { font-size: 1.35rem; font-weight: 900; color: #005C00; }
+.lg-card--dial .lg-cta-btn { border-radius: 999px; padding: 20px 24px; font-size: 1.15rem; letter-spacing: 0.08em; }
+.lg-card--dial .lg-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; text-align: left; }
+.lg-card--dial .lg-renew-link { margin: 0; font-size: 0.92rem; }
+
+@media (max-width: 1023px) {
+  .lg-card--dial {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "head" "dial" "form";
+    grid-template-rows: auto;
+    padding: 32px 28px 28px;
+  }
+  .lgd-head { align-items: center; text-align: center; }
+  .lgd-eyebrow { align-self: center; }
+  .lg-card--dial .lg-heading { text-align: center; font-size: 2.2rem; }
+  .lgd-panel { width: 100%; max-width: 540px; justify-self: center; }
+  .lgd-form { width: 100%; max-width: 560px; justify-self: center; }
+}
+
+@media (max-width: 767px) {
+  .lg-card--dial { padding: 26px 12px 22px; row-gap: 14px; }
+  .lgd-head { gap: 10px; }
+  .lgd-eyebrow { font-size: 0.68rem; padding: 7px 12px; }
+  .lg-card--dial .lg-heading { font-size: 1.65rem; }
+  .lgd-sub { font-size: 0.9rem; padding: 0 6px; }
+  .lgd-panel { padding: 0; background: none; border: 0; border-radius: 0; }
+  /* pull the label ring in slightly so the side amounts stay inside the card */
+  .lgd-pills { position: absolute; inset: 0 3.5%; }
+  .lgd-pill.lg-pill { min-width: 58px; padding: 0 8px; }
+  .lgd-readout-label { display: none; }
+  .lgd-step { gap: 12px; }
+  .lgd-step-hint { font-size: 0.78rem; }
+  .lgd-form { padding: 0 2px; }
+  .lgd-stats-grid { gap: 8px; }
+  .lgd-stat { padding: 10px 8px; text-align: center; }
+  .lgd-stat span { font-size: 0.62rem; letter-spacing: 0.06em; }
+  .lgd-stat strong { font-size: 1.05rem; white-space: nowrap; }
+  .lg-card--dial .lg-cta-btn { padding: 18px 16px; font-size: 1.05rem; }
+  .lg-card--dial .lg-card-footer { flex-direction: column; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lgd-face { transition: none; }
+}
 </style>
 </head>
 <body>
@@ -3121,27 +3283,95 @@ footer {
 <!-- LIQUID GLASS LOAN CARD -->
 <section id="loan-form-section" aria-label="Apply for a loan">
   <div class="lg-wrap">
-    <div class="lg-outer">
-      <div class="lg-card" id="loan-form">
-        <h2 class="lg-heading">How Much Cash Would You Like?</h2>
-        <div class="lg-pills" role="group" aria-label="Preset loan amounts">
-          <button class="lg-pill" data-amount="250" onclick="lgSelect(this)">$250</button>
-          <button class="lg-pill selected" data-amount="500" onclick="lgSelect(this)">$500</button>
-          <button class="lg-pill" data-amount="750" onclick="lgSelect(this)">$750</button>
-          <button class="lg-pill" data-amount="1000" onclick="lgSelect(this)">$1,000</button>
-          <button class="lg-pill" data-amount="1500" onclick="lgSelect(this)">$1,500</button>
-          <button class="lg-pill wide" data-amount="2000" onclick="lgSelect(this)">$2,000+</button>
+    <div class="lg-outer lg-outer--dial">
+      <div class="lg-card lg-card--dial" id="loan-form">
+        <div class="lgd-head">
+          <p class="lgd-eyebrow">Choose your amount</p>
+          <h2 class="lg-heading">How Much Cash Would You Like?</h2>
+          <p class="lgd-sub">Drag the dial or tap an amount, or type an exact figure below.</p>
         </div>
-        <div class="lg-input-wrap">
-          <span class="lg-prefix">$</span>
-          <input type="number" class="lg-input" id="lgAmount" value="500" min="250" max="50000" aria-label="Loan amount in dollars">
+
+        <div class="lgd-panel">
+          <div class="lgd-dial" id="lgDial">
+            <svg class="lgd-svg" viewBox="0 0 520 520" aria-hidden="true">
+              <defs>
+                <linearGradient id="lgdRim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CFD3D2"/><stop offset="1" stop-color="#616865"/></linearGradient>
+                <linearGradient id="lgdOnyx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B2B2B"/><stop offset="1" stop-color="#000000"/></linearGradient>
+                <linearGradient id="lgdGreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#008A00"/><stop offset="1" stop-color="#005C00"/></linearGradient>
+                <linearGradient id="lgdHub" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171A18"/><stop offset="1" stop-color="#000000"/></linearGradient>
+                <linearGradient id="lgdSilver" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C5CBC8"/><stop offset="1" stop-color="#767D79"/></linearGradient>
+              </defs>
+              <circle cx="260" cy="260" r="232" fill="url(#lgdOnyx)"/>
+              <circle cx="260" cy="260" r="232" fill="none" stroke="url(#lgdRim)" stroke-width="7"/>
+              <g class="lgd-face" id="lgdFace">
+                <circle cx="260" cy="260" r="214" fill="none" stroke="#CED2D0" stroke-width="10" stroke-dasharray="1.6 20.8" transform="rotate(-90.2 260 260)" opacity="0.7"/>
+                <circle cx="260" cy="260" r="212" fill="none" stroke="#CED2D0" stroke-width="16" stroke-dasharray="3 108" transform="rotate(-90.4 260 260)"/>
+                <circle cx="260" cy="260" r="186" fill="#0C0E0D"/>
+                <polygon points="202.6,121.4 317.4,121.4 306.7,147.3 213.3,147.3" fill="#008A00"/>
+                <polygon points="317.4,121.4 398.6,202.6 372.7,213.3 306.7,147.3" fill="url(#lgdGreen)"/>
+                <polygon points="398.6,202.6 398.6,317.4 372.7,306.7 372.7,213.3" fill="#007300"/>
+                <polygon points="398.6,317.4 317.4,398.6 306.7,372.7 372.7,306.7" fill="#005C00"/>
+                <polygon points="317.4,398.6 202.6,398.6 213.3,372.7 306.7,372.7" fill="#005C00"/>
+                <polygon points="202.6,398.6 121.4,317.4 147.3,306.7 213.3,372.7" fill="#006800"/>
+                <polygon points="121.4,317.4 121.4,202.6 147.3,213.3 147.3,306.7" fill="url(#lgdGreen)"/>
+                <polygon points="121.4,202.6 202.6,121.4 213.3,147.3 147.3,213.3" fill="#008A00"/>
+                <polygon points="215.6,152.8 304.4,152.8 296.7,171.3 223.3,171.3" fill="#7B837E"/>
+                <polygon points="304.4,152.8 367.2,215.6 348.7,223.3 296.7,171.3" fill="#2A2F2B"/>
+                <polygon points="367.2,215.6 367.2,304.4 348.7,296.7 348.7,223.3" fill="#161917"/>
+                <polygon points="367.2,304.4 304.4,367.2 296.7,348.7 348.7,296.7" fill="#0B0D0B"/>
+                <polygon points="304.4,367.2 215.6,367.2 223.3,348.7 296.7,348.7" fill="#121512"/>
+                <polygon points="215.6,367.2 152.8,304.4 171.3,296.7 223.3,348.7" fill="#222622"/>
+                <polygon points="152.8,304.4 152.8,215.6 171.3,223.3 171.3,296.7" fill="#3A403B"/>
+                <polygon points="152.8,215.6 215.6,152.8 223.3,171.3 171.3,223.3" fill="url(#lgdSilver)"/>
+                <polygon points="223.3,171.3 296.7,171.3 348.7,223.3 348.7,296.7 296.7,348.7 223.3,348.7 171.3,296.7 171.3,223.3" fill="url(#lgdHub)"/>
+                <polygon points="244,-2 276,-2 260,26" fill="#F7871F"/>
+                <polygon points="250,66 270,66 260,90" fill="#F7871F"/>
+              </g>
+            </svg>
+            <div class="lgd-readout" aria-hidden="true">
+              <span class="lgd-readout-amount" id="lgdReadout">$500</span>
+              <span class="lgd-readout-label">Your amount</span>
+            </div>
+            <div class="lgd-pills" role="group" aria-label="Preset loan amounts">
+              <button type="button" class="lg-pill lgd-pill" data-amount="250" data-angle="-125" style="left:13.14%;top:86.84%" aria-pressed="false">$250</button>
+              <button type="button" class="lg-pill lgd-pill selected" data-amount="500" data-angle="-75" style="left:6.53%;top:42.77%" aria-pressed="true">$500</button>
+              <button type="button" class="lg-pill lgd-pill" data-amount="750" data-angle="-25" style="left:30.98%;top:8.49%" aria-pressed="false">$750</button>
+              <button type="button" class="lg-pill lgd-pill" data-amount="1000" data-angle="25" style="left:69.02%;top:8.49%" aria-pressed="false">$1,000</button>
+              <button type="button" class="lg-pill lgd-pill" data-amount="1500" data-angle="75" style="left:93.47%;top:42.77%" aria-pressed="false">$1,500</button>
+              <button type="button" class="lg-pill lgd-pill" data-amount="2000" data-angle="125" style="left:86.86%;top:86.84%" aria-pressed="false">$2,000+</button>
+            </div>
+          </div>
+          <div class="lgd-step">
+            <button type="button" class="lgd-step-btn" id="lgdPrev" aria-label="Turn dial to a smaller amount"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6 8 12l6 6"/></svg></button>
+            <span class="lgd-step-hint">Drag the dial or tap an amount</span>
+            <button type="button" class="lgd-step-btn" id="lgdNext" aria-label="Turn dial to a larger amount"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button>
+          </div>
         </div>
-        <button class="lg-cta-btn" id="lgCtaBtn" onclick="lgApply()">Claim Your Cash!</button>
-        <div class="lg-card-footer">
-          <a href="/renew/" class="lg-renew-link">Already a customer? Renew Your Loan →</a>
-          <span class="lg-secure-row">
-            <span class="lg-lock-icon">🔒</span> 256-bit SSL encrypted &amp; 100% secure application
-          </span>
+
+        <div class="lgd-form">
+          <label class="lgd-label" for="lgAmount">Amount</label>
+          <div class="lg-input-wrap">
+            <span class="lg-prefix">$</span>
+            <input type="number" class="lg-input" id="lgAmount" value="500" min="250" max="50000" aria-label="Loan amount in dollars">
+          </div>
+          <div class="lgd-stats" aria-live="polite">
+            <div class="lgd-stats-grid" id="lgdTerms">
+              <div class="lgd-stat"><span>Bi-weekly</span><strong id="lgdRepayment">$152</strong></div>
+              <div class="lgd-stat"><span>Payments</span><strong id="lgdPayments">6</strong></div>
+              <div class="lgd-stat"><span>Term</span><strong id="lgdTerm">3 months</strong></div>
+            </div>
+            <div class="lgd-stats-grid lgd-stats-grid--rep" id="lgdRep" hidden>
+              <div class="lgd-stat"><span>Representative APR</span><strong>32%</strong></div>
+              <div class="lgd-stat"><span>Repayment</span><strong>91–120 days</strong></div>
+            </div>
+          </div>
+          <button class="lg-cta-btn" id="lgCtaBtn" onclick="lgApply()">Claim Your Cash!</button>
+          <div class="lg-card-footer">
+            <a href="/renew/" class="lg-renew-link">Already a customer? Renew Your Loan →</a>
+            <span class="lg-secure-row">
+              <span class="lg-lock-icon">🔒</span> 256-bit SSL encrypted &amp; 100% secure application
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -3712,37 +3942,6 @@ document.addEventListener('keydown', function(e) {
 
 // Loan amount preset selection
 // ===================== LIQUID GLASS LOAN CARD =====================
-function lgSelect(btn) {
-  document.querySelectorAll('.lg-pill').forEach(function(p) { p.classList.remove('selected'); });
-  btn.classList.add('selected');
-  // Ripple effect
-  var r = document.createElement('span');
-  r.className = 'lg-pill-ripple';
-  var rect = btn.getBoundingClientRect();
-  r.style.left = (rect.width / 2) + 'px';
-  r.style.top  = (rect.height / 2) + 'px';
-  btn.appendChild(r);
-  setTimeout(function() { if (r.parentNode) r.parentNode.removeChild(r); }, 600);
-  // Sync input with morph animation
-  var inp = document.getElementById('lgAmount');
-  inp.value = btn.getAttribute('data-amount');
-  inp.classList.remove('morphing');
-  void inp.offsetWidth;
-  inp.classList.add('morphing');
-  setTimeout(function() { inp.classList.remove('morphing'); }, 350);
-}
-
-// Sync amount input → highlight matching pill
-(function() {
-  var inp = document.getElementById('lgAmount');
-  if (!inp) return;
-  inp.addEventListener('input', function() {
-    var val = parseInt(this.value);
-    document.querySelectorAll('.lg-pill').forEach(function(p) {
-      p.classList.toggle('selected', parseInt(p.getAttribute('data-amount')) === val);
-    });
-  });
-})();
 
 function lgApply() {
   var amount = document.getElementById('lgAmount').value || 500;
@@ -3860,6 +4059,128 @@ var lcData = {
   });
 
   render();
+})();
+
+// Amount dial: drag or tap to turn, snaps to the nearest preset; typing snaps too
+(function() {
+  var dial = document.getElementById('lgDial');
+  if (!dial) return;
+  var face = document.getElementById('lgdFace');
+  var readout = document.getElementById('lgdReadout');
+  var input = document.getElementById('lgAmount');
+  var pills = Array.prototype.slice.call(dial.querySelectorAll('.lgd-pill'));
+  var stops = pills.map(function(p) {
+    return { amount: parseInt(p.getAttribute('data-amount'), 10), angle: parseFloat(p.getAttribute('data-angle')), label: p.textContent };
+  });
+  var CENTER_Y = 0.48; // dial centre, as a fraction of the dial's width from its top
+  var current = 1;
+  var dragging = false;
+
+  function rotate(deg) { face.style.transform = 'rotate(' + deg + 'deg)'; }
+
+  function renderStats(amount) {
+    var d = lcData[String(amount)];
+    document.getElementById('lgdTerms').hidden = !d;
+    document.getElementById('lgdRep').hidden = !!d;
+    if (d) {
+      document.getElementById('lgdRepayment').textContent = d.repayment.replace(/\.00$/, '');
+      document.getElementById('lgdPayments').textContent = d.payments;
+      document.getElementById('lgdTerm').textContent = d.term;
+    }
+  }
+
+  function ripple(btn) {
+    var r = document.createElement('span');
+    r.className = 'lg-pill-ripple';
+    r.style.left = (btn.offsetWidth / 2) + 'px';
+    r.style.top = (btn.offsetHeight / 2) + 'px';
+    btn.appendChild(r);
+    setTimeout(function() { if (r.parentNode) r.parentNode.removeChild(r); }, 600);
+  }
+
+  // fromInput keeps the typed figure; otherwise the field takes the preset amount
+  function select(i, fromInput) {
+    var changed = i !== current;
+    current = i;
+    pills.forEach(function(p, k) {
+      p.classList.toggle('selected', k === i);
+      p.setAttribute('aria-pressed', k === i ? 'true' : 'false');
+    });
+    rotate(stops[i].angle);
+    if (fromInput) {
+      var typed = parseInt(input.value, 10);
+      readout.textContent = '$' + typed.toLocaleString('en-CA');
+      renderStats(typed);
+      return;
+    }
+    readout.textContent = stops[i].label;
+    renderStats(stops[i].amount);
+    if (changed || input.value !== String(stops[i].amount)) {
+      input.value = stops[i].amount;
+      input.classList.remove('morphing');
+      void input.offsetWidth;
+      input.classList.add('morphing');
+      setTimeout(function() { input.classList.remove('morphing'); }, 350);
+    }
+    if (changed) ripple(pills[i]);
+  }
+
+  function nearestByAngle(a) {
+    var best = 0;
+    stops.forEach(function(s, k) { if (Math.abs(a - s.angle) < Math.abs(a - stops[best].angle)) best = k; });
+    return best;
+  }
+
+  function nearestByAmount(v) {
+    var best = 0;
+    stops.forEach(function(s, k) { if (Math.abs(v - s.amount) < Math.abs(v - stops[best].amount)) best = k; });
+    return best;
+  }
+
+  function angleAt(e) {
+    var r = dial.getBoundingClientRect();
+    var x = e.clientX - (r.left + r.width / 2);
+    var y = e.clientY - (r.top + r.width * CENTER_Y);
+    return Math.atan2(x, -y) * 180 / Math.PI;
+  }
+
+  dial.addEventListener('pointerdown', function(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    if (e.target.closest('.lgd-pill')) return; // taps on a pill are handled by its click
+    dragging = true;
+    dial.classList.add('is-dragging');
+    try { dial.setPointerCapture(e.pointerId); } catch (err) {}
+    var a = angleAt(e);
+    select(nearestByAngle(a));
+    rotate(a);
+  });
+  dial.addEventListener('pointermove', function(e) {
+    if (!dragging) return;
+    var a = angleAt(e);
+    var i = nearestByAngle(a);
+    if (i !== current) select(i);
+    rotate(a);
+  });
+  function endDrag() {
+    if (!dragging) return;
+    dragging = false;
+    dial.classList.remove('is-dragging');
+    rotate(stops[current].angle);
+  }
+  dial.addEventListener('pointerup', endDrag);
+  dial.addEventListener('pointercancel', endDrag);
+
+  pills.forEach(function(p, k) { p.addEventListener('click', function() { select(k); }); });
+  document.getElementById('lgdPrev').addEventListener('click', function() { select(Math.max(0, current - 1)); });
+  document.getElementById('lgdNext').addEventListener('click', function() { select(Math.min(stops.length - 1, current + 1)); });
+
+  input.addEventListener('input', function() {
+    var v = parseInt(input.value, 10);
+    if (isNaN(v)) return;
+    select(nearestByAmount(v), true);
+  });
+
+  select(current);
 })();
 var lcFieldMap = {
   lcAmount:'amount', lcRepayment:'repayment', lcFrequency:'frequency', lcTerm:'term',
