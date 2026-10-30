@@ -540,7 +540,13 @@ nav ul li a:hover {
 .lg-outer::before {
   content: '';
   position: absolute;
-  inset: -60%;
+  /* A centred square much larger than the card, so it covers every edge at any
+     rotation even when the card is tall and narrow (% margins resolve against width) */
+  left: 50%;
+  top: 50%;
+  width: 400%;
+  aspect-ratio: 1;
+  margin: -200% 0 0 -200%;
   background: conic-gradient(#87D287, #008A00, #35C035, #CFF3CF, #F7FDF7, #FFD3A8, #FF9A3D, #87D287);
   animation: lg-border-spin 5s linear infinite;
   pointer-events: none;
