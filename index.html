@@ -3161,6 +3161,12 @@ footer {
 }
 .oh-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
 .oh-ring circle { stroke: rgba(255,255,255,0.32); }
+.oh-ring-ticks {
+  transform-box: view-box;
+  transform-origin: 260px 260px;
+  animation: ohDialSpin 60s linear infinite;
+}
+@keyframes ohDialSpin { to { transform: rotate(360deg); } }
 .oh-frame { position: absolute; inset: 7.7%; background: #008A00; clip-path: var(--oh-octagon); }
 .oh-photo {
   position: absolute;
@@ -3274,7 +3280,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .oh-intro > *, .oh-card, .oh-steps, .oh-visual { animation: none !important; }
+  .oh-intro > *, .oh-card, .oh-steps, .oh-visual, .oh-ring-ticks { animation: none !important; }
 }
 </style>
 </head>
@@ -3421,7 +3427,7 @@ footer {
 
     <div class="oh-visual">
       <svg class="oh-ring" viewBox="0 0 520 520" aria-hidden="true">
-        <circle cx="260" cy="260" r="252" fill="none" stroke-width="10" stroke-dasharray="1.4 15"/>
+        <g class="oh-ring-ticks"><circle cx="260" cy="260" r="252" fill="none" stroke-width="10" stroke-dasharray="1.4 15"/></g>
         <polygon points="260,6 253,24 267,24" fill="#F7871F"/>
       </svg>
       <div class="oh-frame" aria-hidden="true"></div>
