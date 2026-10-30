@@ -2878,6 +2878,7 @@ footer {
 
 /* Dial */
 .lgd-panel {
+  position: relative;
   grid-area: dial;
   align-self: center;
   background: #fff;
@@ -2908,6 +2909,41 @@ footer {
   transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .lgd-dial.is-dragging .lgd-face { transition: none; }
+/* Track through the amounts; the green fill runs from $250 to the pointer */
+.lgd-track { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.lgd-track path { fill: none; stroke-linecap: round; }
+.lgd-track-base { stroke: rgba(0,138,0,0.14); stroke-width: 0.55; }
+.lgd-track-fill {
+  stroke: #008A00;
+  stroke-width: 0.8;
+  stroke-dasharray: 250 250;
+  stroke-dashoffset: 200;
+  filter: drop-shadow(0 0 1.2px rgba(0,138,0,0.55));
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.lgd-dial.is-dragging .lgd-track-fill { transition: none; }
+.lgd-sound {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,138,0,0.18);
+  background: #fff;
+  color: #005C00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lgd-sound:hover { border-color: #008A00; }
+.lgd-sound[aria-pressed="false"] { color: #7A8079; }
+.lgd-sound-off, .lgd-sound[aria-pressed="false"] .lgd-sound-on { display: none; }
+.lgd-sound[aria-pressed="false"] .lgd-sound-off { display: block; }
 .lgd-readout {
   position: absolute;
   left: 50%;
@@ -3017,6 +3053,8 @@ footer {
   /* pull the label ring in slightly so the side amounts stay inside the card */
   .lgd-pills { position: absolute; inset: 0 3.5%; }
   .lgd-pill.lg-pill { min-width: 58px; padding: 0 8px; }
+  .lgd-track { transform: scaleX(0.93); }
+  .lgd-sound { top: 0; right: 0; }
   .lgd-readout-label { display: none; }
   .lgd-step { gap: 12px; }
   .lgd-step-hint { font-size: 0.78rem; }
@@ -3030,7 +3068,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lgd-face { transition: none; }
+  .lgd-face, .lgd-track-fill { transition: none; }
 }
 </style>
 </head>
@@ -3292,6 +3330,10 @@ footer {
         </div>
 
         <div class="lgd-panel">
+          <button type="button" class="lgd-sound" id="lgdSound" aria-pressed="true" aria-label="Dial tick sound">
+            <svg class="lgd-sound-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            <svg class="lgd-sound-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+          </button>
           <div class="lgd-dial" id="lgDial">
             <svg class="lgd-svg" viewBox="0 0 520 520" aria-hidden="true">
               <defs>
@@ -3327,6 +3369,10 @@ footer {
                 <polygon points="244,-2 276,-2 260,26" fill="#F7871F"/>
                 <polygon points="250,66 270,66 260,90" fill="#F7871F"/>
               </g>
+            </svg>
+            <svg class="lgd-track" viewBox="0 0 100 85" aria-hidden="true">
+              <path class="lgd-track-base" d="M13.14 73.81 A45 45 0 1 1 86.86 73.81" pathLength="250"/>
+              <path class="lgd-track-fill" id="lgdTrackFill" d="M13.14 73.81 A45 45 0 1 1 86.86 73.81" pathLength="250"/>
             </svg>
             <div class="lgd-readout" aria-hidden="true">
               <span class="lgd-readout-amount" id="lgdReadout">$500</span>
@@ -4072,11 +4118,91 @@ var lcData = {
   var stops = pills.map(function(p) {
     return { amount: parseInt(p.getAttribute('data-amount'), 10), angle: parseFloat(p.getAttribute('data-angle')), label: p.textContent };
   });
+  var fill = document.getElementById('lgdTrackFill');
+  var soundBtn = document.getElementById('lgdSound');
   var CENTER_Y = 0.48; // dial centre, as a fraction of the dial's width from its top
+  var START = stops[0].angle, END = stops[stops.length - 1].angle, SPAN = END - START;
+  var TICK = 6; // the face carries a tick mark every 6 degrees
+  var TURN_MS = 600; // matches the .lgd-face transition
   var current = 1;
   var dragging = false;
+  var faceAngle = stops[current].angle;
+  var tickIndex = Math.floor(faceAngle / TICK);
 
-  function rotate(deg) { face.style.transform = 'rotate(' + deg + 'deg)'; }
+  // Tick sound: short filtered noise bursts made with Web Audio, so there is no file to load
+  var sound = (function() {
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    var ctx = null, noise = null, lastTick = 0;
+    var muted = false;
+    try { muted = localStorage.getItem('lgdSound') === 'off'; } catch (err) {}
+    function ready() {
+      if (muted || !Ctx) return false;
+      if (!ctx) {
+        ctx = new Ctx();
+        noise = ctx.createBuffer(1, Math.round(ctx.sampleRate * 0.05), ctx.sampleRate);
+        var data = noise.getChannelData(0);
+        for (var i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 4);
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+      return true;
+    }
+    function click(when, freq, level, length) {
+      var src = ctx.createBufferSource();
+      var band = ctx.createBiquadFilter();
+      var gain = ctx.createGain();
+      src.buffer = noise;
+      band.type = 'bandpass';
+      band.frequency.value = freq;
+      band.Q.value = 5;
+      gain.gain.setValueAtTime(level, when);
+      gain.gain.exponentialRampToValueAtTime(0.001, when + length);
+      src.connect(band);
+      band.connect(gain);
+      gain.connect(ctx.destination);
+      src.start(when);
+      src.stop(when + length + 0.01);
+    }
+    return {
+      tick: function(delay) {
+        if (!ready()) return;
+        var t = ctx.currentTime + (delay || 0);
+        if (!delay && t - lastTick < 0.018) return; // fast drags: cap the click rate
+        lastTick = t;
+        click(t, 3200, 0.5, 0.03);
+      },
+      snap: function(delay) {
+        if (!ready()) return;
+        click(ctx.currentTime + (delay || 0), 1500, 0.8, 0.06);
+      },
+      muted: function() { return muted; },
+      setMuted: function(m) {
+        muted = m;
+        try { localStorage.setItem('lgdSound', m ? 'off' : 'on'); } catch (err) {}
+      }
+    };
+  })();
+
+  function rotate(deg) {
+    face.style.transform = 'rotate(' + deg + 'deg)';
+    var filled = Math.max(0, Math.min(SPAN, deg - START));
+    fill.style.strokeDashoffset = (250 - filled * 250 / SPAN).toFixed(2);
+    faceAngle = deg;
+  }
+
+  // Ticks for a tap/arrow turn, timed to the face's ease-out so they slow as it settles
+  function sweepSound(from, to) {
+    var n = Math.min(40, Math.abs(Math.floor(to / TICK) - Math.floor(from / TICK)));
+    for (var k = 1; k < n; k++) sound.tick((TURN_MS / 1000) * (1 - Math.cbrt(1 - k / n)));
+    sound.snap(TURN_MS / 1000 * 0.85);
+    tickIndex = Math.floor(to / TICK);
+  }
+
+  function turnTo(i) {
+    if (i === current) return;
+    var from = faceAngle;
+    select(i);
+    sweepSound(from, stops[i].angle);
+  }
 
   function renderStats(amount) {
     var d = lcData[String(amount)];
@@ -4150,29 +4276,44 @@ var lcData = {
     dragging = true;
     dial.classList.add('is-dragging');
     try { dial.setPointerCapture(e.pointerId); } catch (err) {}
-    var a = angleAt(e);
-    select(nearestByAngle(a));
-    rotate(a);
+    dragTo(angleAt(e));
   });
-  dial.addEventListener('pointermove', function(e) {
-    if (!dragging) return;
-    var a = angleAt(e);
+  function dragTo(a) {
     var i = nearestByAngle(a);
-    if (i !== current) select(i);
+    if (i !== current) {
+      select(i);
+      sound.snap();
+    }
+    var idx = Math.floor(a / TICK);
+    if (idx !== tickIndex) {
+      tickIndex = idx;
+      sound.tick();
+    }
     rotate(a);
+  }
+  dial.addEventListener('pointermove', function(e) {
+    if (dragging) dragTo(angleAt(e));
   });
   function endDrag() {
     if (!dragging) return;
     dragging = false;
     dial.classList.remove('is-dragging');
     rotate(stops[current].angle);
+    tickIndex = Math.floor(faceAngle / TICK);
   }
   dial.addEventListener('pointerup', endDrag);
   dial.addEventListener('pointercancel', endDrag);
 
-  pills.forEach(function(p, k) { p.addEventListener('click', function() { select(k); }); });
-  document.getElementById('lgdPrev').addEventListener('click', function() { select(Math.max(0, current - 1)); });
-  document.getElementById('lgdNext').addEventListener('click', function() { select(Math.min(stops.length - 1, current + 1)); });
+  pills.forEach(function(p, k) { p.addEventListener('click', function() { turnTo(k); }); });
+  document.getElementById('lgdPrev').addEventListener('click', function() { turnTo(Math.max(0, current - 1)); });
+  document.getElementById('lgdNext').addEventListener('click', function() { turnTo(Math.min(stops.length - 1, current + 1)); });
+
+  soundBtn.setAttribute('aria-pressed', sound.muted() ? 'false' : 'true');
+  soundBtn.addEventListener('click', function() {
+    sound.setMuted(!sound.muted());
+    soundBtn.setAttribute('aria-pressed', sound.muted() ? 'false' : 'true');
+    sound.snap();
+  });
 
   input.addEventListener('input', function() {
     var v = parseInt(input.value, 10);
