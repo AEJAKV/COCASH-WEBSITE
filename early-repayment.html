@@ -15,18 +15,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --color-primary: #0F58C9;
-  --color-primary-hover: #0B4AA8;
-  --color-primary-dark: #103B7A;
-  --color-accent: #FF8A1D;
+  --color-primary: #008A00;
+  --color-primary-hover: #007300;
+  --color-primary-dark: #005C00;
+  --color-accent: #F7871F;
   --color-accent-soft: #FFF2E6;
   --color-text: #333333;
   --color-text-light: #666666;
-  --color-text-muted: #73819E;
+  --color-text-muted: #607360;
   --color-bg: #FFFFFF;
-  --color-bg-section: #F4F8FF;
-  --color-bg-card: #F8FBFF;
-  --color-border: #D8E2F3;
+  --color-bg-section: #F4FCF4;
+  --color-bg-card: #F8FDF8;
+  --color-border: #D5E9D5;
   --color-success: #1D8A57;
   --font-base: 'Lato', sans-serif;
   --radius: 4px;
@@ -39,7 +39,7 @@
   --space-xxl: 88px;
   --container: 1140px;
   --shadow: 0 2px 12px rgba(0,0,0,0.07);
-  --shadow-md: 0 18px 50px rgba(16,59,122,0.10);
+  --shadow-md: 0 18px 50px rgba(0,92,0,0.10);
 }
 
 html { scroll-behavior: smooth; }
@@ -47,7 +47,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-base);
   color: var(--color-text);
-  background: linear-gradient(180deg, #F4F8FF 0%, #FFFFFF 24%);
+  background: linear-gradient(180deg, #F4FCF4 0%, #FFFFFF 24%);
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -74,19 +74,19 @@ a:hover { color: var(--color-primary-hover); }
   text-transform: uppercase;
   transition: transform 0.2s, box-shadow 0.2s, background 0.2s, color 0.2s;
 }
-.btn:focus { outline: 3px solid rgba(255,138,29,0.35); outline-offset: 2px; }
+.btn:focus { outline: 3px solid rgba(247,135,31,0.35); outline-offset: 2px; }
 .btn-primary {
-  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%);
   color: #fff;
-  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
+  box-shadow: 0 10px 22px rgba(247,135,31,0.28);
 }
-.btn-primary:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-1px); }
+.btn-primary:hover { background: linear-gradient(180deg, #FFB253 0%, #F7871F 100%); color: #fff; transform: translateY(-1px); }
 .btn-secondary {
   background: transparent;
   color: var(--color-primary);
-  border: 1px solid rgba(15,88,201,0.2);
+  border: 1px solid rgba(0,138,0,0.2);
 }
-.btn-secondary:hover { background: rgba(15,88,201,0.06); color: var(--color-primary-dark); }
+.btn-secondary:hover { background: rgba(0,138,0,0.06); color: var(--color-primary-dark); }
 
 header {
   background: #fff;
@@ -123,7 +123,7 @@ nav ul {
   gap: 0.2rem;
 }
 nav ul li a {
-  color: #31406f;
+  color: #2A3F2A;
   font-weight: 700;
   font-size: 0.88rem;
   padding: 8px 14px;
@@ -135,7 +135,7 @@ nav ul li a {
   transition: background 0.2s, color 0.2s;
 }
 nav ul li a:hover,
-nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
+nav ul li a[aria-current="page"] { background: rgba(0,138,0,0.08); color: var(--color-primary); }
 .nav-dropdown { position: relative; }
 .nav-dropdown-menu {
   display: none;
@@ -167,11 +167,11 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   font-weight: 600;
   text-transform: none;
   letter-spacing: 0;
-  color: #31406f;
+  color: #2A3F2A;
   border-radius: 0;
 }
 .nav-dropdown-menu li a:hover,
-.nav-dropdown-menu li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(--color-primary); }
+.nav-dropdown-menu li a[aria-current="page"] { background: rgba(0,138,0,0.08); color: var(--color-primary); }
 .nav-right {
   display: flex;
   align-items: center;
@@ -184,19 +184,19 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   align-items: center;
   gap: 10px;
   font-size: 0.82rem;
-  color: #31406f;
+  color: #2A3F2A;
   white-space: nowrap;
 }
 .nav-meta-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #31406f;
+  color: #2A3F2A;
   font-weight: 700;
   text-decoration: none;
   line-height: 1;
 }
-.nav-meta-link:hover { color: #0f58c9; }
+.nav-meta-link:hover { color: #008A00; }
 .nav-meta-link svg {
   width: 15px;
   height: 15px;
@@ -208,20 +208,20 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   flex-shrink: 0;
 }
 .nav-meta-sep {
-  color: rgba(49,64,111,0.22);
+  color: rgba(42,63,42,0.22);
   font-weight: 400;
 }
 .nav-login {
   font-size: 0.88rem;
   font-weight: 700;
-  color: #20346f;
+  color: #154A15;
   padding: 8px 14px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 .nav-login:hover { color: var(--color-primary); }
 .btn-nav-orange {
-  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%);
   color: #fff;
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 999px;
@@ -234,10 +234,10 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   transition: background 0.2s, color 0.2s, transform 0.2s;
   text-decoration: none;
   display: inline-block;
-  box-shadow: 0 10px 22px rgba(255,122,18,0.28);
+  box-shadow: 0 10px 22px rgba(247,135,31,0.28);
 }
-.btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%); color: #fff; transform: translateY(-1px); }
-.nav-cta-btn:hover { box-shadow: 0 14px 28px rgba(255,122,18,0.32); }
+.btn-nav-orange:hover { background: linear-gradient(180deg, #FFB253 0%, #F7871F 100%); color: #fff; transform: translateY(-1px); }
+.nav-cta-btn:hover { box-shadow: 0 14px 28px rgba(247,135,31,0.32); }
 
 .hamburger {
   display: none;
@@ -294,21 +294,21 @@ nav ul li a[aria-current="page"] { background: rgba(15,88,201,0.08); color: var(
   gap: 8px;
   flex-wrap: wrap;
   padding: 0 0 12px;
-  color: #31406f;
+  color: #2A3F2A;
   font-size: 0.8rem;
 }
-.mobile-header-sub a { color: #31406f; font-weight: 700; }
-.mobile-header-sub .sep { color: rgba(49,64,111,0.25); }
+.mobile-header-sub a { color: #2A3F2A; font-weight: 700; }
+.mobile-header-sub .sep { color: rgba(42,63,42,0.25); }
 .btn-mobile-cta {
   padding: 11px 16px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%);
   color: #fff;
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  box-shadow: 0 10px 22px rgba(255,122,18,0.24);
+  box-shadow: 0 10px 22px rgba(247,135,31,0.24);
 }
 .btn-mobile-cta:hover { color: #fff; }
 
@@ -318,9 +318,9 @@ main section { padding: 34px 0; }
   padding: 56px 0 28px;
   overflow: hidden;
   background:
-    radial-gradient(circle at top left, rgba(15,88,201,0.22), transparent 34%),
-    radial-gradient(circle at 88% 22%, rgba(255,138,29,0.22), transparent 24%),
-    linear-gradient(180deg, rgba(220,234,255,0.72) 0%, rgba(238,246,255,0.62) 52%, rgba(255,255,255,0.58) 100%),
+    radial-gradient(circle at top left, rgba(0,138,0,0.22), transparent 34%),
+    radial-gradient(circle at 88% 22%, rgba(247,135,31,0.22), transparent 24%),
+    linear-gradient(180deg, rgba(220,246,220,0.72) 0%, rgba(238,251,238,0.62) 52%, rgba(255,255,255,0.58) 100%),
     url('img/hero img/province images/province-section-bg.png') center center / cover no-repeat;
 }
 .page-hero::before,
@@ -335,14 +335,14 @@ main section { padding: 34px 0; }
   height: 420px;
   top: -180px;
   right: -120px;
-  background: radial-gradient(circle, rgba(15,88,201,0.12) 0%, rgba(15,88,201,0) 68%);
+  background: radial-gradient(circle, rgba(0,138,0,0.12) 0%, rgba(0,138,0,0) 68%);
 }
 .page-hero::after {
   width: 320px;
   height: 320px;
   left: -110px;
   bottom: -120px;
-  background: radial-gradient(circle, rgba(255,138,29,0.12) 0%, rgba(255,138,29,0) 68%);
+  background: radial-gradient(circle, rgba(247,135,31,0.12) 0%, rgba(247,135,31,0) 68%);
 }
 .page-hero-inner {
   position: relative;
@@ -355,7 +355,7 @@ main section { padding: 34px 0; }
 .page-hero-copy,
 .page-hero-card {
   background: #fff;
-  border: 1px solid rgba(15,88,201,0.10);
+  border: 1px solid rgba(0,138,0,0.10);
   border-radius: 28px;
   box-shadow: var(--shadow-md);
 }
@@ -364,8 +364,8 @@ main section { padding: 34px 0; }
   overflow: hidden;
   padding: clamp(28px, 4vw, 48px);
   background:
-    radial-gradient(circle at top right, rgba(255,138,29,0.12), transparent 35%),
-    linear-gradient(135deg, rgba(15,88,201,0.04) 0%, #ffffff 50%);
+    radial-gradient(circle at top right, rgba(247,135,31,0.12), transparent 35%),
+    linear-gradient(135deg, rgba(0,138,0,0.04) 0%, #ffffff 50%);
 }
 .page-hero-copy::after {
   content: '';
@@ -375,8 +375,8 @@ main section { padding: 34px 0; }
   width: 88px;
   height: 88px;
   border-radius: 24px;
-  border: 1px solid rgba(15,88,201,0.08);
-  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(15,88,201,0.02));
+  border: 1px solid rgba(0,138,0,0.08);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(0,138,0,0.02));
 }
 .eyebrow {
   display: inline-flex;
@@ -384,7 +384,7 @@ main section { padding: 34px 0; }
   gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(15,88,201,0.08);
+  background: rgba(0,138,0,0.08);
   color: var(--color-primary-dark);
   font-size: 0.78rem;
   font-weight: 900;
@@ -436,7 +436,7 @@ main section { padding: 34px 0; }
   object-position: center;
   display: block;
   padding: 0;
-  filter: drop-shadow(0 18px 42px rgba(16,59,122,0.22));
+  filter: drop-shadow(0 18px 42px rgba(0,92,0,0.22));
 }
 
 .section-head {
@@ -457,7 +457,7 @@ main section { padding: 34px 0; }
 
 .savings-wrap {
   background: #fff;
-  border: 1px solid rgba(15,88,201,0.10);
+  border: 1px solid rgba(0,138,0,0.10);
   border-radius: 24px;
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -467,7 +467,7 @@ main section { padding: 34px 0; }
   border-collapse: collapse;
 }
 .savings-table thead th {
-  background: linear-gradient(180deg, rgba(15,88,201,0.98) 0%, rgba(16,59,122,0.98) 100%);
+  background: linear-gradient(180deg, rgba(0,138,0,0.98) 0%, rgba(0,92,0,0.98) 100%);
   color: #fff;
   text-align: left;
   padding: 18px 22px;
@@ -477,10 +477,10 @@ main section { padding: 34px 0; }
 }
 .savings-table tbody td {
   padding: 20px 22px;
-  border-top: 1px solid #E6EDF8;
+  border-top: 1px solid #E4F2E4;
   font-size: 1rem;
 }
-.savings-table tbody tr:nth-child(even) td { background: #FBFDFF; }
+.savings-table tbody tr:nth-child(even) td { background: #FBFEFB; }
 .discount-pill {
   display: inline-flex;
   align-items: center;
@@ -497,7 +497,7 @@ main section { padding: 34px 0; }
   justify-content: space-between;
   gap: 16px;
   padding: 22px;
-  background: linear-gradient(180deg, #F7FAFF 0%, #EEF5FF 100%);
+  background: linear-gradient(180deg, #F7FDF7 0%, #EEFBEE 100%);
 }
 .savings-cta p {
   color: var(--color-text-light);
@@ -505,7 +505,7 @@ main section { padding: 34px 0; }
 }
 
 .section-blue {
-  background: linear-gradient(180deg, #F4F8FF 0%, #EEF5FF 100%);
+  background: linear-gradient(180deg, #F4FCF4 0%, #EEFBEE 100%);
   padding-top: 52px;
   padding-bottom: 52px;
 }
@@ -522,7 +522,7 @@ main section { padding: 34px 0; }
 .benefit-card,
 .notice-card {
   background: #fff;
-  border: 1px solid rgba(15,88,201,0.10);
+  border: 1px solid rgba(0,138,0,0.10);
   border-radius: 24px;
   box-shadow: var(--shadow);
 }
@@ -539,7 +539,7 @@ main section { padding: 34px 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+  background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%);
   color: #fff;
   font-size: 1rem;
   font-weight: 900;
@@ -575,11 +575,11 @@ main section { padding: 34px 0; }
   padding: 12px 14px;
   border-radius: 16px;
   background: var(--color-bg-card);
-  border: 1px solid #E8EFFB;
+  border: 1px solid #E7F5E7;
 }
 .section-blue .step-card li {
-  background: #F4F8FF;
-  border-color: rgba(15,88,201,0.10);
+  background: #F4FCF4;
+  border-color: rgba(0,138,0,0.10);
 }
 
 .benefits-grid {
@@ -591,8 +591,8 @@ main section { padding: 34px 0; }
   padding: 20px 20px 18px;
   min-height: 100%;
   background:
-    radial-gradient(circle at top right, rgba(15,88,201,0.08), transparent 34%),
-    linear-gradient(180deg, #FFFFFF 0%, #F7FAFF 100%);
+    radial-gradient(circle at top right, rgba(0,138,0,0.08), transparent 34%),
+    linear-gradient(180deg, #FFFFFF 0%, #F7FDF7 100%);
   overflow: hidden;
 }
 .benefit-card::before {
@@ -601,7 +601,7 @@ main section { padding: 34px 0; }
   inset: 0 auto auto 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, var(--benefit-accent, #0F58C9), rgba(15,88,201,0.08));
+  background: linear-gradient(90deg, var(--benefit-accent, #008A00), rgba(0,138,0,0.08));
 }
 .section-blue .benefit-card {
   background: #fff;
@@ -613,8 +613,8 @@ main section { padding: 34px 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(15,88,201,0.12) 0%, rgba(15,88,201,0.04) 100%);
-  color: var(--benefit-accent, #0F58C9);
+  background: linear-gradient(180deg, rgba(0,138,0,0.12) 0%, rgba(0,138,0,0.04) 100%);
+  color: var(--benefit-accent, #008A00);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
 }
 .benefit-icon svg {
@@ -642,11 +642,11 @@ main section { padding: 34px 0; }
   position: relative;
   padding: clamp(26px, 4vw, 34px);
   background:
-    radial-gradient(circle at right top, rgba(255,138,29,0.18), transparent 28%),
-    radial-gradient(circle at left bottom, rgba(15,88,201,0.08), transparent 34%),
-    linear-gradient(135deg, #FFFFFF 0%, #F8FBFF 48%, #EEF5FF 100%);
-  border: 1px solid rgba(15,88,201,0.10);
-  box-shadow: 0 14px 36px rgba(16,59,122,0.08);
+    radial-gradient(circle at right top, rgba(247,135,31,0.18), transparent 28%),
+    radial-gradient(circle at left bottom, rgba(0,138,0,0.08), transparent 34%),
+    linear-gradient(135deg, #FFFFFF 0%, #F8FDF8 48%, #EEFBEE 100%);
+  border: 1px solid rgba(0,138,0,0.10);
+  box-shadow: 0 14px 36px rgba(0,92,0,0.08);
   overflow: hidden;
 }
 .notice-card::before {
@@ -671,9 +671,9 @@ main section { padding: 34px 0; }
   padding: 16px 18px;
   border-radius: 18px;
   background: #fff;
-  border: 1px solid #E6EDF8;
+  border: 1px solid #E4F2E4;
   font-weight: 700;
-  box-shadow: 0 10px 24px rgba(16,59,122,0.06);
+  box-shadow: 0 10px 24px rgba(0,92,0,0.06);
 }
 .notice-icon {
   width: 38px;
@@ -682,7 +682,7 @@ main section { padding: 34px 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(15,88,201,0.12) 0%, rgba(15,88,201,0.04) 100%);
+  background: linear-gradient(180deg, rgba(0,138,0,0.12) 0%, rgba(0,138,0,0.04) 100%);
   color: var(--color-primary);
   flex-shrink: 0;
 }
@@ -709,8 +709,8 @@ main section { padding: 34px 0; }
   color: var(--color-text-light);
 }
 .notice-link-card {
-  background: linear-gradient(135deg, rgba(15,88,201,0.08) 0%, rgba(255,138,29,0.08) 100%);
-  border-color: rgba(15,88,201,0.14);
+  background: linear-gradient(135deg, rgba(0,138,0,0.08) 0%, rgba(247,135,31,0.08) 100%);
+  border-color: rgba(0,138,0,0.14);
 }
 .notice-link-card a {
   color: var(--color-primary);
@@ -735,8 +735,8 @@ main section { padding: 34px 0; }
   overflow: hidden;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
-.faq-item:hover { border-color: rgba(15,88,201,0.26); box-shadow: 0 2px 12px rgba(15,88,201,0.08); }
-.faq-item.open { border-color: rgba(15,88,201,0.34); box-shadow: 0 12px 30px rgba(16,59,122,0.08); }
+.faq-item:hover { border-color: rgba(0,138,0,0.26); box-shadow: 0 2px 12px rgba(0,138,0,0.08); }
+.faq-item.open { border-color: rgba(0,138,0,0.34); box-shadow: 0 12px 30px rgba(0,92,0,0.08); }
 .faq-q {
   display: flex;
   align-items: center;
@@ -755,7 +755,7 @@ main section { padding: 34px 0; }
   transition: color 0.2s;
 }
 .faq-q:hover { color: var(--color-primary); }
-.faq-q:focus { outline: 2px solid rgba(255,138,29,0.45); outline-offset: -2px; border-radius: 18px; }
+.faq-q:focus { outline: 2px solid rgba(247,135,31,0.45); outline-offset: -2px; border-radius: 18px; }
 .faq-item.open .faq-q { color: var(--color-primary-dark); }
 .faq-chevron {
   width: 24px;
@@ -783,7 +783,7 @@ main section { padding: 34px 0; }
 }
 
 footer {
-  background: #102645;
+  background: #0B310B;
   color: #fff;
   padding: 48px 0 24px;
 }
@@ -852,7 +852,7 @@ footer {
   .savings-table td,
   .savings-table tr { display: block; }
   .savings-table thead { display: none; }
-  .savings-table tbody tr { border-top: 1px solid #E6EDF8; }
+  .savings-table tbody tr { border-top: 1px solid #E4F2E4; }
   .savings-table tbody tr:first-child { border-top: none; }
   .savings-table tbody td {
     padding: 14px 18px;
@@ -1042,7 +1042,7 @@ footer {
         <p>Paying off early can improve your cash flow, reduce extra costs, and strengthen your position for future borrowing.</p>
       </div>
       <div class="benefits-grid">
-        <article class="benefit-card" style="--benefit-accent:#0F58C9;">
+        <article class="benefit-card" style="--benefit-accent:#008A00;">
           <span class="benefit-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M12 2v20"></path>
@@ -1052,7 +1052,7 @@ footer {
           <h3>Save on future interest</h3>
           <p>You stop paying interest on future scheduled repayments.</p>
         </article>
-        <article class="benefit-card" style="--benefit-accent:#215BB6;">
+        <article class="benefit-card" style="--benefit-accent:#157515;">
           <span class="benefit-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M12 22s7-4 7-10V5l-7-3-7 3v7c0 6 7 10 7 10z"></path>
@@ -1062,7 +1062,7 @@ footer {
           <h3>No pre-termination fees</h3>
           <p>There are no pre-termination fees.</p>
         </article>
-        <article class="benefit-card" style="--benefit-accent:#0C4D9A;">
+        <article class="benefit-card" style="--benefit-accent:#086508;">
           <span class="benefit-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M14 9V5a3 3 0 0 0-6 0v4"></path>
@@ -1074,7 +1074,7 @@ footer {
           <h3>Reduce guarantor fees</h3>
           <p>You save on guarantor fees–up to 100%.</p>
         </article>
-        <article class="benefit-card" style="--benefit-accent:#3568BD;">
+        <article class="benefit-card" style="--benefit-accent:#2A822A;">
           <span class="benefit-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M8 7V3"></path>
@@ -1148,7 +1148,7 @@ footer {
           <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-1-answer" onclick="toggleFAQ('faq-1')">
             <span>Can I still repay early if I have an active loan?</span>
             <span class="faq-chevron" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#0F58C9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#008A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </span>
           </button>
           <div class="faq-a" id="faq-1-answer">
@@ -1159,7 +1159,7 @@ footer {
           <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-2-answer" onclick="toggleFAQ('faq-2')">
             <span>Is there a penalty for paying early?</span>
             <span class="faq-chevron" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#0F58C9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#008A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </span>
           </button>
           <div class="faq-a" id="faq-2-answer">
@@ -1170,7 +1170,7 @@ footer {
           <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-3-answer" onclick="toggleFAQ('faq-3')">
             <span>How do I pay early?</span>
             <span class="faq-chevron" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#0F58C9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#008A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </span>
           </button>
           <div class="faq-a" id="faq-3-answer">
@@ -1181,7 +1181,7 @@ footer {
           <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-4-answer" onclick="toggleFAQ('faq-4')">
             <span>Will paying early affect my ability to get another loan?</span>
             <span class="faq-chevron" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#0F58C9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#008A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </span>
           </button>
           <div class="faq-a" id="faq-4-answer">
@@ -1192,7 +1192,7 @@ footer {
           <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-5-answer" onclick="toggleFAQ('faq-5')">
             <span>I was offered a rebate, can I still claim that when I pay off my loan early?</span>
             <span class="faq-chevron" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#0F58C9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4.5L6 8L10 4.5" stroke="#008A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </span>
           </button>
           <div class="faq-a" id="faq-5-answer">
@@ -1318,7 +1318,7 @@ function closeNavDropdowns(except) {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(10,20,50,0.68);
+      background: rgba(8,38,8,0.68);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       z-index: 9000;
@@ -1335,15 +1335,15 @@ function closeNavDropdowns(except) {
       overflow-y: auto;
       border-radius: 28px;
       background: #fff;
-      box-shadow: 0 32px 80px rgba(16,59,122,0.26), 0 8px 24px rgba(0,0,0,0.14);
+      box-shadow: 0 32px 80px rgba(0,92,0,0.26), 0 8px 24px rgba(0,0,0,0.14);
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
     .eq-modal-header {
       background:
-        radial-gradient(circle at 80% 20%, rgba(255,138,29,0.28), transparent 40%),
-        linear-gradient(135deg, #103B7A 0%, #0F58C9 60%, #1A6FDE 100%);
+        radial-gradient(circle at 80% 20%, rgba(247,135,31,0.28), transparent 40%),
+        linear-gradient(135deg, #005C00 0%, #008A00 60%, #1C981C 100%);
       padding: 36px 40px 32px;
       position: relative;
     }
@@ -1400,7 +1400,7 @@ function closeNavDropdowns(except) {
     .eq-close:hover { background: rgba(255,255,255,0.26); }
     .eq-modal-body {
       padding: 32px 40px 36px;
-      background: #F8FBFF;
+      background: #F8FDF8;
     }
     .eq-row {
       display: grid;
@@ -1417,7 +1417,7 @@ function closeNavDropdowns(except) {
     .eq-field label {
       font-size: 0.76rem;
       font-weight: 900;
-      color: #103B7A;
+      color: #005C00;
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
@@ -1431,7 +1431,7 @@ function closeNavDropdowns(except) {
       transform: translateY(-50%);
       width: 16px;
       height: 16px;
-      stroke: #0F58C9;
+      stroke: #008A00;
       fill: none;
       stroke-width: 2;
       stroke-linecap: round;
@@ -1443,25 +1443,25 @@ function closeNavDropdowns(except) {
       width: 100%;
       padding: 13px 16px 13px 40px;
       border-radius: 12px;
-      border: 1.5px solid #D0DCF0;
+      border: 1.5px solid #CFE1CF;
       background: #fff;
       font-size: 0.95rem;
-      color: #1a2a3a;
+      color: #182318;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
       font-family: inherit;
-      box-shadow: 0 2px 8px rgba(16,59,122,0.04);
+      box-shadow: 0 2px 8px rgba(0,92,0,0.04);
     }
-    .eq-field input::placeholder { color: #9aaac4; }
+    .eq-field input::placeholder { color: #8DA88D; }
     .eq-field input:focus {
-      border-color: #0F58C9;
-      box-shadow: 0 0 0 3px rgba(15,88,201,0.12);
+      border-color: #008A00;
+      box-shadow: 0 0 0 3px rgba(0,138,0,0.12);
     }
     .eq-field input[type="file"] {
       padding: 10px 14px;
       cursor: pointer;
       font-size: 0.88rem;
-      color: #4a5a7a;
+      color: #384738;
     }
     .eq-file-label {
       display: flex;
@@ -1469,30 +1469,30 @@ function closeNavDropdowns(except) {
       gap: 10px;
       padding: 13px 16px;
       border-radius: 12px;
-      border: 1.5px dashed #A8C0E8;
-      background: #EEF5FF;
+      border: 1.5px dashed #A8CCA8;
+      background: #EEFBEE;
       cursor: pointer;
       transition: border-color 0.2s, background 0.2s;
       font-size: 0.9rem;
-      color: #0F58C9;
+      color: #008A00;
       font-weight: 700;
     }
-    .eq-file-label:hover { border-color: #0F58C9; background: #E0EEFF; }
+    .eq-file-label:hover { border-color: #008A00; background: #E0F7E0; }
     .eq-file-label svg {
       width: 18px; height: 18px;
-      stroke: #0F58C9; fill: none;
+      stroke: #008A00; fill: none;
       stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
       flex-shrink: 0;
     }
     .eq-file-name {
       font-size: 0.8rem;
-      color: #5e6c84;
+      color: #465346;
       margin-top: 4px;
       margin-left: 4px;
     }
     .eq-divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(15,88,201,0.12), transparent);
+      background: linear-gradient(90deg, transparent, rgba(0,138,0,0.12), transparent);
       margin: 8px 0 20px;
     }
     .eq-submit {
@@ -1500,13 +1500,13 @@ function closeNavDropdowns(except) {
       padding: 17px;
       border-radius: 14px;
       border: none;
-      background: linear-gradient(180deg, #FFA43A 0%, #FF7A12 100%);
+      background: linear-gradient(180deg, #FFA43A 0%, #F7871F 100%);
       color: #fff;
       font-size: 1.05rem;
       font-weight: 900;
       letter-spacing: 0.02em;
       cursor: pointer;
-      box-shadow: 0 12px 32px rgba(255,122,18,0.30);
+      box-shadow: 0 12px 32px rgba(247,135,31,0.30);
       transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       font-family: inherit;
       display: flex;
@@ -1515,9 +1515,9 @@ function closeNavDropdowns(except) {
       gap: 10px;
     }
     .eq-submit:hover {
-      background: linear-gradient(180deg, #FFB253 0%, #FF8621 100%);
+      background: linear-gradient(180deg, #FFB253 0%, #F7871F 100%);
       transform: translateY(-2px);
-      box-shadow: 0 16px 36px rgba(255,122,18,0.36);
+      box-shadow: 0 16px 36px rgba(247,135,31,0.36);
     }
     .eq-submit svg {
       width: 18px; height: 18px;
@@ -1528,12 +1528,12 @@ function closeNavDropdowns(except) {
       text-align: center;
       margin-top: 14px;
       font-size: 0.78rem;
-      color: #7a8aa8;
+      color: #688168;
       line-height: 1.5;
     }
     .eq-footer-note svg {
       width: 13px; height: 13px;
-      stroke: #7a8aa8; fill: none;
+      stroke: #688168; fill: none;
       stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
       vertical-align: -2px;
       margin-right: 3px;
@@ -1640,7 +1640,7 @@ function toggleMenu() {
         </div>
         <div class="eq-row full">
           <div class="eq-field">
-            <label>Upload Proof <span style="font-weight:400;text-transform:none;font-size:0.75rem;color:#7a8aa8">(optional &mdash; image or PDF)</span></label>
+            <label>Upload Proof <span style="font-weight:400;text-transform:none;font-size:0.75rem;color:#688168">(optional &mdash; image or PDF)</span></label>
             <label class="eq-file-label" for="eq-proof">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
               <span id="eq-file-name-display">Choose file&hellip;</span>
