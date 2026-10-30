@@ -435,183 +435,7 @@ nav ul li a:hover {
   border-color: rgba(255,255,255,0.24);
 }
 
-/* ===================== HERO ===================== */
-.hero {
-  background: linear-gradient(126deg, #074807 0%, #0B660B 36%, #075307 71%, #064006 100%);
-  color: #fff;
-  padding: 44px 0 40px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(132deg, rgba(255,255,255,0.10) 0, rgba(255,255,255,0.10) 8%, transparent 8%, transparent 100%),
-    linear-gradient(132deg, rgba(103,197,103,0.20) 0, rgba(103,197,103,0.20) 5%, transparent 5%, transparent 100%),
-    radial-gradient(ellipse 48% 68% at 72% 50%, rgba(93,193,93,0.18) 0%, transparent 64%),
-    radial-gradient(ellipse 38% 42% at 16% 26%, rgba(255,255,255,0.08) 0%, transparent 58%),
-    radial-gradient(ellipse 24% 34% at 94% 88%, rgba(41,139,41,0.38) 0%, transparent 72%);
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
-  background-position: left top, 48px -12px, center, center, center;
-  background-size: auto, auto, auto, auto, auto;
-  pointer-events: none;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('img/hero img/maple-leaf.png') no-repeat right -18px bottom -28px / 280px auto;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 52fr 48fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-.hero-image-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  animation: heroSlideIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
-}
-.hero-img-wrap {
-  position: relative;
-  width: 100%;
-  will-change: transform, filter;
-  transition: transform 0.28s ease, filter 0.28s ease;
-}
-.hero-img-wrap:hover {
-  transform: translateY(-8px);
-}
-.hero-img-wrap:hover img {
-  filter: drop-shadow(0 22px 46px rgba(5,52,5,0.48)) drop-shadow(0 4px 14px rgba(0,0,0,0.2));
-}
-.hero-image-col img {
-  width: 100%;
-  max-width: 620px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  border-radius: 18px;
-  filter: drop-shadow(0 12px 36px rgba(5,52,5,0.40)) drop-shadow(0 2px 8px rgba(0,0,0,0.18));
-  transition: filter 0.28s ease;
-}
-.hero-content { max-width: none; text-align: left; }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(22,133,22,0.24);
-  border: 1px solid rgba(147,214,147,0.34);
-  border-radius: 40px;
-  padding: 6px 16px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #C9F1C9;
-  margin-bottom: 20px;
-}
-.hero-badge::before { content: '●'; font-size: 0.6em; }
-.hero-service-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(5,68,5,0.72);
-  border: 1px solid rgba(135,210,135,0.45);
-  border-radius: 50px;
-  padding: 5px 14px 5px 10px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.10);
-  transition: background 0.25s, box-shadow 0.25s;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
-}
-.hero-service-badge-text {
-  background: linear-gradient(90deg, #ffffff 0%, #93D693 25%, #4DBE4D 50%, #93D693 75%, #ffffff 100%);
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: canadaWideFlow 4s linear infinite;
-}
-.hero-service-badge::before {
-  content: '';
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #5AC05A;
-  box-shadow: 0 0 7px rgba(90,192,90,0.85);
-  flex-shrink: 0;
-  animation: badgeDot 2s ease-in-out infinite;
-}
-.hero-service-badge::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 55%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.13), transparent);
-  animation: badgeShimmer 3.8s ease-in-out infinite;
-  pointer-events: none;
-}
-.hero-service-badge:hover {
-  background: rgba(15,124,15,0.50);
-  box-shadow: 0 4px 18px rgba(90,192,90,0.28), inset 0 1px 0 rgba(255,255,255,0.10);
-}
-.hero h1 {
-  font-size: 3.25rem;
-  font-weight: 900;
-  line-height: 1.06;
-  margin-bottom: 10px;
-  letter-spacing: -0.03em;
-}
-.hero h1 em {
-  font-style: normal;
-  background: linear-gradient(90deg, #F7871F 0%, #FFB347 22%, #FF5500 44%, #FFA43A 66%, #FFD580 84%, #F7871F 100%);
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: canadaWideFlow 4s linear infinite;
-  filter: drop-shadow(0 0 12px rgba(247,135,31,0.55)) drop-shadow(0 0 28px rgba(255,90,0,0.30));
-}
-@keyframes canadaWideFlow {
-  0%   { background-position: 0% center; }
-  100% { background-position: 250% center; }
-}
-.hero-sub {
-  font-size: 1.05rem;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 18px;
-  line-height: 1.6;
-}
-.hero-sub-link {
-  color: #F7871F;
-  font-weight: 800;
-  text-decoration: none;
-}
-.hero-sub-link:hover {
-  color: #FFAA4F;
-}
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+/* ===================== HERO CTA BUTTON ===================== */
 .hero-cta-btn {
   position: relative;
   display: inline-flex;
@@ -672,131 +496,6 @@ nav ul li a:hover {
   outline: 3px solid rgba(255,199,120,0.92);
   outline-offset: 4px;
 }
-/* ── Hero trust bar ── */
-.hero-trust-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  animation: none;
-  transform: none;
-}
-.hero-trust-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(5,68,5,0.72);
-  border: 1px solid rgba(123,205,123,0.45);
-  border-radius: 40px;
-  padding: 5px 12px 5px 5px;
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: rgba(255,255,255,0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08);
-  transition: background 0.2s, box-shadow 0.2s;
-}
-.hero-trust-item:hover { background: rgba(7,87,7,0.82); box-shadow: 0 4px 18px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.10); }
-.hti-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.hti-icon--shield { background: rgba(49,180,49,0.26); }
-.hti-icon--maple  {
-  position: relative;
-  background: rgba(255,255,255,0.96);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-}
-.hti-icon--maple img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 15px;
-  height: 15px;
-  object-fit: contain;
-  display: block;
-  transform: translate(-50%, -50%);
-  animation: none;
-}
-.hero-trust-item svg { flex-shrink: 0; }
-.hero-trust-sep {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(150,215,150,0.62);
-  flex-shrink: 0;
-}
-/* ── Floating no-hidden-fees card ── */
-.hero-nohidden-card {
-  position: absolute;
-  bottom: 16px;
-  left: 20px;
-  background: rgba(255,255,255,0.96);
-  border: 1px solid rgba(49,180,49,0.18);
-  border-radius: 14px;
-  padding: 10px 16px 10px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 10px 36px rgba(5,52,5,0.20), 0 2px 6px rgba(0,0,0,0.10);
-  min-width: 218px;
-  max-width: 80%;
-  animation: nohiddenFloat 5s ease-in-out 1.2s infinite, fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.65s both;
-  z-index: 3;
-  white-space: nowrap;
-}
-.hero-nohidden-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #008A00, #35C035);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,138,0,0.30);
-}
-.hero-nohidden-text {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-.hero-nohidden-text strong {
-  font-size: 0.82rem;
-  font-weight: 900;
-  color: #0D510D;
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.hero-nohidden-text span {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: #279027;
-  letter-spacing: 0.02em;
-}
-@keyframes nohiddenFloat {
-  0%, 100% { transform: translateY(0px); }
-  45%       { transform: translateY(-6px); }
-}
-.hero-trust {
-  margin-top: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.6);
-}
-.hero-trust-icons { display: flex; gap: 8px; }
 .trust-dot {
   display: inline-flex;
   align-items: center;
@@ -817,7 +516,6 @@ nav ul li a:hover {
   font-size: 0.65rem;
   font-weight: 900;
 }
-/* Hero form card */
 /* ===================== LIQUID GLASS LOAN CARD ===================== */
 #loan-form-section {
   padding: 52px 0 64px;
@@ -1091,33 +789,6 @@ nav ul li a:hover {
 @keyframes lock-glow {
   0%, 100% { filter: drop-shadow(0 0 0px rgba(0,138,0,0)); }
   50%       { filter: drop-shadow(0 0 5px rgba(0,138,0,0.9)); }
-}
-
-.hero-banks-label {
-  margin-top: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.74);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  width: fit-content;
-}
-.hero-banks-label::before {
-  content: '';
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: rgba(14,122,14,0.34) url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z' fill='none' stroke='%2359B2FF' stroke-width='2.1' stroke-linejoin='round'/%3E%3Cpath d='M9 12l2 2 4-4' fill='none' stroke='%2359B2FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px 12px no-repeat;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
-  flex-shrink: 0;
-}
-.hero-banks-label--mobile { display: inline-flex; margin-left: auto; margin-right: auto; }
-.hero-banks-label--desktop { display: none; }
-@media (min-width: 768px) {
-  .hero-banks-label--mobile { display: none; }
-  .hero-banks-label--desktop { display: inline-flex; }
 }
 
 /* ===================== ORANGE BUTTON & THROB ===================== */
@@ -2794,36 +2465,11 @@ footer {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes heroSlideIn {
-  from { opacity: 0; transform: translateX(-22px) scale(0.97); }
-  to   { opacity: 1; transform: translateX(0) scale(1); }
-}
-@keyframes heroImgFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-5px); }
-}
-@keyframes badgeDot {
-  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(110,219,168,0.80); }
-  50%       { opacity: 0.55; box-shadow: 0 0 2px rgba(110,219,168,0.25); }
-}
-@keyframes badgeShimmer {
-  0%, 52%, 100% { left: -100%; }
-  76%            { left: 110%; }
-}
+
 @keyframes btnShine {
   0%, 52%, 100% { left: -120%; }
   76%            { left: 120%; }
 }
-.hero-content > * {
-  animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.hero-content .hero-service-badge { animation-delay: 0.08s; }
-.hero-content .hero-badge { animation-delay: 0.14s; }
-.hero-content h1 { animation-delay: 0.24s; }
-.hero-content .hero-sub { animation-delay: 0.36s; }
-.hero-content .hero-actions { animation-delay: 0.48s; }
-.hero-content .hero-banks-label { animation-delay: 0.58s; }
-.hero-content .hero-trust { animation-delay: 0.58s; }
 .hero-form-card { animation: fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
 
 @keyframes mmItemIn {
@@ -2849,11 +2495,6 @@ footer {
   .ap-sub { margin-left: auto; margin-right: auto; }
   .ap-note { margin-left: auto; margin-right: auto; max-width: 430px; }
   .ap-province-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero-inner { grid-template-columns: 1fr; gap: 1.5rem; min-height: auto; }
-  .hero-image-col { max-width: 400px; height: auto; margin: 0 auto; animation: none; }
-  .hero-content { text-align: center; }
-  .hero-actions { justify-content: center; }
-  .hero h1 { font-size: 2.2rem; }
   .loan-form-section .hero-form-card { max-width: 480px; }
   .features-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -2910,57 +2551,6 @@ footer {
   .btn-mobile-cta { padding: 7px 10px; font-size: 0.76rem; }
   .cta-banner .cta-banner-btn { min-width: min(100%, 290px); padding: 14px 24px; }
 
-  /* ── Hero mobile overhaul ── */
-  .hero {
-    padding: 36px 0 32px;
-  }
-  .hero-inner {
-    gap: 0;
-  }
-  .hero-content {
-    text-align: center;
-    padding: 0 4px;
-  }
-  .hero-badge {
-    margin-bottom: 12px;
-    font-size: 0.72rem;
-    padding: 5px 13px;
-  }
-  .hero h1 {
-    font-size: 2.45rem;
-    line-height: 1.08;
-    letter-spacing: -0.025em;
-    margin-bottom: 10px;
-  }
-  .hero-sub {
-    font-size: 1rem;
-    line-height: 1.55;
-    margin-bottom: 20px;
-    color: rgba(255,255,255,0.85);
-  }
-  .hero::after {
-    background-position: right -10px bottom -18px, center, center, center;
-    background-size: 180px auto, auto, auto, auto;
-  }
-  .hero-actions {
-    justify-content: center;
-    gap: 0.75rem;
-  }
-  .hero-trust {
-    margin-top: 16px;
-    gap: 8px;
-    font-size: 0.75rem;
-  }
-  .hero-banks-label {
-    margin-top: 14px;
-    font-size: 0.78rem;
-  }
-  .hero-trust-bar { gap: 7px; }
-  .hero-trust-item { font-size: 0.69rem; padding: 4px 10px 4px 5px; }
-  .hti-icon { width: 19px; height: 19px; }
-  .hero-nohidden-card { min-width: 180px; padding: 8px 12px 8px 10px; border-radius: 11px; }
-
-  .hero-image-col { display: none; }
   .banks-section-title { display: none; }
   .loan-form-section { padding: 36px 0; }
   .loan-form-section .hero-form-card { max-width: 100%; }
@@ -2993,10 +2583,11 @@ footer {
   .top-bar .container { flex-direction: column; gap: 4px; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-content > *, .hero-image-col, .hero-image-col img,
-  .hero-service-badge::before, .hero-service-badge::after,
-  .btn-primary-lg::after, .btn-throb,
-  .ap-shell, .ap-province-item, .ap-cta::before { animation: none !important; transition: none !important; }
+  .btn-primary-lg::after,
+.btn-throb,
+.ap-shell,
+.ap-province-item,
+.ap-cta::before { animation: none !important; transition: none !important; }
 }
 /* ===================== ONYX HERO (quick apply) ===================== */
 .oh {
